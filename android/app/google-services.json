@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "279750973519",
+    "project_id": "algotrack-35fd7",
+    "storage_bucket": "algotrack-35fd7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279750973519:android:4669ea1dca1c129b3c723a",
+        "android_client_info": {
+          "package_name": "com.algols.algo_track"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279750973519-a8asmbo4fsuv521iuhec5ao3f06jcoif.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.algols.algo_track",
+            "certificate_hash": "6ad726cc60cd47c2f7c4624e1c06cf0a502490e0"
+          }
+        },
+        {
+          "client_id": "279750973519-cou0um32mfdjipcdquvd68ekj367k3pu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDT9k8xOYyeO_TVCluoqLQr6tsGEYkwdJ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279750973519-cou0um32mfdjipcdquvd68ekj367k3pu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "279750973519-4mbq2eqhm9f070vvluja2cq7tucfuc9n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.algols.algoTrack"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
