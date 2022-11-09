@@ -37,7 +37,8 @@ class AlgoTrackApp extends StatelessWidget {
 
   final GoRouter _router = GoRouter(routes: <GoRoute>[
     GoRoute(
-        path: WelcomeScreen.id,
+        path: '/',
+        name: WelcomeScreen.id,
         builder: (BuildContext context, GoRouterState state) {
           return WelcomeScreen();
         }),
