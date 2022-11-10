@@ -1,5 +1,6 @@
 import 'package:algo_track/common/constants.dart';
 import 'package:algo_track/common/ui_state.dart';
+import 'package:algo_track/screens/nfc_test_screen.dart';
 import 'package:algo_track/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -36,15 +37,19 @@ class AlgoTrackApp extends StatelessWidget {
     });
   }
 
-  final GoRouter _router = GoRouter(routes: <GoRoute>[
-    GoRoute(
+  final GoRouter _router = GoRouter(
+    routes: <GoRoute>[
+      GoRoute(
         path: WELCOME_SCREEN,
         builder: (BuildContext context, GoRouterState state) => WelcomeScreen(),
         routes: <GoRoute>[
           GoRoute(
-              path: 'page2',
-              builder: (BuildContext context, GoRouterState state) =>
-                  WelcomeScreen())
-        ])
-  ]);
+            path: NFC_TEST_SCREEN,
+            builder: (BuildContext context, GoRouterState state) =>
+                const NfcTestScreen(),
+          ),
+        ],
+      ),
+    ],
+  );
 }
