@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:nfc_manager/nfc_manager.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  static const String id = 'WelcomeScreen';
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
 }

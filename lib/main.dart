@@ -1,3 +1,4 @@
+import 'package:algo_track/common/constants.dart';
 import 'package:algo_track/common/ui_state.dart';
 import 'package:algo_track/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
@@ -37,10 +38,13 @@ class AlgoTrackApp extends StatelessWidget {
 
   final GoRouter _router = GoRouter(routes: <GoRoute>[
     GoRoute(
-        path: '/',
-        name: WelcomeScreen.id,
-        builder: (BuildContext context, GoRouterState state) {
-          return WelcomeScreen();
-        }),
+        path: WELCOME_SCREEN,
+        builder: (BuildContext context, GoRouterState state) => WelcomeScreen(),
+        routes: <GoRoute>[
+          GoRoute(
+              path: 'page2',
+              builder: (BuildContext context, GoRouterState state) =>
+                  WelcomeScreen())
+        ])
   ]);
 }
