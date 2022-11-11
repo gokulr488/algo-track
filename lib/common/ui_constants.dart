@@ -37,3 +37,10 @@ const InputDecoration kDropDownDecoration = InputDecoration(
       borderSide: BorderSide(color: Color(0x00000000)),
       borderRadius: BorderRadius.all(Radius.circular(25)),
     ));
+
+final buttonStyle = ButtonStyle(
+  padding: MaterialStateProperty.all(const EdgeInsets.all(12)),
+  shape: MaterialStateProperty.all(
+    RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+  ),
+);
