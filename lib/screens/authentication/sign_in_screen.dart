@@ -16,32 +16,28 @@ class SignInWidget extends StatelessWidget {
     return SignInScreen(
       actions: [
         ForgotPasswordAction((context, email) {
-          Navigator.pushNamed(
-            context,
-            '/forgot-password',
-            arguments: {'email': email},
-          );
+          context.go(FORGOT_PASSWORD_SCREEN, extra: {'email': email});
         }),
         VerifyPhoneAction((context, _) {
-          Navigator.pushNamed(context, '/phone');
+          context.go(PHONE_SCREEN);
         }),
         AuthStateChangeAction<SignedIn>((context, state) {
           if (!state.user!.emailVerified) {
-            Navigator.pushNamed(context, '/verify-email');
+            context.go(VERIFY_EMAIL_SCREEN);
           } else {
-            Navigator.pushReplacementNamed(context, '/profile');
+            context.go(DASHBOARD_SCREEN);
           }
         }),
         AuthStateChangeAction<UserCreated>((context, state) {
           if (!state.credential.user!.emailVerified) {
-            Navigator.pushNamed(context, '/verify-email');
+            context.go(VERIFY_EMAIL_SCREEN);
           } else {
-            Navigator.pushReplacementNamed(context, '/profile');
+            context.go(DASHBOARD_SCREEN);
           }
         }),
         mfaAction,
         EmailLinkSignInAction((context) {
-          Navigator.pushReplacementNamed(context, '/email-link-sign-in');
+          context.go(EMAIL_SIGN_IN_SCREEN);
         }),
       ],
       styles: const {
