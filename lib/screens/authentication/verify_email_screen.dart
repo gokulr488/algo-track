@@ -1,6 +1,7 @@
 import 'package:algo_track/common/constants.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
   const VerifyEmailScreen({super.key});
@@ -13,11 +14,11 @@ class VerifyEmailScreen extends StatelessWidget {
       actionCodeSettings: actionCodeSettings,
       actions: [
         EmailVerifiedAction(() {
-          Navigator.pushReplacementNamed(context, '/profile');
+          context.go(DASHBOARD_SCREEN);
         }),
         AuthCancelledAction((context) {
           FirebaseUIAuth.signOut(context: context);
-          Navigator.pushReplacementNamed(context, '/');
+          context.go(WELCOME_SCREEN);
         }),
       ],
     );
