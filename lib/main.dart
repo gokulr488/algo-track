@@ -1,5 +1,12 @@
 import 'package:algo_track/common/constants.dart';
 import 'package:algo_track/common/ui_state.dart';
+import 'package:algo_track/screens/authentication/auth_profile_screen.dart';
+import 'package:algo_track/screens/authentication/email_signin_screen.dart';
+import 'package:algo_track/screens/authentication/forgot_password_screen.dart';
+import 'package:algo_track/screens/authentication/phone_input_screen.dart';
+import 'package:algo_track/screens/authentication/sign_in_screen.dart';
+import 'package:algo_track/screens/authentication/sms_code_input_screen.dart';
+import 'package:algo_track/screens/authentication/verify_email_screen.dart';
 import 'package:algo_track/screens/dashboard_screen.dart';
 import 'package:algo_track/screens/nfc_test_screen.dart';
 import 'package:algo_track/screens/welcome_screen.dart';
@@ -57,6 +64,40 @@ class AlgoTrackApp extends StatelessWidget {
               path: DASHBOARD_SCREEN,
               builder: (BuildContext context, GoRouterState state) =>
                   const DashBoardScreen()),
+          GoRoute(
+              path: SIGN_IN_SCREEN,
+              builder: (BuildContext context, GoRouterState state) =>
+                  SignInWidget()),
+          GoRoute(
+              path: VERIFY_EMAIL_SCREEN,
+              builder: (BuildContext context, GoRouterState state) =>
+                  const VerifyEmailScreen()),
+          GoRoute(
+              path: PHONE_SCREEN,
+              builder: (BuildContext context, GoRouterState state) =>
+                  const PhoneInputWidget()),
+          GoRoute(
+              path: SMS_SCREEN,
+              builder: (BuildContext context, GoRouterState state) {
+                state.extra;
+                return SmsInputScreen(
+                    arguments: state.extra as Map<String, dynamic>?);
+              }),
+          GoRoute(
+              path: FORGOT_PASSWORD_SCREEN,
+              builder: (BuildContext context, GoRouterState state) {
+                state.extra;
+                return ForgotPasswordWidget(
+                    arguments: state.extra as Map<String, dynamic>?);
+              }),
+          GoRoute(
+              path: EMAIL_SIGN_IN_SCREEN,
+              builder: (BuildContext context, GoRouterState state) =>
+                  EmailSignInWidget()),
+          GoRoute(
+              path: AUTH_PROFILE_SCREEN,
+              builder: (BuildContext context, GoRouterState state) =>
+                  AuthProfileScreen()),
         ],
       ),
     ],
