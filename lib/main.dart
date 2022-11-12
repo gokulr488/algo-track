@@ -55,47 +55,48 @@ class AlgoTrackApp extends StatelessWidget {
       GoRoute(
         path: WELCOME_SCREEN,
         builder: (BuildContext context, GoRouterState state) => WelcomeScreen(),
+      ),
+      GoRoute(
+        path: DASHBOARD_SCREEN,
+        builder: (BuildContext context, GoRouterState state) =>
+            const DashBoardScreen(),
         routes: <GoRoute>[
           GoRoute(
-              path: NFC_TEST_SCREEN,
+              path: nfc,
               builder: (BuildContext context, GoRouterState state) =>
                   const NfcTestScreen()),
           GoRoute(
-              path: DASHBOARD_SCREEN,
-              builder: (BuildContext context, GoRouterState state) =>
-                  const DashBoardScreen()),
-          GoRoute(
-              path: SIGN_IN_SCREEN,
+              path: signIn,
               builder: (BuildContext context, GoRouterState state) =>
                   SignInWidget()),
           GoRoute(
-              path: VERIFY_EMAIL_SCREEN,
+              path: verifyEmail,
               builder: (BuildContext context, GoRouterState state) =>
                   const VerifyEmailScreen()),
           GoRoute(
-              path: PHONE_SCREEN,
+              path: phone,
               builder: (BuildContext context, GoRouterState state) =>
                   const PhoneInputWidget()),
           GoRoute(
-              path: SMS_SCREEN,
+              path: sms,
               builder: (BuildContext context, GoRouterState state) {
                 state.extra;
                 return SmsInputScreen(
                     arguments: state.extra as Map<String, dynamic>?);
               }),
           GoRoute(
-              path: FORGOT_PASSWORD_SCREEN,
+              path: forgotPassword,
               builder: (BuildContext context, GoRouterState state) {
                 state.extra;
                 return ForgotPasswordWidget(
                     arguments: state.extra as Map<String, dynamic>?);
               }),
           GoRoute(
-              path: EMAIL_SIGN_IN_SCREEN,
+              path: emailSignIn,
               builder: (BuildContext context, GoRouterState state) =>
                   EmailSignInWidget()),
           GoRoute(
-              path: AUTH_PROFILE_SCREEN,
+              path: authProfile,
               builder: (BuildContext context, GoRouterState state) =>
                   AuthProfileScreen()),
         ],

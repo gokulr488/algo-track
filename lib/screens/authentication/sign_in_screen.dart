@@ -8,7 +8,7 @@ class SignInWidget extends StatelessWidget {
 
   final mfaAction = AuthStateChangeAction<MFARequired>((context, state) async {
     await startMFAVerification(resolver: state.resolver, context: context);
-    context.go('/$DASHBOARD_SCREEN');
+    context.go(DASHBOARD_SCREEN);
   });
 
   @override
