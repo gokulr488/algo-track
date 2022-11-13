@@ -29,3 +29,8 @@ final actionCodeSettings = ActionCodeSettings(
   androidPackageName: 'com.algols.algo_track',
   iOSBundleId: 'com.algols.algoTrack',
 );
+
+const String googleClientId =
+    '279750973519-cou0um32mfdjipcdquvd68ekj367k3pu.apps.googleusercontent.com';
+
+const String googleClientSecret = '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';

@@ -25,7 +25,11 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  FirebaseUIAuth.configureProviders([EmailAuthProvider(), PhoneAuthProvider()]);
+  FirebaseUIAuth.configureProviders([
+    EmailAuthProvider(),
+    EmailLinkAuthProvider(actionCodeSettings: actionCodeSettings),
+    PhoneAuthProvider()
+  ]);
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider<UiState>(create: (_) => UiState()),
