@@ -6,13 +6,12 @@ const String WELCOME_SCREEN = '/';
 const String DASHBOARD_SCREEN = '/dash';
 const String NFC_TEST_SCREEN = '$DASHBOARD_SCREEN/$nfc';
 const String SIGN_IN_SCREEN = '$WELCOME_SCREEN$signIn';
-const String VERIFY_EMAIL_SCREEN = '$WELCOME_SCREEN$verifyEmail';
-const String PHONE_SCREEN = '$WELCOME_SCREEN$phone';
-const String SMS_SCREEN = '$WELCOME_SCREEN$sms';
-const String FORGOT_PASSWORD_SCREEN = '$WELCOME_SCREEN$forgotPassword';
-const String EMAIL_SIGN_IN_SCREEN = '$WELCOME_SCREEN$emailSignIn';
+const String VERIFY_EMAIL_SCREEN = '$SIGN_IN_SCREEN/$verifyEmail';
+const String PHONE_SCREEN = '$SIGN_IN_SCREEN/$phone';
+const String SMS_SCREEN = '$PHONE_SCREEN/$sms';
+const String FORGOT_PASSWORD_SCREEN = '$SIGN_IN_SCREEN/$forgotPassword';
+const String EMAIL_SIGN_IN_SCREEN = '$SIGN_IN_SCREEN/$emailSignIn';
 const String AUTH_PROFILE_SCREEN = '$DASHBOARD_SCREEN/$authProfile';
-//TODO above routes need to be properly planned according to authentication flow sequence
 
 const String nfc = 'nfcTest';
 const String signIn = 'signIn';

@@ -28,7 +28,7 @@ Future<void> main() async {
   );
   FirebaseUIAuth.configureProviders([
     EmailAuthProvider(),
-    EmailLinkAuthProvider(actionCodeSettings: actionCodeSettings),
+    //EmailLinkAuthProvider(actionCodeSettings: actionCodeSettings),
     PhoneAuthProvider(),
   ]);
 
@@ -65,33 +65,39 @@ class AlgoTrackApp extends StatelessWidget {
             GoRoute(
                 path: signIn,
                 builder: (BuildContext context, GoRouterState state) =>
-                    const SignInWidget()),
-            GoRoute(
-                path: verifyEmail,
-                builder: (BuildContext context, GoRouterState state) =>
-                    const VerifyEmailScreen()),
-            GoRoute(
-                path: phone,
-                builder: (BuildContext context, GoRouterState state) =>
-                    const PhoneInputWidget()),
-            GoRoute(
-                path: sms,
-                builder: (BuildContext context, GoRouterState state) {
-                  state.extra;
-                  return SmsInputScreen(
-                      arguments: state.extra as Map<String, dynamic>?);
-                }),
-            GoRoute(
-                path: forgotPassword,
-                builder: (BuildContext context, GoRouterState state) {
-                  state.extra;
-                  return ForgotPasswordWidget(
-                      arguments: state.extra as Map<String, dynamic>?);
-                }),
-            GoRoute(
-                path: emailSignIn,
-                builder: (BuildContext context, GoRouterState state) =>
-                    EmailSignInWidget()),
+                    const SignInWidget(),
+                routes: [
+                  GoRoute(
+                      path: verifyEmail,
+                      builder: (BuildContext context, GoRouterState state) =>
+                          const VerifyEmailScreen()),
+                  GoRoute(
+                      path: phone,
+                      builder: (BuildContext context, GoRouterState state) =>
+                          const PhoneInputWidget(),
+                      routes: [
+                        GoRoute(
+                            path: sms,
+                            builder:
+                                (BuildContext context, GoRouterState state) {
+                              state.extra;
+                              return SmsInputScreen(
+                                  arguments:
+                                      state.extra as Map<String, dynamic>?);
+                            }),
+                      ]),
+                  GoRoute(
+                      path: forgotPassword,
+                      builder: (BuildContext context, GoRouterState state) {
+                        state.extra;
+                        return ForgotPasswordWidget(
+                            arguments: state.extra as Map<String, dynamic>?);
+                      }),
+                  GoRoute(
+                      path: emailSignIn,
+                      builder: (BuildContext context, GoRouterState state) =>
+                          EmailSignInWidget()),
+                ]),
           ]),
       GoRoute(
         path: DASHBOARD_SCREEN,

@@ -4,26 +4,15 @@ import 'package:algo_track/common/constants.dart';
 import 'package:algo_track/components/base_screen.dart';
 import 'package:algo_track/components/responsive.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class WelcomeScreen extends StatefulWidget {
-  @override
-  State<WelcomeScreen> createState() => _WelcomeScreenState();
-}
-
-class _WelcomeScreenState extends State<WelcomeScreen> {
-  @override
-  void initState() {
-    Timer(const Duration(seconds: 1), () {
-      isLoggedIn ? context.go(DASHBOARD_SCREEN) : context.go(SIGN_IN_SCREEN);
-    });
-    super.initState();
-  }
-
+class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Timer(const Duration(milliseconds: 500), () {
+      isLoggedIn ? context.go(DASHBOARD_SCREEN) : context.go(SIGN_IN_SCREEN);
+    });
     return BaseScreen(
         headerText: 'Welcome',
         child: Responsive(
