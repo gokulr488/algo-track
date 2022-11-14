@@ -28,7 +28,7 @@ Future<void> main() async {
   FirebaseUIAuth.configureProviders([
     EmailAuthProvider(),
     EmailLinkAuthProvider(actionCodeSettings: actionCodeSettings),
-    PhoneAuthProvider()
+    PhoneAuthProvider(),
   ]);
 
   runApp(MultiProvider(providers: [
