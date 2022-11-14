@@ -18,7 +18,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
-//ctrl+alt+d  => devtoold in browser
+//ctrl+alt+d  => devtools in browser
+//flutter build apk --split-per-abi --no-shrink
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
