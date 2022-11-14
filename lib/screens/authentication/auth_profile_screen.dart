@@ -4,11 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class AuthProfileScreen extends StatelessWidget {
-  final mfaAction = AuthStateChangeAction<MFARequired>((context, state) async {
-    await startMFAVerification(resolver: state.resolver, context: context);
-    context.go(DASHBOARD_SCREEN);
-  });
-
   @override
   Widget build(BuildContext context) {
     return ProfileScreen(
@@ -16,7 +11,11 @@ class AuthProfileScreen extends StatelessWidget {
         SignedOutAction((context) {
           context.go(WELCOME_SCREEN);
         }),
-        mfaAction,
+        AuthStateChangeAction<MFARequired>((context, state) async {
+          await startMFAVerification(
+              resolver: state.resolver, context: context);
+          context.go(DASHBOARD_SCREEN);
+        }),
       ],
       actionCodeSettings: actionCodeSettings,
       showMFATile: true,

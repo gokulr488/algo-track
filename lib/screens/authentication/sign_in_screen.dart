@@ -4,12 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class SignInWidget extends StatelessWidget {
-  SignInWidget({super.key});
-
-  final mfaAction = AuthStateChangeAction<MFARequired>((context, state) async {
-    await startMFAVerification(resolver: state.resolver, context: context);
-    context.go(DASHBOARD_SCREEN);
-  });
+  const SignInWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +30,11 @@ class SignInWidget extends StatelessWidget {
             context.go(DASHBOARD_SCREEN);
           }
         }),
-        mfaAction,
+        AuthStateChangeAction<MFARequired>((context, state) async {
+          await startMFAVerification(
+              resolver: state.resolver, context: context);
+          context.go(DASHBOARD_SCREEN);
+        }),
         EmailLinkSignInAction((context) {
           context.go(EMAIL_SIGN_IN_SCREEN);
         }),
@@ -50,8 +49,8 @@ class SignInWidget extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 8),
           child: Text(
             action == AuthAction.signIn
-                ? 'Welcome to Firebase UI! Please sign in to continue.'
-                : 'Welcome to Firebase UI! Please create an account to continue',
+                ? 'Welcome to Algo Track! Please sign in to continue.'
+                : 'Welcome to Algo Track! Please create an account to continue',
           ),
         );
       },

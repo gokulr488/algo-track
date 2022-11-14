@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:algo_track/common/constants.dart';
 import 'package:algo_track/components/base_screen.dart';
 import 'package:algo_track/components/responsive.dart';
@@ -14,10 +16,8 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (isLoggedIn) {
-        context.go(DASHBOARD_SCREEN);
-      }
+    Timer(const Duration(seconds: 1), () {
+      isLoggedIn ? context.go(DASHBOARD_SCREEN) : context.go(SIGN_IN_SCREEN);
     });
     super.initState();
   }
@@ -28,17 +28,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         headerText: 'Welcome',
         child: Responsive(
             mobile: Column(
-              children: const [
-                Expanded(child: const SignInScreen()),
-              ],
+              children: const [Text('Welcome to Algo Track')],
             ),
             desktop: Column(children: const [Text('Web under development')])));
   }
-
-  final mfaAction = AuthStateChangeAction<MFARequired>((context, state) async {
-    await startMFAVerification(resolver: state.resolver, context: context);
-    context.go(DASHBOARD_SCREEN);
-  });
 
   bool get isLoggedIn {
     final auth = FirebaseAuth.instance;
