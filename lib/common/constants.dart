@@ -23,7 +23,7 @@ const String emailSignIn = 'emailSignIn';
 const String authProfile = 'authProfile';
 
 final actionCodeSettings = ActionCodeSettings(
-  url: 'https://flutterfire-e2e-tests.firebaseapp.com',
+  url: 'https://algotrack-35fd7.firebaseapp.com',
   handleCodeInApp: true,
   androidMinimumVersion: '21',
   androidPackageName: 'com.algols.algo_track',
