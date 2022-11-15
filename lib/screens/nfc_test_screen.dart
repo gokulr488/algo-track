@@ -28,8 +28,8 @@ class _NfcTestScreenState extends State<NfcTestScreen> {
                     Flexible(
                       flex: 2,
                       child: Container(
-                        margin: EdgeInsets.all(4),
-                        constraints: BoxConstraints.expand(),
+                        margin: const EdgeInsets.all(4),
+                        constraints: const BoxConstraints.expand(),
                         decoration: BoxDecoration(border: Border.all()),
                         child: SingleChildScrollView(
                           child: ValueListenableBuilder<dynamic>(
@@ -43,19 +43,21 @@ class _NfcTestScreenState extends State<NfcTestScreen> {
                     Flexible(
                       flex: 3,
                       child: GridView.count(
-                        padding: EdgeInsets.all(4),
+                        padding: const EdgeInsets.all(4),
                         crossAxisCount: 2,
                         childAspectRatio: 4,
                         crossAxisSpacing: 4,
                         mainAxisSpacing: 4,
                         children: [
                           ElevatedButton(
-                              child: Text('Tag Read'), onPressed: _tagRead),
+                              onPressed: _tagRead,
+                              child: const Text('Tag Read')),
                           ElevatedButton(
-                              child: Text('Ndef Write'), onPressed: _ndefWrite),
+                              onPressed: _ndefWrite,
+                              child: const Text('Ndef Write')),
                           ElevatedButton(
-                              child: Text('Ndef Write Lock'),
-                              onPressed: _ndefWriteLock),
+                              onPressed: _ndefWriteLock,
+                              child: const Text('Ndef Write Lock')),
                         ],
                       ),
                     ),

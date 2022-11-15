@@ -33,6 +33,7 @@ class SignInWidget extends StatelessWidget {
         AuthStateChangeAction<MFARequired>((context, state) async {
           await startMFAVerification(
               resolver: state.resolver, context: context);
+          // ignore: use_build_context_synchronously
           context.go(DASHBOARD_SCREEN);
         }),
         EmailLinkSignInAction((context) {
