@@ -10,7 +10,9 @@ import 'package:algo_track/screens/authentication/verify_email_screen.dart';
 import 'package:algo_track/screens/dashboard_screen.dart';
 import 'package:algo_track/screens/nfc_test_screen.dart';
 import 'package:algo_track/screens/welcome_screen.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:go_router/go_router.dart';
@@ -26,15 +28,30 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  initialise();
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<UiState>(create: (_) => UiState()),
+  ], child: AlgoTrackApp()));
+}
+
+void initialise() {
+  if (!kIsWeb) {
+    FlutterError.onError = (errorDetails) {
+      // If you wish to record a "non-fatal" exception, please use `FirebaseCrashlytics.instance.recordFlutterError` instead
+      FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+    };
+    PlatformDispatcher.instance.onError = (error, stack) {
+      // If you wish to record a "non-fatal" exception, please remove the "fatal" parameter
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: false);
+      return true;
+    };
+    FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+  }
   FirebaseUIAuth.configureProviders([
     EmailAuthProvider(),
     EmailLinkAuthProvider(actionCodeSettings: actionCodeSettings),
     PhoneAuthProvider(),
   ]);
-
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider<UiState>(create: (_) => UiState()),
-  ], child: AlgoTrackApp()));
 }
 
 class AlgoTrackApp extends StatelessWidget {

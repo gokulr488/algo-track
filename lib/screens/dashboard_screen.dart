@@ -2,6 +2,7 @@ import 'package:algo_track/common/constants.dart';
 import 'package:algo_track/components/base_screen.dart';
 import 'package:algo_track/components/responsive.dart';
 import 'package:algo_track/components/rounded_button.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -21,7 +22,13 @@ class DashBoardScreen extends StatelessWidget {
                   onPressed: () => context.go(NFC_TEST_SCREEN)),
               RoundedButton(
                   title: 'Profile Screen',
-                  onPressed: () => context.go(AUTH_PROFILE_SCREEN))
+                  onPressed: () => context.go(AUTH_PROFILE_SCREEN)),
+              RoundedButton(
+                  title: 'Test Crashlytics log',
+                  onPressed: () {
+                    FirebaseCrashlytics.instance.log('Test log');
+                    throw Exception('Exception thrown');
+                  })
             ],
           ),
           desktop: Column()),
