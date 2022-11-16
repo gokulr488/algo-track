@@ -26,8 +26,14 @@ class DashBoardScreen extends StatelessWidget {
               RoundedButton(
                   title: 'Test Crashlytics log',
                   onPressed: () {
-                    FirebaseCrashlytics.instance.log('Test log');
-                    throw Exception('Exception thrown');
+                    try {
+                      throw Exception('Exception thrown when button pressed');
+                    } catch (e, stacktrace) {
+                      FirebaseCrashlytics.instance.recordError(
+                          'Pressing the button is throwing an error',
+                          stacktrace,
+                          fatal: true);
+                    }
                   })
             ],
           ),
