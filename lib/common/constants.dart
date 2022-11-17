@@ -1,6 +1,8 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 const String WELCOME_SCREEN = '/';
 const String DASHBOARD_SCREEN = '/dash';
@@ -30,7 +32,9 @@ final actionCodeSettings = ActionCodeSettings(
   iOSBundleId: 'com.algols.algoTrack',
 );
 
-const String googleClientId =
-    '279750973519-cou0um32mfdjipcdquvd68ekj367k3pu.apps.googleusercontent.com';
-
-const String googleClientSecret = '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';
+const firestoreSerializable = JsonSerializable(
+  converters: firestoreJsonConverters,
+  // The following values could alternatively be set inside your `build.yaml`
+  explicitToJson: true,
+  createFieldMap: true,
+);
