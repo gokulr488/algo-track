@@ -36,13 +36,11 @@ Future<void> main() async {
 
 void initialise() {
   if (!kIsWeb) {
-    FlutterError.onError = (errorDetails) {
-      // If you wish to record a "non-fatal" exception, please use `FirebaseCrashlytics.instance.recordFlutterError` instead
-      FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
-    };
+    // If you wish to record a "non-fatal" exception, please use `FirebaseCrashlytics.instance.recordFlutterError` instead
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
     PlatformDispatcher.instance.onError = (error, stack) {
       // If you wish to record a "non-fatal" exception, please remove the "fatal" parameter
-      FirebaseCrashlytics.instance.recordError(error, stack, fatal: false);
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
       return true;
     };
     FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
