@@ -21,6 +21,7 @@ class User {
   final UserType userType;
   final String companyId;
   final String? profilePicKey;
+  final Timestamp? profilePicUpdateTime;
   final Timestamp? punchInReminder;
   final Timestamp? punchOutReminder;
   final String? currentTimeLogId;
@@ -38,7 +39,8 @@ class User {
       this.punchInReminder,
       this.punchOutReminder,
       this.currentTimeLogId,
-      this.currentProjects});
+      this.currentProjects,
+      this.profilePicUpdateTime});
 
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 

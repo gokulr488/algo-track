@@ -139,6 +139,8 @@ abstract class UserDocumentReference
     FieldValue companyIdFieldValue,
     String? profilePicKey,
     FieldValue profilePicKeyFieldValue,
+    Timestamp? profilePicUpdateTime,
+    FieldValue profilePicUpdateTimeFieldValue,
     Timestamp? punchInReminder,
     FieldValue punchInReminderFieldValue,
     Timestamp? punchOutReminder,
@@ -164,6 +166,8 @@ abstract class UserDocumentReference
     FieldValue companyIdFieldValue,
     String? profilePicKey,
     FieldValue profilePicKeyFieldValue,
+    Timestamp? profilePicUpdateTime,
+    FieldValue profilePicUpdateTimeFieldValue,
     Timestamp? punchInReminder,
     FieldValue punchInReminderFieldValue,
     Timestamp? punchOutReminder,
@@ -214,6 +218,8 @@ class _$UserDocumentReference
     FieldValue? companyIdFieldValue,
     Object? profilePicKey = _sentinel,
     FieldValue? profilePicKeyFieldValue,
+    Object? profilePicUpdateTime = _sentinel,
+    FieldValue? profilePicUpdateTimeFieldValue,
     Object? punchInReminder = _sentinel,
     FieldValue? punchInReminderFieldValue,
     Object? punchOutReminder = _sentinel,
@@ -246,6 +252,11 @@ class _$UserDocumentReference
       "Cannot specify both profilePicKey and profilePicKeyFieldValue",
     );
     assert(
+      profilePicUpdateTime == _sentinel ||
+          profilePicUpdateTimeFieldValue == null,
+      "Cannot specify both profilePicUpdateTime and profilePicUpdateTimeFieldValue",
+    );
+    assert(
       punchInReminder == _sentinel || punchInReminderFieldValue == null,
       "Cannot specify both punchInReminder and punchInReminderFieldValue",
     );
@@ -271,6 +282,10 @@ class _$UserDocumentReference
       if (profilePicKey != _sentinel) 'profilePicKey': profilePicKey as String?,
       if (profilePicKeyFieldValue != null)
         'profilePicKey': profilePicKeyFieldValue,
+      if (profilePicUpdateTime != _sentinel)
+        'profilePicUpdateTime': profilePicUpdateTime as Timestamp?,
+      if (profilePicUpdateTimeFieldValue != null)
+        'profilePicUpdateTime': profilePicUpdateTimeFieldValue,
       if (punchInReminder != _sentinel)
         'punchInReminder': punchInReminder as Timestamp?,
       if (punchInReminderFieldValue != null)
@@ -302,6 +317,8 @@ class _$UserDocumentReference
     FieldValue? companyIdFieldValue,
     Object? profilePicKey = _sentinel,
     FieldValue? profilePicKeyFieldValue,
+    Object? profilePicUpdateTime = _sentinel,
+    FieldValue? profilePicUpdateTimeFieldValue,
     Object? punchInReminder = _sentinel,
     FieldValue? punchInReminderFieldValue,
     Object? punchOutReminder = _sentinel,
@@ -334,6 +351,11 @@ class _$UserDocumentReference
       "Cannot specify both profilePicKey and profilePicKeyFieldValue",
     );
     assert(
+      profilePicUpdateTime == _sentinel ||
+          profilePicUpdateTimeFieldValue == null,
+      "Cannot specify both profilePicUpdateTime and profilePicUpdateTimeFieldValue",
+    );
+    assert(
       punchInReminder == _sentinel || punchInReminderFieldValue == null,
       "Cannot specify both punchInReminder and punchInReminderFieldValue",
     );
@@ -359,6 +381,10 @@ class _$UserDocumentReference
       if (profilePicKey != _sentinel) 'profilePicKey': profilePicKey as String?,
       if (profilePicKeyFieldValue != null)
         'profilePicKey': profilePicKeyFieldValue,
+      if (profilePicUpdateTime != _sentinel)
+        'profilePicUpdateTime': profilePicUpdateTime as Timestamp?,
+      if (profilePicUpdateTimeFieldValue != null)
+        'profilePicUpdateTime': profilePicUpdateTimeFieldValue,
       if (punchInReminder != _sentinel)
         'punchInReminder': punchInReminder as Timestamp?,
       if (punchInReminderFieldValue != null)
@@ -537,6 +563,17 @@ abstract class UserQuery implements QueryReference<User, UserQuerySnapshot> {
     List<String?>? whereIn,
     List<String?>? whereNotIn,
   });
+  UserQuery whereProfilePicUpdateTime({
+    Timestamp? isEqualTo,
+    Timestamp? isNotEqualTo,
+    Timestamp? isLessThan,
+    Timestamp? isLessThanOrEqualTo,
+    Timestamp? isGreaterThan,
+    Timestamp? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<Timestamp?>? whereIn,
+    List<Timestamp?>? whereNotIn,
+  });
   UserQuery wherePunchInReminder({
     Timestamp? isEqualTo,
     Timestamp? isNotEqualTo,
@@ -649,6 +686,18 @@ abstract class UserQuery implements QueryReference<User, UserQuerySnapshot> {
     String? startAfter,
     String? endAt,
     String? endBefore,
+    UserDocumentSnapshot? startAtDocument,
+    UserDocumentSnapshot? endAtDocument,
+    UserDocumentSnapshot? endBeforeDocument,
+    UserDocumentSnapshot? startAfterDocument,
+  });
+
+  UserQuery orderByProfilePicUpdateTime({
+    bool descending = false,
+    Timestamp? startAt,
+    Timestamp? startAfter,
+    Timestamp? endAt,
+    Timestamp? endBefore,
     UserDocumentSnapshot? startAtDocument,
     UserDocumentSnapshot? endAtDocument,
     UserDocumentSnapshot? endBeforeDocument,
@@ -1028,6 +1077,35 @@ class _$UserQuery extends QueryReference<User, UserQuerySnapshot>
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
         _$UserFieldMap['profilePicKey']!,
+        isEqualTo: isEqualTo,
+        isNotEqualTo: isNotEqualTo,
+        isLessThan: isLessThan,
+        isLessThanOrEqualTo: isLessThanOrEqualTo,
+        isGreaterThan: isGreaterThan,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+        isNull: isNull,
+        whereIn: whereIn,
+        whereNotIn: whereNotIn,
+      ),
+      $queryCursor: $queryCursor,
+    );
+  }
+
+  UserQuery whereProfilePicUpdateTime({
+    Timestamp? isEqualTo,
+    Timestamp? isNotEqualTo,
+    Timestamp? isLessThan,
+    Timestamp? isLessThanOrEqualTo,
+    Timestamp? isGreaterThan,
+    Timestamp? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<Timestamp?>? whereIn,
+    List<Timestamp?>? whereNotIn,
+  }) {
+    return _$UserQuery(
+      _collection,
+      $referenceWithoutCursor: $referenceWithoutCursor.where(
+        _$UserFieldMap['profilePicUpdateTime']!,
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -1633,6 +1711,79 @@ class _$UserQuery extends QueryReference<User, UserQuerySnapshot>
     );
   }
 
+  UserQuery orderByProfilePicUpdateTime({
+    bool descending = false,
+    Object? startAt = _sentinel,
+    Object? startAfter = _sentinel,
+    Object? endAt = _sentinel,
+    Object? endBefore = _sentinel,
+    UserDocumentSnapshot? startAtDocument,
+    UserDocumentSnapshot? endAtDocument,
+    UserDocumentSnapshot? endBeforeDocument,
+    UserDocumentSnapshot? startAfterDocument,
+  }) {
+    final query = $referenceWithoutCursor.orderBy(
+        _$UserFieldMap['profilePicUpdateTime']!,
+        descending: descending);
+    var queryCursor = $queryCursor;
+
+    if (startAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAt: const [],
+        startAtDocumentSnapshot: startAtDocument.snapshot,
+      );
+    }
+    if (startAfterDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: const [],
+        startAfterDocumentSnapshot: startAfterDocument.snapshot,
+      );
+    }
+    if (endAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endAt: const [],
+        endAtDocumentSnapshot: endAtDocument.snapshot,
+      );
+    }
+    if (endBeforeDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: const [],
+        endBeforeDocumentSnapshot: endBeforeDocument.snapshot,
+      );
+    }
+
+    if (startAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAt: [...queryCursor.startAt, startAt],
+        startAtDocumentSnapshot: null,
+      );
+    }
+    if (startAfter != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: [...queryCursor.startAfter, startAfter],
+        startAfterDocumentSnapshot: null,
+      );
+    }
+    if (endAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endAt: [...queryCursor.endAt, endAt],
+        endAtDocumentSnapshot: null,
+      );
+    }
+    if (endBefore != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: [...queryCursor.endBefore, endBefore],
+        endBeforeDocumentSnapshot: null,
+      );
+    }
+
+    return _$UserQuery(
+      _collection,
+      $referenceWithoutCursor: query,
+      $queryCursor: queryCursor,
+    );
+  }
+
   UserQuery orderByPunchInReminder({
     bool descending = false,
     Object? startAt = _sentinel,
@@ -1964,6 +2115,9 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       currentProjects: (json['currentProjects'] as List<dynamic>?)
           ?.map((e) => CurrentProject.fromJson(e as Map<String, dynamic>))
           .toList(),
+      profilePicUpdateTime: _$JsonConverterFromJson<Timestamp, Timestamp>(
+          json['profilePicUpdateTime'],
+          const FirestoreTimestampConverter().fromJson),
     );
 
 const _$UserFieldMap = <String, String>{
@@ -1975,6 +2129,7 @@ const _$UserFieldMap = <String, String>{
   'userType': 'userType',
   'companyId': 'companyId',
   'profilePicKey': 'profilePicKey',
+  'profilePicUpdateTime': 'profilePicUpdateTime',
   'punchInReminder': 'punchInReminder',
   'punchOutReminder': 'punchOutReminder',
   'currentTimeLogId': 'currentTimeLogId',
@@ -1990,6 +2145,9 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'userType': _$UserTypeEnumMap[instance.userType]!,
       'companyId': instance.companyId,
       'profilePicKey': instance.profilePicKey,
+      'profilePicUpdateTime': _$JsonConverterToJson<Timestamp, Timestamp>(
+          instance.profilePicUpdateTime,
+          const FirestoreTimestampConverter().toJson),
       'punchInReminder': _$JsonConverterToJson<Timestamp, Timestamp>(
           instance.punchInReminder, const FirestoreTimestampConverter().toJson),
       'punchOutReminder': _$JsonConverterToJson<Timestamp, Timestamp>(
