@@ -9,22 +9,22 @@ final companiesRef = CompanyCollectionReference();
 
 @firestoreSerializable
 class Company {
-  Company(
-      {required this.companyName,
-      required this.emailId,
-      required this.id,
-      this.address,
-      required this.password});
-
-  factory Company.fromJson(Map<String, Object?> json) =>
-      _$CompanyFromJson(json);
-
   @Id()
   final String id;
   final String companyName;
   final String emailId;
   final String? address;
   final String password;
+
+  Company(
+      {required this.id,
+      required this.companyName,
+      required this.emailId,
+      this.address,
+      required this.password});
+
+  factory Company.fromJson(Map<String, Object?> json) =>
+      _$CompanyFromJson(json);
 
   Map<String, Object?> toJson() => _$CompanyToJson(this);
 }

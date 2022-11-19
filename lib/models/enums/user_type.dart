@@ -1,0 +1,1 @@
+enum UserType { ADMIN, SUPER_USER, EMPLOYEE }

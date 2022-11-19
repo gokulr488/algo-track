@@ -1215,9 +1215,9 @@ class CompanyQueryDocumentSnapshot
 // **************************************************************************
 
 Company _$CompanyFromJson(Map<String, dynamic> json) => Company(
+      id: json['id'] as String,
       companyName: json['companyName'] as String,
       emailId: json['emailId'] as String,
-      id: json['id'] as String,
       address: json['address'] as String?,
       password: json['password'] as String,
     );

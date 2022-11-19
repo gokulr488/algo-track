@@ -23,6 +23,7 @@ import 'firebase_options.dart';
 //ctrl+alt+d  => devtools in browser
 //flutter build apk --split-per-abi --no-shrink
 //flutter pub run build_runner build --delete-conflicting-outputs
+//flutter pub run build_runner watch --delete-conflicting-outputs
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
