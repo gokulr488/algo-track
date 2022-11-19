@@ -13,7 +13,7 @@ final usersRef = UserCollectionReference();
 @firestoreSerializable
 class User {
   @Id()
-  final String id;
+  final String? id;
   final String userName;
   final String emailId;
   final String phoneNumber;
@@ -28,7 +28,7 @@ class User {
   final List<CurrentProject>? currentProjects;
 
   User(
-      {required this.id,
+      {this.id,
       required this.userName,
       required this.emailId,
       required this.phoneNumber,

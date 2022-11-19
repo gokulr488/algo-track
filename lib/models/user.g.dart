@@ -2097,7 +2097,7 @@ class UserQueryDocumentSnapshot extends FirestoreQueryDocumentSnapshot<User>
 // **************************************************************************
 
 User _$UserFromJson(Map<String, dynamic> json) => User(
-      id: json['id'] as String,
+      id: json['id'] as String?,
       userName: json['userName'] as String,
       emailId: json['emailId'] as String,
       phoneNumber: json['phoneNumber'] as String,
