@@ -1,4 +1,5 @@
 import 'package:algo_track/common/constants.dart';
+import 'package:algo_track/models/current_project.dart';
 import 'package:algo_track/models/enums/user_type.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
@@ -23,6 +24,7 @@ class User {
   final Timestamp? punchInReminder;
   final Timestamp? punchOutReminder;
   final String? currentTimeLogId;
+  final List<CurrentProject>? currentProjects;
 
   User(
       {required this.id,
@@ -35,7 +37,8 @@ class User {
       this.profilePicKey,
       this.punchInReminder,
       this.punchOutReminder,
-      this.currentTimeLogId});
+      this.currentTimeLogId,
+      this.currentProjects});
 
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 

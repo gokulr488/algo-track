@@ -1961,6 +1961,9 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
           json['punchOutReminder'],
           const FirestoreTimestampConverter().fromJson),
       currentTimeLogId: json['currentTimeLogId'] as String?,
+      currentProjects: (json['currentProjects'] as List<dynamic>?)
+          ?.map((e) => CurrentProject.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 const _$UserFieldMap = <String, String>{
@@ -1975,6 +1978,7 @@ const _$UserFieldMap = <String, String>{
   'punchInReminder': 'punchInReminder',
   'punchOutReminder': 'punchOutReminder',
   'currentTimeLogId': 'currentTimeLogId',
+  'currentProjects': 'currentProjects',
 };
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
@@ -1992,6 +1996,8 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
           instance.punchOutReminder,
           const FirestoreTimestampConverter().toJson),
       'currentTimeLogId': instance.currentTimeLogId,
+      'currentProjects':
+          instance.currentProjects?.map((e) => e.toJson()).toList(),
     };
 
 const _$UserTypeEnumMap = {
