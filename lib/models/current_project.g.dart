@@ -15,14 +15,6 @@ CurrentProject _$CurrentProjectFromJson(Map<String, dynamic> json) =>
       userRole: $enumDecode(_$UserRoleEnumMap, json['userRole']),
     );
 
-const _$CurrentProjectFieldMap = <String, String>{
-  'projectId': 'projectId',
-  'projectName': 'projectName',
-  'userId': 'userId',
-  'userName': 'userName',
-  'userRole': 'userRole',
-};
-
 Map<String, dynamic> _$CurrentProjectToJson(CurrentProject instance) =>
     <String, dynamic>{
       'projectId': instance.projectId,
