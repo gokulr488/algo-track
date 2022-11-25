@@ -15,6 +15,13 @@ BreakTime _$BreakTimeFromJson(Map<String, dynamic> json) => BreakTime(
       breakType: $enumDecode(_$BreakTypeEnumMap, json['breakType']),
     );
 
+const _$BreakTimeFieldMap = <String, String>{
+  'startTime': 'startTime',
+  'endTime': 'endTime',
+  'timeLogId': 'timeLogId',
+  'breakType': 'breakType',
+};
+
 Map<String, dynamic> _$BreakTimeToJson(BreakTime instance) => <String, dynamic>{
       'startTime':
           const FirestoreTimestampConverter().toJson(instance.startTime),

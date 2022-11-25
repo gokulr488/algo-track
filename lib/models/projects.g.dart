@@ -218,18 +218,26 @@ class _$ProjectsDocumentReference
       "Cannot specify both companyId and companyIdFieldValue",
     );
     final json = {
-      if (projectName != _sentinel) 'projectName': projectName as String,
-      if (projectNameFieldValue != null) 'projectName': projectNameFieldValue,
+      if (projectName != _sentinel)
+        _$ProjectsFieldMap['projectName']!: projectName as String,
+      if (projectNameFieldValue != null)
+        _$ProjectsFieldMap['projectName']!: projectNameFieldValue,
       if (projectGroupId != _sentinel)
-        'projectGroupId': projectGroupId as String,
+        _$ProjectsFieldMap['projectGroupId']!: projectGroupId as String,
       if (projectGroupIdFieldValue != null)
-        'projectGroupId': projectGroupIdFieldValue,
-      if (leadUserId != _sentinel) 'leadUserId': leadUserId as String,
-      if (leadUserIdFieldValue != null) 'leadUserId': leadUserIdFieldValue,
-      if (adminUsers != _sentinel) 'adminUsers': adminUsers as List<String>?,
-      if (adminUsersFieldValue != null) 'adminUsers': adminUsersFieldValue,
-      if (companyId != _sentinel) 'companyId': companyId as String,
-      if (companyIdFieldValue != null) 'companyId': companyIdFieldValue,
+        _$ProjectsFieldMap['projectGroupId']!: projectGroupIdFieldValue,
+      if (leadUserId != _sentinel)
+        _$ProjectsFieldMap['leadUserId']!: leadUserId as String,
+      if (leadUserIdFieldValue != null)
+        _$ProjectsFieldMap['leadUserId']!: leadUserIdFieldValue,
+      if (adminUsers != _sentinel)
+        _$ProjectsFieldMap['adminUsers']!: adminUsers as List<String>?,
+      if (adminUsersFieldValue != null)
+        _$ProjectsFieldMap['adminUsers']!: adminUsersFieldValue,
+      if (companyId != _sentinel)
+        _$ProjectsFieldMap['companyId']!: companyId as String,
+      if (companyIdFieldValue != null)
+        _$ProjectsFieldMap['companyId']!: companyIdFieldValue,
     };
 
     return reference.update(json);
@@ -269,18 +277,26 @@ class _$ProjectsDocumentReference
       "Cannot specify both companyId and companyIdFieldValue",
     );
     final json = {
-      if (projectName != _sentinel) 'projectName': projectName as String,
-      if (projectNameFieldValue != null) 'projectName': projectNameFieldValue,
+      if (projectName != _sentinel)
+        _$ProjectsFieldMap['projectName']!: projectName as String,
+      if (projectNameFieldValue != null)
+        _$ProjectsFieldMap['projectName']!: projectNameFieldValue,
       if (projectGroupId != _sentinel)
-        'projectGroupId': projectGroupId as String,
+        _$ProjectsFieldMap['projectGroupId']!: projectGroupId as String,
       if (projectGroupIdFieldValue != null)
-        'projectGroupId': projectGroupIdFieldValue,
-      if (leadUserId != _sentinel) 'leadUserId': leadUserId as String,
-      if (leadUserIdFieldValue != null) 'leadUserId': leadUserIdFieldValue,
-      if (adminUsers != _sentinel) 'adminUsers': adminUsers as List<String>?,
-      if (adminUsersFieldValue != null) 'adminUsers': adminUsersFieldValue,
-      if (companyId != _sentinel) 'companyId': companyId as String,
-      if (companyIdFieldValue != null) 'companyId': companyIdFieldValue,
+        _$ProjectsFieldMap['projectGroupId']!: projectGroupIdFieldValue,
+      if (leadUserId != _sentinel)
+        _$ProjectsFieldMap['leadUserId']!: leadUserId as String,
+      if (leadUserIdFieldValue != null)
+        _$ProjectsFieldMap['leadUserId']!: leadUserIdFieldValue,
+      if (adminUsers != _sentinel)
+        _$ProjectsFieldMap['adminUsers']!: adminUsers as List<String>?,
+      if (adminUsersFieldValue != null)
+        _$ProjectsFieldMap['adminUsers']!: adminUsersFieldValue,
+      if (companyId != _sentinel)
+        _$ProjectsFieldMap['companyId']!: companyId as String,
+      if (companyIdFieldValue != null)
+        _$ProjectsFieldMap['companyId']!: companyIdFieldValue,
     };
 
     transaction.update(reference, json);

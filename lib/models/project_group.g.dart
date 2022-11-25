@@ -192,11 +192,13 @@ class _$ProjectGroupDocumentReference extends FirestoreDocumentReference<
     );
     final json = {
       if (projectGroupName != _sentinel)
-        'projectGroupName': projectGroupName as String,
+        _$ProjectGroupFieldMap['projectGroupName']!: projectGroupName as String,
       if (projectGroupNameFieldValue != null)
-        'projectGroupName': projectGroupNameFieldValue,
-      if (companyId != _sentinel) 'companyId': companyId as String,
-      if (companyIdFieldValue != null) 'companyId': companyIdFieldValue,
+        _$ProjectGroupFieldMap['projectGroupName']!: projectGroupNameFieldValue,
+      if (companyId != _sentinel)
+        _$ProjectGroupFieldMap['companyId']!: companyId as String,
+      if (companyIdFieldValue != null)
+        _$ProjectGroupFieldMap['companyId']!: companyIdFieldValue,
     };
 
     return reference.update(json);
@@ -219,11 +221,13 @@ class _$ProjectGroupDocumentReference extends FirestoreDocumentReference<
     );
     final json = {
       if (projectGroupName != _sentinel)
-        'projectGroupName': projectGroupName as String,
+        _$ProjectGroupFieldMap['projectGroupName']!: projectGroupName as String,
       if (projectGroupNameFieldValue != null)
-        'projectGroupName': projectGroupNameFieldValue,
-      if (companyId != _sentinel) 'companyId': companyId as String,
-      if (companyIdFieldValue != null) 'companyId': companyIdFieldValue,
+        _$ProjectGroupFieldMap['projectGroupName']!: projectGroupNameFieldValue,
+      if (companyId != _sentinel)
+        _$ProjectGroupFieldMap['companyId']!: companyId as String,
+      if (companyIdFieldValue != null)
+        _$ProjectGroupFieldMap['companyId']!: companyIdFieldValue,
     };
 
     transaction.update(reference, json);

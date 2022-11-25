@@ -208,14 +208,22 @@ class _$CompanyDocumentReference
       "Cannot specify both password and passwordFieldValue",
     );
     final json = {
-      if (companyName != _sentinel) 'companyName': companyName as String,
-      if (companyNameFieldValue != null) 'companyName': companyNameFieldValue,
-      if (emailId != _sentinel) 'emailId': emailId as String,
-      if (emailIdFieldValue != null) 'emailId': emailIdFieldValue,
-      if (address != _sentinel) 'address': address as String?,
-      if (addressFieldValue != null) 'address': addressFieldValue,
-      if (password != _sentinel) 'password': password as String,
-      if (passwordFieldValue != null) 'password': passwordFieldValue,
+      if (companyName != _sentinel)
+        _$CompanyFieldMap['companyName']!: companyName as String,
+      if (companyNameFieldValue != null)
+        _$CompanyFieldMap['companyName']!: companyNameFieldValue,
+      if (emailId != _sentinel)
+        _$CompanyFieldMap['emailId']!: emailId as String,
+      if (emailIdFieldValue != null)
+        _$CompanyFieldMap['emailId']!: emailIdFieldValue,
+      if (address != _sentinel)
+        _$CompanyFieldMap['address']!: address as String?,
+      if (addressFieldValue != null)
+        _$CompanyFieldMap['address']!: addressFieldValue,
+      if (password != _sentinel)
+        _$CompanyFieldMap['password']!: password as String,
+      if (passwordFieldValue != null)
+        _$CompanyFieldMap['password']!: passwordFieldValue,
     };
 
     return reference.update(json);
@@ -249,14 +257,22 @@ class _$CompanyDocumentReference
       "Cannot specify both password and passwordFieldValue",
     );
     final json = {
-      if (companyName != _sentinel) 'companyName': companyName as String,
-      if (companyNameFieldValue != null) 'companyName': companyNameFieldValue,
-      if (emailId != _sentinel) 'emailId': emailId as String,
-      if (emailIdFieldValue != null) 'emailId': emailIdFieldValue,
-      if (address != _sentinel) 'address': address as String?,
-      if (addressFieldValue != null) 'address': addressFieldValue,
-      if (password != _sentinel) 'password': password as String,
-      if (passwordFieldValue != null) 'password': passwordFieldValue,
+      if (companyName != _sentinel)
+        _$CompanyFieldMap['companyName']!: companyName as String,
+      if (companyNameFieldValue != null)
+        _$CompanyFieldMap['companyName']!: companyNameFieldValue,
+      if (emailId != _sentinel)
+        _$CompanyFieldMap['emailId']!: emailId as String,
+      if (emailIdFieldValue != null)
+        _$CompanyFieldMap['emailId']!: emailIdFieldValue,
+      if (address != _sentinel)
+        _$CompanyFieldMap['address']!: address as String?,
+      if (addressFieldValue != null)
+        _$CompanyFieldMap['address']!: addressFieldValue,
+      if (password != _sentinel)
+        _$CompanyFieldMap['password']!: password as String,
+      if (passwordFieldValue != null)
+        _$CompanyFieldMap['password']!: passwordFieldValue,
     };
 
     transaction.update(reference, json);

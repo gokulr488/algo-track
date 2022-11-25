@@ -218,16 +218,25 @@ class _$TimeLogDocumentReference
       "Cannot specify both userId and userIdFieldValue",
     );
     final json = {
-      if (startTime != _sentinel) 'startTime': startTime as Timestamp,
-      if (startTimeFieldValue != null) 'startTime': startTimeFieldValue,
-      if (endTime != _sentinel) 'endTime': endTime as Timestamp,
-      if (endTimeFieldValue != null) 'endTime': endTimeFieldValue,
-      if (projectId != _sentinel) 'projectId': projectId as String,
-      if (projectIdFieldValue != null) 'projectId': projectIdFieldValue,
-      if (location != _sentinel) 'location': location as String?,
-      if (locationFieldValue != null) 'location': locationFieldValue,
-      if (userId != _sentinel) 'userId': userId as String,
-      if (userIdFieldValue != null) 'userId': userIdFieldValue,
+      if (startTime != _sentinel)
+        _$TimeLogFieldMap['startTime']!: startTime as Timestamp,
+      if (startTimeFieldValue != null)
+        _$TimeLogFieldMap['startTime']!: startTimeFieldValue,
+      if (endTime != _sentinel)
+        _$TimeLogFieldMap['endTime']!: endTime as Timestamp,
+      if (endTimeFieldValue != null)
+        _$TimeLogFieldMap['endTime']!: endTimeFieldValue,
+      if (projectId != _sentinel)
+        _$TimeLogFieldMap['projectId']!: projectId as String,
+      if (projectIdFieldValue != null)
+        _$TimeLogFieldMap['projectId']!: projectIdFieldValue,
+      if (location != _sentinel)
+        _$TimeLogFieldMap['location']!: location as String?,
+      if (locationFieldValue != null)
+        _$TimeLogFieldMap['location']!: locationFieldValue,
+      if (userId != _sentinel) _$TimeLogFieldMap['userId']!: userId as String,
+      if (userIdFieldValue != null)
+        _$TimeLogFieldMap['userId']!: userIdFieldValue,
     };
 
     return reference.update(json);
@@ -267,16 +276,25 @@ class _$TimeLogDocumentReference
       "Cannot specify both userId and userIdFieldValue",
     );
     final json = {
-      if (startTime != _sentinel) 'startTime': startTime as Timestamp,
-      if (startTimeFieldValue != null) 'startTime': startTimeFieldValue,
-      if (endTime != _sentinel) 'endTime': endTime as Timestamp,
-      if (endTimeFieldValue != null) 'endTime': endTimeFieldValue,
-      if (projectId != _sentinel) 'projectId': projectId as String,
-      if (projectIdFieldValue != null) 'projectId': projectIdFieldValue,
-      if (location != _sentinel) 'location': location as String?,
-      if (locationFieldValue != null) 'location': locationFieldValue,
-      if (userId != _sentinel) 'userId': userId as String,
-      if (userIdFieldValue != null) 'userId': userIdFieldValue,
+      if (startTime != _sentinel)
+        _$TimeLogFieldMap['startTime']!: startTime as Timestamp,
+      if (startTimeFieldValue != null)
+        _$TimeLogFieldMap['startTime']!: startTimeFieldValue,
+      if (endTime != _sentinel)
+        _$TimeLogFieldMap['endTime']!: endTime as Timestamp,
+      if (endTimeFieldValue != null)
+        _$TimeLogFieldMap['endTime']!: endTimeFieldValue,
+      if (projectId != _sentinel)
+        _$TimeLogFieldMap['projectId']!: projectId as String,
+      if (projectIdFieldValue != null)
+        _$TimeLogFieldMap['projectId']!: projectIdFieldValue,
+      if (location != _sentinel)
+        _$TimeLogFieldMap['location']!: location as String?,
+      if (locationFieldValue != null)
+        _$TimeLogFieldMap['location']!: locationFieldValue,
+      if (userId != _sentinel) _$TimeLogFieldMap['userId']!: userId as String,
+      if (userIdFieldValue != null)
+        _$TimeLogFieldMap['userId']!: userIdFieldValue,
     };
 
     transaction.update(reference, json);

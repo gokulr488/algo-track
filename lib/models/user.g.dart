@@ -269,35 +269,46 @@ class _$UserDocumentReference
       "Cannot specify both currentTimeLogId and currentTimeLogIdFieldValue",
     );
     final json = {
-      if (userName != _sentinel) 'userName': userName as String,
-      if (userNameFieldValue != null) 'userName': userNameFieldValue,
-      if (emailId != _sentinel) 'emailId': emailId as String,
-      if (emailIdFieldValue != null) 'emailId': emailIdFieldValue,
-      if (phoneNumber != _sentinel) 'phoneNumber': phoneNumber as String,
-      if (phoneNumberFieldValue != null) 'phoneNumber': phoneNumberFieldValue,
-      if (password != _sentinel) 'password': password as String,
-      if (passwordFieldValue != null) 'password': passwordFieldValue,
-      if (companyId != _sentinel) 'companyId': companyId as String,
-      if (companyIdFieldValue != null) 'companyId': companyIdFieldValue,
-      if (profilePicKey != _sentinel) 'profilePicKey': profilePicKey as String?,
+      if (userName != _sentinel)
+        _$UserFieldMap['userName']!: userName as String,
+      if (userNameFieldValue != null)
+        _$UserFieldMap['userName']!: userNameFieldValue,
+      if (emailId != _sentinel) _$UserFieldMap['emailId']!: emailId as String,
+      if (emailIdFieldValue != null)
+        _$UserFieldMap['emailId']!: emailIdFieldValue,
+      if (phoneNumber != _sentinel)
+        _$UserFieldMap['phoneNumber']!: phoneNumber as String,
+      if (phoneNumberFieldValue != null)
+        _$UserFieldMap['phoneNumber']!: phoneNumberFieldValue,
+      if (password != _sentinel)
+        _$UserFieldMap['password']!: password as String,
+      if (passwordFieldValue != null)
+        _$UserFieldMap['password']!: passwordFieldValue,
+      if (companyId != _sentinel)
+        _$UserFieldMap['companyId']!: companyId as String,
+      if (companyIdFieldValue != null)
+        _$UserFieldMap['companyId']!: companyIdFieldValue,
+      if (profilePicKey != _sentinel)
+        _$UserFieldMap['profilePicKey']!: profilePicKey as String?,
       if (profilePicKeyFieldValue != null)
-        'profilePicKey': profilePicKeyFieldValue,
+        _$UserFieldMap['profilePicKey']!: profilePicKeyFieldValue,
       if (profilePicUpdateTime != _sentinel)
-        'profilePicUpdateTime': profilePicUpdateTime as Timestamp?,
+        _$UserFieldMap['profilePicUpdateTime']!:
+            profilePicUpdateTime as Timestamp?,
       if (profilePicUpdateTimeFieldValue != null)
-        'profilePicUpdateTime': profilePicUpdateTimeFieldValue,
+        _$UserFieldMap['profilePicUpdateTime']!: profilePicUpdateTimeFieldValue,
       if (punchInReminder != _sentinel)
-        'punchInReminder': punchInReminder as Timestamp?,
+        _$UserFieldMap['punchInReminder']!: punchInReminder as Timestamp?,
       if (punchInReminderFieldValue != null)
-        'punchInReminder': punchInReminderFieldValue,
+        _$UserFieldMap['punchInReminder']!: punchInReminderFieldValue,
       if (punchOutReminder != _sentinel)
-        'punchOutReminder': punchOutReminder as Timestamp?,
+        _$UserFieldMap['punchOutReminder']!: punchOutReminder as Timestamp?,
       if (punchOutReminderFieldValue != null)
-        'punchOutReminder': punchOutReminderFieldValue,
+        _$UserFieldMap['punchOutReminder']!: punchOutReminderFieldValue,
       if (currentTimeLogId != _sentinel)
-        'currentTimeLogId': currentTimeLogId as String?,
+        _$UserFieldMap['currentTimeLogId']!: currentTimeLogId as String?,
       if (currentTimeLogIdFieldValue != null)
-        'currentTimeLogId': currentTimeLogIdFieldValue,
+        _$UserFieldMap['currentTimeLogId']!: currentTimeLogIdFieldValue,
     };
 
     return reference.update(json);
@@ -368,35 +379,46 @@ class _$UserDocumentReference
       "Cannot specify both currentTimeLogId and currentTimeLogIdFieldValue",
     );
     final json = {
-      if (userName != _sentinel) 'userName': userName as String,
-      if (userNameFieldValue != null) 'userName': userNameFieldValue,
-      if (emailId != _sentinel) 'emailId': emailId as String,
-      if (emailIdFieldValue != null) 'emailId': emailIdFieldValue,
-      if (phoneNumber != _sentinel) 'phoneNumber': phoneNumber as String,
-      if (phoneNumberFieldValue != null) 'phoneNumber': phoneNumberFieldValue,
-      if (password != _sentinel) 'password': password as String,
-      if (passwordFieldValue != null) 'password': passwordFieldValue,
-      if (companyId != _sentinel) 'companyId': companyId as String,
-      if (companyIdFieldValue != null) 'companyId': companyIdFieldValue,
-      if (profilePicKey != _sentinel) 'profilePicKey': profilePicKey as String?,
+      if (userName != _sentinel)
+        _$UserFieldMap['userName']!: userName as String,
+      if (userNameFieldValue != null)
+        _$UserFieldMap['userName']!: userNameFieldValue,
+      if (emailId != _sentinel) _$UserFieldMap['emailId']!: emailId as String,
+      if (emailIdFieldValue != null)
+        _$UserFieldMap['emailId']!: emailIdFieldValue,
+      if (phoneNumber != _sentinel)
+        _$UserFieldMap['phoneNumber']!: phoneNumber as String,
+      if (phoneNumberFieldValue != null)
+        _$UserFieldMap['phoneNumber']!: phoneNumberFieldValue,
+      if (password != _sentinel)
+        _$UserFieldMap['password']!: password as String,
+      if (passwordFieldValue != null)
+        _$UserFieldMap['password']!: passwordFieldValue,
+      if (companyId != _sentinel)
+        _$UserFieldMap['companyId']!: companyId as String,
+      if (companyIdFieldValue != null)
+        _$UserFieldMap['companyId']!: companyIdFieldValue,
+      if (profilePicKey != _sentinel)
+        _$UserFieldMap['profilePicKey']!: profilePicKey as String?,
       if (profilePicKeyFieldValue != null)
-        'profilePicKey': profilePicKeyFieldValue,
+        _$UserFieldMap['profilePicKey']!: profilePicKeyFieldValue,
       if (profilePicUpdateTime != _sentinel)
-        'profilePicUpdateTime': profilePicUpdateTime as Timestamp?,
+        _$UserFieldMap['profilePicUpdateTime']!:
+            profilePicUpdateTime as Timestamp?,
       if (profilePicUpdateTimeFieldValue != null)
-        'profilePicUpdateTime': profilePicUpdateTimeFieldValue,
+        _$UserFieldMap['profilePicUpdateTime']!: profilePicUpdateTimeFieldValue,
       if (punchInReminder != _sentinel)
-        'punchInReminder': punchInReminder as Timestamp?,
+        _$UserFieldMap['punchInReminder']!: punchInReminder as Timestamp?,
       if (punchInReminderFieldValue != null)
-        'punchInReminder': punchInReminderFieldValue,
+        _$UserFieldMap['punchInReminder']!: punchInReminderFieldValue,
       if (punchOutReminder != _sentinel)
-        'punchOutReminder': punchOutReminder as Timestamp?,
+        _$UserFieldMap['punchOutReminder']!: punchOutReminder as Timestamp?,
       if (punchOutReminderFieldValue != null)
-        'punchOutReminder': punchOutReminderFieldValue,
+        _$UserFieldMap['punchOutReminder']!: punchOutReminderFieldValue,
       if (currentTimeLogId != _sentinel)
-        'currentTimeLogId': currentTimeLogId as String?,
+        _$UserFieldMap['currentTimeLogId']!: currentTimeLogId as String?,
       if (currentTimeLogIdFieldValue != null)
-        'currentTimeLogId': currentTimeLogIdFieldValue,
+        _$UserFieldMap['currentTimeLogId']!: currentTimeLogIdFieldValue,
     };
 
     transaction.update(reference, json);

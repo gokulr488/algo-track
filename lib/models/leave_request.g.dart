@@ -231,20 +231,31 @@ class _$LeaveRequestDocumentReference extends FirestoreDocumentReference<
       "Cannot specify both endTime and endTimeFieldValue",
     );
     final json = {
-      if (subject != _sentinel) 'subject': subject as String,
-      if (subjectFieldValue != null) 'subject': subjectFieldValue,
+      if (subject != _sentinel)
+        _$LeaveRequestFieldMap['subject']!: subject as String,
+      if (subjectFieldValue != null)
+        _$LeaveRequestFieldMap['subject']!: subjectFieldValue,
       if (leaveDescription != _sentinel)
-        'leaveDescription': leaveDescription as String?,
+        _$LeaveRequestFieldMap['leaveDescription']!:
+            leaveDescription as String?,
       if (leaveDescriptionFieldValue != null)
-        'leaveDescription': leaveDescriptionFieldValue,
-      if (userId != _sentinel) 'userId': userId as String,
-      if (userIdFieldValue != null) 'userId': userIdFieldValue,
-      if (userName != _sentinel) 'userName': userName as String,
-      if (userNameFieldValue != null) 'userName': userNameFieldValue,
-      if (startTime != _sentinel) 'startTime': startTime as Timestamp,
-      if (startTimeFieldValue != null) 'startTime': startTimeFieldValue,
-      if (endTime != _sentinel) 'endTime': endTime as Timestamp,
-      if (endTimeFieldValue != null) 'endTime': endTimeFieldValue,
+        _$LeaveRequestFieldMap['leaveDescription']!: leaveDescriptionFieldValue,
+      if (userId != _sentinel)
+        _$LeaveRequestFieldMap['userId']!: userId as String,
+      if (userIdFieldValue != null)
+        _$LeaveRequestFieldMap['userId']!: userIdFieldValue,
+      if (userName != _sentinel)
+        _$LeaveRequestFieldMap['userName']!: userName as String,
+      if (userNameFieldValue != null)
+        _$LeaveRequestFieldMap['userName']!: userNameFieldValue,
+      if (startTime != _sentinel)
+        _$LeaveRequestFieldMap['startTime']!: startTime as Timestamp,
+      if (startTimeFieldValue != null)
+        _$LeaveRequestFieldMap['startTime']!: startTimeFieldValue,
+      if (endTime != _sentinel)
+        _$LeaveRequestFieldMap['endTime']!: endTime as Timestamp,
+      if (endTimeFieldValue != null)
+        _$LeaveRequestFieldMap['endTime']!: endTimeFieldValue,
     };
 
     return reference.update(json);
@@ -290,20 +301,31 @@ class _$LeaveRequestDocumentReference extends FirestoreDocumentReference<
       "Cannot specify both endTime and endTimeFieldValue",
     );
     final json = {
-      if (subject != _sentinel) 'subject': subject as String,
-      if (subjectFieldValue != null) 'subject': subjectFieldValue,
+      if (subject != _sentinel)
+        _$LeaveRequestFieldMap['subject']!: subject as String,
+      if (subjectFieldValue != null)
+        _$LeaveRequestFieldMap['subject']!: subjectFieldValue,
       if (leaveDescription != _sentinel)
-        'leaveDescription': leaveDescription as String?,
+        _$LeaveRequestFieldMap['leaveDescription']!:
+            leaveDescription as String?,
       if (leaveDescriptionFieldValue != null)
-        'leaveDescription': leaveDescriptionFieldValue,
-      if (userId != _sentinel) 'userId': userId as String,
-      if (userIdFieldValue != null) 'userId': userIdFieldValue,
-      if (userName != _sentinel) 'userName': userName as String,
-      if (userNameFieldValue != null) 'userName': userNameFieldValue,
-      if (startTime != _sentinel) 'startTime': startTime as Timestamp,
-      if (startTimeFieldValue != null) 'startTime': startTimeFieldValue,
-      if (endTime != _sentinel) 'endTime': endTime as Timestamp,
-      if (endTimeFieldValue != null) 'endTime': endTimeFieldValue,
+        _$LeaveRequestFieldMap['leaveDescription']!: leaveDescriptionFieldValue,
+      if (userId != _sentinel)
+        _$LeaveRequestFieldMap['userId']!: userId as String,
+      if (userIdFieldValue != null)
+        _$LeaveRequestFieldMap['userId']!: userIdFieldValue,
+      if (userName != _sentinel)
+        _$LeaveRequestFieldMap['userName']!: userName as String,
+      if (userNameFieldValue != null)
+        _$LeaveRequestFieldMap['userName']!: userNameFieldValue,
+      if (startTime != _sentinel)
+        _$LeaveRequestFieldMap['startTime']!: startTime as Timestamp,
+      if (startTimeFieldValue != null)
+        _$LeaveRequestFieldMap['startTime']!: startTimeFieldValue,
+      if (endTime != _sentinel)
+        _$LeaveRequestFieldMap['endTime']!: endTime as Timestamp,
+      if (endTimeFieldValue != null)
+        _$LeaveRequestFieldMap['endTime']!: endTimeFieldValue,
     };
 
     transaction.update(reference, json);
