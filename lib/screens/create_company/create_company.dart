@@ -22,15 +22,22 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
         child: Responsive(
           mobile: Column(
             children: [
+              Icon(Icons.add_business,
+                  size: 120, color: Theme.of(context).colorScheme.primary),
               FormFieldWidget(
                   fieldName: 'CompanyName',
                   controller: ctrl.companyNameController),
               FormFieldWidget(
+                  fieldName: 'Phone number',
+                  controller: ctrl.phoneNumberController),
+              FormFieldWidget(
                   fieldName: 'Email Id', controller: ctrl.emailIdController),
               const Spacer(),
-              RoundedButton(
-                  title: 'Create Company', onPressed: ctrl.onCreateCompany),
-              const SizedBox(height: 8)
+              Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: RoundedButton(
+                      title: 'Create Company',
+                      onPressed: ctrl.onCreateCompany)),
             ],
           ),
           desktop: web,
