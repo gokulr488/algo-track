@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:algo_track/common/constants.dart';
 import 'package:algo_track/components/base_screen.dart';
+import 'package:algo_track/components/cards/button_card.dart';
 import 'package:algo_track/components/responsive.dart';
-import 'package:algo_track/components/rounded_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -17,7 +17,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   void initState() {
     Timer(const Duration(milliseconds: 500), () {
-      isLoggedIn ? context.go(DASHBOARD_SCREEN) : context.go(SIGN_IN_SCREEN);
+      // isLoggedIn ? context.go(DASHBOARD_SCREEN) : context.go(SIGN_IN_SCREEN);
     });
     super.initState();
   }
@@ -27,15 +27,29 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return BaseScreen(
         headerText: 'Welcome',
         child: Responsive(
-            mobile: Column(
-              children: [
-                const Text('Welcome to Algo Track'),
-                RoundedButton(
-                    title: 'Proceed',
-                    onPressed: () => context.go(SIGN_IN_SCREEN))
-              ],
+            mobile: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ButtonCard(
+                      icon: Icons.add_business,
+                      text: 'Create a Company',
+                      onTap: () => context.go(CREATE_COMPANY_SCREEN),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Expanded(
+                    child: ButtonCard(
+                      icon: Icons.account_circle_outlined,
+                      text: 'Login to Company',
+                      onTap: () => context.go(SIGN_IN_SCREEN),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            desktop: Column(children: const [Text('Web under development')])));
+            desktop: web));
   }
 
   bool get isLoggedIn {

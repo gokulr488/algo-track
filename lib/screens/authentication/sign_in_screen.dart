@@ -56,16 +56,11 @@ class SignInWidget extends StatelessWidget {
         );
       },
       footerBuilder: (context, action) {
-        return Center(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: Text(
-              action == AuthAction.signIn
-                  ? 'By signing in, you agree to our terms and conditions.'
-                  : 'By registering, you agree to our terms and conditions.',
-              style: const TextStyle(color: Colors.grey),
-            ),
-          ),
+        return Text(
+          action == AuthAction.signIn
+              ? 'By signing in, you agree to our terms and conditions.'
+              : 'By registering, you agree to our terms and conditions.',
+          style: const TextStyle(color: Colors.grey),
         );
       },
     );

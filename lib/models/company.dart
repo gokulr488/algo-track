@@ -10,14 +10,14 @@ final companiesRef = CompanyCollectionReference();
 @firestoreSerializable
 class Company {
   @Id()
-  final String id;
+  final String? id;
   final String companyName;
   final String emailId;
   final String? address;
   final String password;
 
   Company(
-      {required this.id,
+      {this.id,
       required this.companyName,
       required this.emailId,
       this.address,

@@ -2,13 +2,14 @@ import 'package:algo_track/components/cards/base_card.dart';
 import 'package:flutter/material.dart';
 
 class ButtonCard extends StatelessWidget {
-  const ButtonCard(
-      {this.text, this.onTap, required this.child, this.height, this.icon});
-  static TextStyle kButtonTextStyle = const TextStyle(
-      fontSize: 18, fontWeight: FontWeight.bold, color: Colors.green);
+  const ButtonCard({
+    this.text,
+    this.onTap,
+    this.height,
+    this.icon,
+  });
   final String? text;
   final Function? onTap;
-  final Widget child;
   final double? height;
   final IconData? icon;
 
@@ -37,7 +38,11 @@ class ButtonCard extends StatelessWidget {
       ));
     }
     if (text != null && text != '') {
-      children.add(Text(text!, style: kButtonTextStyle));
+      children.add(Text(text!,
+          style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.secondary)));
     }
 
     return children;

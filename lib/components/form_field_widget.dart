@@ -16,8 +16,10 @@ class FormFieldWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(fieldName,
-              style:
-                  const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.secondary)),
           const SizedBox(width: 10),
           Expanded(
             child: TextFormField(
