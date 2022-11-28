@@ -22,7 +22,8 @@ class DropDown extends StatelessWidget {
           color: Theme.of(context).colorScheme.secondary,
         ),
         iconSize: 25,
-        decoration: kTextFieldDecoration.copyWith(labelText: hintText ?? ''),
+        decoration: kTextFieldDecoration(Theme.of(context))
+            .copyWith(labelText: hintText ?? ''),
         value: defaultValue,
         onChanged: onChanged,
         items: values

@@ -1,4 +1,5 @@
 import 'package:algo_track/common/constants.dart';
+import 'package:algo_track/common/ui_constants.dart';
 import 'package:algo_track/common/ui_state.dart';
 import 'package:algo_track/screens/authentication/auth_profile_screen.dart';
 import 'package:algo_track/screens/authentication/email_signin_screen.dart';
@@ -65,6 +66,8 @@ class AlgoTrackApp extends StatelessWidget {
               useMaterial3: true,
               colorSchemeSeed: uiState.baseColor,
               brightness: uiState.themeMode,
+              inputDecorationTheme:
+                  kTextFieldDecorationTheme(Theme.of(context)),
               textTheme: GoogleFonts.openSansTextTheme(
                   ThemeData(brightness: uiState.themeMode).textTheme)),
           debugShowCheckedModeBanner: false,
