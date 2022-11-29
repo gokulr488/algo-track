@@ -78,6 +78,7 @@ class AlgoTrackApp extends StatelessWidget {
 
   final GoRouter _router = GoRouter(
     initialLocation: isLoggedIn ? DASHBOARD_SCREEN : WELCOME_SCREEN,
+    debugLogDiagnostics: true,
     routes: <GoRoute>[
       GoRoute(
           path: WELCOME_SCREEN,
