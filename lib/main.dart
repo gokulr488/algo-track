@@ -12,6 +12,7 @@ import 'package:algo_track/screens/create_company/create_company_screen.dart';
 import 'package:algo_track/screens/dashboard_screen.dart';
 import 'package:algo_track/screens/nfc_test_screen.dart';
 import 'package:algo_track/screens/welcome_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fba;
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -76,6 +77,7 @@ class AlgoTrackApp extends StatelessWidget {
   }
 
   final GoRouter _router = GoRouter(
+    initialLocation: isLoggedIn ? DASHBOARD_SCREEN : WELCOME_SCREEN,
     routes: <GoRoute>[
       GoRoute(
           path: WELCOME_SCREEN,
@@ -140,4 +142,13 @@ class AlgoTrackApp extends StatelessWidget {
       ),
     ],
   );
+}
+
+bool get isLoggedIn {
+  final auth = fba.FirebaseAuth.instance;
+  if (auth.currentUser == null ||
+      (!auth.currentUser!.emailVerified && auth.currentUser!.email != null)) {
+    return false;
+  }
+  return true;
 }
