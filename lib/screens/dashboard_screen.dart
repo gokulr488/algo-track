@@ -23,10 +23,10 @@ class DashBoardScreen extends StatelessWidget {
             children: [
               RoundedButton(
                   title: 'Nfc Test',
-                  onPressed: () => context.go(NFC_TEST_SCREEN)),
+                  onPressed: () => context.goNamed(NFC_TEST_SCREEN)),
               RoundedButton(
                   title: 'Profile Screen',
-                  onPressed: () => context.go(AUTH_PROFILE_SCREEN)),
+                  onPressed: () => context.goNamed(AUTH_PROFILE_SCREEN)),
               RoundedButton(
                   title: 'Test Crashlytics log',
                   onPressed: () {

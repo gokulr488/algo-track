@@ -11,33 +11,33 @@ class SignInWidget extends StatelessWidget {
     return SignInScreen(
       actions: [
         ForgotPasswordAction((context, email) {
-          context.go(FORGOT_PASSWORD_SCREEN, extra: {'email': email});
+          context.goNamed(FORGOT_PASSWORD_SCREEN, extra: {'email': email});
         }),
         VerifyPhoneAction((context, _) {
-          context.go(PHONE_SCREEN);
+          context.goNamed(PHONE_SCREEN);
         }),
         AuthStateChangeAction<SignedIn>((context, state) {
           if (!state.user!.emailVerified) {
-            context.go(VERIFY_EMAIL_SCREEN);
+            context.goNamed(VERIFY_EMAIL_SCREEN);
           } else {
-            context.go(DASHBOARD_SCREEN);
+            context.goNamed(DASHBOARD_SCREEN);
           }
         }),
         AuthStateChangeAction<UserCreated>((context, state) {
           if (!state.credential.user!.emailVerified) {
-            context.go(VERIFY_EMAIL_SCREEN);
+            context.goNamed(VERIFY_EMAIL_SCREEN);
           } else {
-            context.go(DASHBOARD_SCREEN);
+            context.goNamed(DASHBOARD_SCREEN);
           }
         }),
         AuthStateChangeAction<MFARequired>((context, state) async {
           await startMFAVerification(
               resolver: state.resolver, context: context);
           // ignore: use_build_context_synchronously
-          context.go(DASHBOARD_SCREEN);
+          context.goNamed(DASHBOARD_SCREEN);
         }),
         EmailLinkSignInAction((context) {
-          context.go(EMAIL_SIGN_IN_SCREEN);
+          context.goNamed(EMAIL_SIGN_IN_SCREEN);
         }),
       ],
       styles: const {

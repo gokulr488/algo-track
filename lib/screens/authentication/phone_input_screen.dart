@@ -11,7 +11,7 @@ class PhoneInputWidget extends StatelessWidget {
     return PhoneInputScreen(
       actions: [
         SMSCodeRequestedAction((context, action, flowKey, phone) {
-          context.go(SMS_SCREEN, extra: {
+          context.goNamed(SMS_SCREEN, extra: {
             'action': action,
             'flowKey': flowKey,
             'phone': phone,

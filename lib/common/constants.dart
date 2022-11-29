@@ -5,27 +5,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-const String WELCOME_SCREEN = '/';
-const String DASHBOARD_SCREEN = '/dash';
-const String NFC_TEST_SCREEN = '$DASHBOARD_SCREEN/$nfc';
-const String SIGN_IN_SCREEN = '$WELCOME_SCREEN$signIn';
-const String VERIFY_EMAIL_SCREEN = '$SIGN_IN_SCREEN/$verifyEmail';
-const String PHONE_SCREEN = '$SIGN_IN_SCREEN/$phone';
-const String SMS_SCREEN = '$PHONE_SCREEN/$sms';
-const String FORGOT_PASSWORD_SCREEN = '$SIGN_IN_SCREEN/$forgotPassword';
-const String EMAIL_SIGN_IN_SCREEN = '$SIGN_IN_SCREEN/$emailSignIn';
-const String AUTH_PROFILE_SCREEN = '$DASHBOARD_SCREEN/$authProfile';
-const String CREATE_COMPANY_SCREEN = '$WELCOME_SCREEN$createCompany';
-
-const String nfc = 'nfcTest';
-const String signIn = 'signIn';
-const String verifyEmail = 'verifyEmail';
-const String phone = 'phone';
-const String sms = 'sms';
-const String forgotPassword = 'forgotPassword';
-const String emailSignIn = 'emailSignIn';
-const String authProfile = 'authProfile';
-const String createCompany = 'createCompany';
+const String WELCOME_SCREEN = 'welcome';
+const String DASHBOARD_SCREEN = 'dashboard';
+const String NFC_TEST_SCREEN = 'nfc';
+const String SIGN_IN_SCREEN = 'signIn';
+const String VERIFY_EMAIL_SCREEN = 'verifyEmail';
+const String PHONE_SCREEN = 'phone';
+const String SMS_SCREEN = 'sms';
+const String FORGOT_PASSWORD_SCREEN = 'forgotPassword';
+const String EMAIL_SIGN_IN_SCREEN = 'emailSignIn';
+const String AUTH_PROFILE_SCREEN = 'authProfile';
+const String CREATE_COMPANY_SCREEN = 'createCompany';
 
 final actionCodeSettings = ActionCodeSettings(
   url: 'https://algotrack.page.link',

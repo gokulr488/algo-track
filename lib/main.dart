@@ -77,34 +77,40 @@ class AlgoTrackApp extends StatelessWidget {
   }
 
   final GoRouter _router = GoRouter(
-    initialLocation: isLoggedIn ? DASHBOARD_SCREEN : WELCOME_SCREEN,
+    initialLocation: isLoggedIn ? '/dash' : '/',
     debugLogDiagnostics: true,
     routes: <GoRoute>[
       GoRoute(
-          path: WELCOME_SCREEN,
+          name: WELCOME_SCREEN,
+          path: '/',
           builder: (BuildContext context, GoRouterState state) =>
               WelcomeScreen(),
           routes: [
             GoRoute(
-                path: createCompany,
+                name: CREATE_COMPANY_SCREEN,
+                path: 'createCompany',
                 builder: (BuildContext context, GoRouterState state) =>
                     const CreateCompanyScreen()),
             GoRoute(
-                path: signIn,
+                name: SIGN_IN_SCREEN,
+                path: 'signIn',
                 builder: (BuildContext context, GoRouterState state) =>
                     const SignInWidget(),
                 routes: [
                   GoRoute(
-                      path: verifyEmail,
+                      name: VERIFY_EMAIL_SCREEN,
+                      path: 'verifyEmail',
                       builder: (BuildContext context, GoRouterState state) =>
                           const VerifyEmailScreen()),
                   GoRoute(
-                      path: phone,
+                      name: PHONE_SCREEN,
+                      path: 'phone',
                       builder: (BuildContext context, GoRouterState state) =>
                           const PhoneInputWidget(),
                       routes: [
                         GoRoute(
-                            path: sms,
+                            name: SMS_SCREEN,
+                            path: 'sms',
                             builder:
                                 (BuildContext context, GoRouterState state) {
                               state.extra;
@@ -114,29 +120,34 @@ class AlgoTrackApp extends StatelessWidget {
                             }),
                       ]),
                   GoRoute(
-                      path: forgotPassword,
+                      name: FORGOT_PASSWORD_SCREEN,
+                      path: 'forgotPassword',
                       builder: (BuildContext context, GoRouterState state) {
                         state.extra;
                         return ForgotPasswordWidget(
                             arguments: state.extra as Map<String, dynamic>?);
                       }),
                   GoRoute(
-                      path: emailSignIn,
+                      name: EMAIL_SIGN_IN_SCREEN,
+                      path: 'emailSignIn',
                       builder: (BuildContext context, GoRouterState state) =>
                           EmailSignInWidget()),
                 ]),
           ]),
       GoRoute(
-        path: DASHBOARD_SCREEN,
+        name: DASHBOARD_SCREEN,
+        path: '/dash',
         builder: (BuildContext context, GoRouterState state) =>
             const DashBoardScreen(),
         routes: <GoRoute>[
           GoRoute(
-              path: nfc,
+              name: NFC_TEST_SCREEN,
+              path: 'nfc',
               builder: (BuildContext context, GoRouterState state) =>
                   const NfcTestScreen()),
           GoRoute(
-              path: authProfile,
+              name: AUTH_PROFILE_SCREEN,
+              path: 'authProfile',
               builder: (BuildContext context, GoRouterState state) =>
                   AuthProfileScreen()),
         ],

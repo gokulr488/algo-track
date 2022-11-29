@@ -12,7 +12,7 @@ class SmsInputScreen extends StatelessWidget {
     return SMSCodeInputScreen(
       actions: [
         AuthStateChangeAction<SignedIn>((context, state) {
-          context.go(DASHBOARD_SCREEN);
+          context.goNamed(DASHBOARD_SCREEN);
         })
       ],
       flowKey: arguments?['flowKey'],

@@ -9,13 +9,13 @@ class AuthProfileScreen extends StatelessWidget {
     return ProfileScreen(
       actions: [
         SignedOutAction((context) {
-          context.go(WELCOME_SCREEN);
+          context.goNamed(WELCOME_SCREEN);
         }),
         AuthStateChangeAction<MFARequired>((context, state) async {
           await startMFAVerification(
               resolver: state.resolver, context: context);
           // ignore: use_build_context_synchronously
-          context.go(DASHBOARD_SCREEN);
+          context.goNamed(DASHBOARD_SCREEN);
         }),
       ],
       actionCodeSettings: actionCodeSettings,

@@ -14,11 +14,11 @@ class VerifyEmailScreen extends StatelessWidget {
       actionCodeSettings: actionCodeSettings,
       actions: [
         EmailVerifiedAction(() {
-          context.go(DASHBOARD_SCREEN);
+          context.goNamed(DASHBOARD_SCREEN);
         }),
         AuthCancelledAction((context) {
           FirebaseUIAuth.signOut(context: context);
-          context.go(WELCOME_SCREEN);
+          context.goNamed(WELCOME_SCREEN);
         }),
       ],
     );

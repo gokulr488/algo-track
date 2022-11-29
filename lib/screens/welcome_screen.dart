@@ -17,7 +17,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   void initState() {
     Timer(const Duration(milliseconds: 500), () {
-      // isLoggedIn ? context.go(DASHBOARD_SCREEN) : context.go(SIGN_IN_SCREEN);
+      // isLoggedIn ? context.goNamedNamed(DASHBOARD_SCREEN) : context.goNamed(SIGN_IN_SCREEN);
     });
     super.initState();
   }
@@ -35,7 +35,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     child: ButtonCard(
                       icon: Icons.add_business,
                       text: 'Create a Company',
-                      onTap: () => context.go(CREATE_COMPANY_SCREEN),
+                      onTap: () => context.goNamed(CREATE_COMPANY_SCREEN),
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -43,7 +43,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     child: ButtonCard(
                       icon: Icons.account_circle_outlined,
                       text: 'Login to Company',
-                      onTap: () => context.go(SIGN_IN_SCREEN),
+                      onTap: () => context.goNamed(SIGN_IN_SCREEN),
                     ),
                   ),
                 ],

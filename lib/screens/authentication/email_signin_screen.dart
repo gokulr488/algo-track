@@ -13,7 +13,7 @@ class EmailSignInWidget extends StatelessWidget {
     return EmailLinkSignInScreen(
       actions: [
         AuthStateChangeAction<SignedIn>((context, state) {
-          context.go(
+          context.goNamed(
               DASHBOARD_SCREEN); // TODO check if this should be welcome page or dashboard
         }),
       ],
