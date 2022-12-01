@@ -15,13 +15,15 @@ class Company {
   final String emailId;
   final String? address;
   final String password;
+  final String adminUserId;
 
   Company(
       {this.id,
       required this.companyName,
       required this.emailId,
       this.address,
-      required this.password});
+      required this.password,
+      required this.adminUserId});
 
   factory Company.fromJson(Map<String, Object?> json) =>
       _$CompanyFromJson(json);

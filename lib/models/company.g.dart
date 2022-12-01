@@ -135,6 +135,8 @@ abstract class CompanyDocumentReference
     FieldValue addressFieldValue,
     String password,
     FieldValue passwordFieldValue,
+    String adminUserId,
+    FieldValue adminUserIdFieldValue,
   });
 
   /// Updates fields in the current document using the transaction API.
@@ -150,6 +152,8 @@ abstract class CompanyDocumentReference
     FieldValue addressFieldValue,
     String password,
     FieldValue passwordFieldValue,
+    String adminUserId,
+    FieldValue adminUserIdFieldValue,
   });
 }
 
@@ -190,6 +194,8 @@ class _$CompanyDocumentReference
     FieldValue? addressFieldValue,
     Object? password = _sentinel,
     FieldValue? passwordFieldValue,
+    Object? adminUserId = _sentinel,
+    FieldValue? adminUserIdFieldValue,
   }) async {
     assert(
       companyName == _sentinel || companyNameFieldValue == null,
@@ -207,6 +213,10 @@ class _$CompanyDocumentReference
       password == _sentinel || passwordFieldValue == null,
       "Cannot specify both password and passwordFieldValue",
     );
+    assert(
+      adminUserId == _sentinel || adminUserIdFieldValue == null,
+      "Cannot specify both adminUserId and adminUserIdFieldValue",
+    );
     final json = {
       if (companyName != _sentinel)
         _$CompanyFieldMap['companyName']!: companyName as String,
@@ -224,6 +234,10 @@ class _$CompanyDocumentReference
         _$CompanyFieldMap['password']!: password as String,
       if (passwordFieldValue != null)
         _$CompanyFieldMap['password']!: passwordFieldValue,
+      if (adminUserId != _sentinel)
+        _$CompanyFieldMap['adminUserId']!: adminUserId as String,
+      if (adminUserIdFieldValue != null)
+        _$CompanyFieldMap['adminUserId']!: adminUserIdFieldValue,
     };
 
     return reference.update(json);
@@ -239,6 +253,8 @@ class _$CompanyDocumentReference
     FieldValue? addressFieldValue,
     Object? password = _sentinel,
     FieldValue? passwordFieldValue,
+    Object? adminUserId = _sentinel,
+    FieldValue? adminUserIdFieldValue,
   }) {
     assert(
       companyName == _sentinel || companyNameFieldValue == null,
@@ -256,6 +272,10 @@ class _$CompanyDocumentReference
       password == _sentinel || passwordFieldValue == null,
       "Cannot specify both password and passwordFieldValue",
     );
+    assert(
+      adminUserId == _sentinel || adminUserIdFieldValue == null,
+      "Cannot specify both adminUserId and adminUserIdFieldValue",
+    );
     final json = {
       if (companyName != _sentinel)
         _$CompanyFieldMap['companyName']!: companyName as String,
@@ -273,6 +293,10 @@ class _$CompanyDocumentReference
         _$CompanyFieldMap['password']!: password as String,
       if (passwordFieldValue != null)
         _$CompanyFieldMap['password']!: passwordFieldValue,
+      if (adminUserId != _sentinel)
+        _$CompanyFieldMap['adminUserId']!: adminUserId as String,
+      if (adminUserIdFieldValue != null)
+        _$CompanyFieldMap['adminUserId']!: adminUserIdFieldValue,
     };
 
     transaction.update(reference, json);
@@ -418,6 +442,17 @@ abstract class CompanyQuery
     List<String>? whereIn,
     List<String>? whereNotIn,
   });
+  CompanyQuery whereAdminUserId({
+    String? isEqualTo,
+    String? isNotEqualTo,
+    String? isLessThan,
+    String? isLessThanOrEqualTo,
+    String? isGreaterThan,
+    String? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<String>? whereIn,
+    List<String>? whereNotIn,
+  });
 
   CompanyQuery orderByDocumentId({
     bool descending = false,
@@ -468,6 +503,18 @@ abstract class CompanyQuery
   });
 
   CompanyQuery orderByPassword({
+    bool descending = false,
+    String startAt,
+    String startAfter,
+    String endAt,
+    String endBefore,
+    CompanyDocumentSnapshot? startAtDocument,
+    CompanyDocumentSnapshot? endAtDocument,
+    CompanyDocumentSnapshot? endBeforeDocument,
+    CompanyDocumentSnapshot? startAfterDocument,
+  });
+
+  CompanyQuery orderByAdminUserId({
     bool descending = false,
     String startAt,
     String startAfter,
@@ -758,6 +805,35 @@ class _$CompanyQuery extends QueryReference<Company, CompanyQuerySnapshot>
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
         _$CompanyFieldMap['password']!,
+        isEqualTo: isEqualTo,
+        isNotEqualTo: isNotEqualTo,
+        isLessThan: isLessThan,
+        isLessThanOrEqualTo: isLessThanOrEqualTo,
+        isGreaterThan: isGreaterThan,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+        isNull: isNull,
+        whereIn: whereIn,
+        whereNotIn: whereNotIn,
+      ),
+      $queryCursor: $queryCursor,
+    );
+  }
+
+  CompanyQuery whereAdminUserId({
+    String? isEqualTo,
+    String? isNotEqualTo,
+    String? isLessThan,
+    String? isLessThanOrEqualTo,
+    String? isGreaterThan,
+    String? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<String>? whereIn,
+    List<String>? whereNotIn,
+  }) {
+    return _$CompanyQuery(
+      _collection,
+      $referenceWithoutCursor: $referenceWithoutCursor.where(
+        _$CompanyFieldMap['adminUserId']!,
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -1132,6 +1208,78 @@ class _$CompanyQuery extends QueryReference<Company, CompanyQuerySnapshot>
     );
   }
 
+  CompanyQuery orderByAdminUserId({
+    bool descending = false,
+    Object? startAt = _sentinel,
+    Object? startAfter = _sentinel,
+    Object? endAt = _sentinel,
+    Object? endBefore = _sentinel,
+    CompanyDocumentSnapshot? startAtDocument,
+    CompanyDocumentSnapshot? endAtDocument,
+    CompanyDocumentSnapshot? endBeforeDocument,
+    CompanyDocumentSnapshot? startAfterDocument,
+  }) {
+    final query = $referenceWithoutCursor
+        .orderBy(_$CompanyFieldMap['adminUserId']!, descending: descending);
+    var queryCursor = $queryCursor;
+
+    if (startAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAt: const [],
+        startAtDocumentSnapshot: startAtDocument.snapshot,
+      );
+    }
+    if (startAfterDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: const [],
+        startAfterDocumentSnapshot: startAfterDocument.snapshot,
+      );
+    }
+    if (endAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endAt: const [],
+        endAtDocumentSnapshot: endAtDocument.snapshot,
+      );
+    }
+    if (endBeforeDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: const [],
+        endBeforeDocumentSnapshot: endBeforeDocument.snapshot,
+      );
+    }
+
+    if (startAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAt: [...queryCursor.startAt, startAt],
+        startAtDocumentSnapshot: null,
+      );
+    }
+    if (startAfter != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: [...queryCursor.startAfter, startAfter],
+        startAfterDocumentSnapshot: null,
+      );
+    }
+    if (endAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endAt: [...queryCursor.endAt, endAt],
+        endAtDocumentSnapshot: null,
+      );
+    }
+    if (endBefore != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: [...queryCursor.endBefore, endBefore],
+        endBeforeDocumentSnapshot: null,
+      );
+    }
+
+    return _$CompanyQuery(
+      _collection,
+      $referenceWithoutCursor: query,
+      $queryCursor: queryCursor,
+    );
+  }
+
   @override
   bool operator ==(Object other) {
     return other is _$CompanyQuery &&
@@ -1231,11 +1379,12 @@ class CompanyQueryDocumentSnapshot
 // **************************************************************************
 
 Company _$CompanyFromJson(Map<String, dynamic> json) => Company(
-      id: json['id'] as String,
+      id: json['id'] as String?,
       companyName: json['companyName'] as String,
       emailId: json['emailId'] as String,
       address: json['address'] as String?,
       password: json['password'] as String,
+      adminUserId: json['adminUserId'] as String,
     );
 
 const _$CompanyFieldMap = <String, String>{
@@ -1244,6 +1393,7 @@ const _$CompanyFieldMap = <String, String>{
   'emailId': 'emailId',
   'address': 'address',
   'password': 'password',
+  'adminUserId': 'adminUserId',
 };
 
 Map<String, dynamic> _$CompanyToJson(Company instance) => <String, dynamic>{
@@ -1252,4 +1402,5 @@ Map<String, dynamic> _$CompanyToJson(Company instance) => <String, dynamic>{
       'emailId': instance.emailId,
       'address': instance.address,
       'password': instance.password,
+      'adminUserId': instance.adminUserId,
     };

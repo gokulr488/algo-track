@@ -17,7 +17,7 @@ class User {
   final String userName;
   final String emailId;
   final String phoneNumber;
-  final String password;
+  final String? password;
   final UserType userType;
   final String companyId;
   final String? profilePicKey;
@@ -32,7 +32,7 @@ class User {
       required this.userName,
       required this.emailId,
       required this.phoneNumber,
-      required this.password,
+      this.password,
       required this.userType,
       required this.companyId,
       this.profilePicKey,

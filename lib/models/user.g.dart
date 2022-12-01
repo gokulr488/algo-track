@@ -133,7 +133,7 @@ abstract class UserDocumentReference
     FieldValue emailIdFieldValue,
     String phoneNumber,
     FieldValue phoneNumberFieldValue,
-    String password,
+    String? password,
     FieldValue passwordFieldValue,
     String companyId,
     FieldValue companyIdFieldValue,
@@ -160,7 +160,7 @@ abstract class UserDocumentReference
     FieldValue emailIdFieldValue,
     String phoneNumber,
     FieldValue phoneNumberFieldValue,
-    String password,
+    String? password,
     FieldValue passwordFieldValue,
     String companyId,
     FieldValue companyIdFieldValue,
@@ -281,7 +281,7 @@ class _$UserDocumentReference
       if (phoneNumberFieldValue != null)
         _$UserFieldMap['phoneNumber']!: phoneNumberFieldValue,
       if (password != _sentinel)
-        _$UserFieldMap['password']!: password as String,
+        _$UserFieldMap['password']!: password as String?,
       if (passwordFieldValue != null)
         _$UserFieldMap['password']!: passwordFieldValue,
       if (companyId != _sentinel)
@@ -391,7 +391,7 @@ class _$UserDocumentReference
       if (phoneNumberFieldValue != null)
         _$UserFieldMap['phoneNumber']!: phoneNumberFieldValue,
       if (password != _sentinel)
-        _$UserFieldMap['password']!: password as String,
+        _$UserFieldMap['password']!: password as String?,
       if (passwordFieldValue != null)
         _$UserFieldMap['password']!: passwordFieldValue,
       if (companyId != _sentinel)
@@ -560,8 +560,8 @@ abstract class UserQuery implements QueryReference<User, UserQuerySnapshot> {
     String? isGreaterThan,
     String? isGreaterThanOrEqualTo,
     bool? isNull,
-    List<String>? whereIn,
-    List<String>? whereNotIn,
+    List<String?>? whereIn,
+    List<String?>? whereNotIn,
   });
   UserQuery whereCompanyId({
     String? isEqualTo,
@@ -680,10 +680,10 @@ abstract class UserQuery implements QueryReference<User, UserQuerySnapshot> {
 
   UserQuery orderByPassword({
     bool descending = false,
-    String startAt,
-    String startAfter,
-    String endAt,
-    String endBefore,
+    String? startAt,
+    String? startAfter,
+    String? endAt,
+    String? endBefore,
     UserDocumentSnapshot? startAtDocument,
     UserDocumentSnapshot? endAtDocument,
     UserDocumentSnapshot? endBeforeDocument,
@@ -1034,8 +1034,8 @@ class _$UserQuery extends QueryReference<User, UserQuerySnapshot>
     String? isGreaterThan,
     String? isGreaterThanOrEqualTo,
     bool? isNull,
-    List<String>? whereIn,
-    List<String>? whereNotIn,
+    List<String?>? whereIn,
+    List<String?>? whereNotIn,
   }) {
     return _$UserQuery(
       _collection,
@@ -2123,7 +2123,7 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       userName: json['userName'] as String,
       emailId: json['emailId'] as String,
       phoneNumber: json['phoneNumber'] as String,
-      password: json['password'] as String,
+      password: json['password'] as String?,
       userType: $enumDecode(_$UserTypeEnumMap, json['userType']),
       companyId: json['companyId'] as String,
       profilePicKey: json['profilePicKey'] as String?,
