@@ -1,5 +1,3 @@
-import 'package:algo_track/models/company.dart';
-import 'package:algo_track/models/user.dart';
 import 'package:flutter/material.dart';
 
 class CreateCompanyController {

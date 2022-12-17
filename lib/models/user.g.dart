@@ -2140,6 +2140,7 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       profilePicUpdateTime: _$JsonConverterFromJson<Timestamp, Timestamp>(
           json['profilePicUpdateTime'],
           const FirestoreTimestampConverter().fromJson),
+      userStatus: $enumDecode(_$UserStatusEnumMap, json['userStatus']),
     );
 
 const _$UserFieldMap = <String, String>{
@@ -2155,6 +2156,7 @@ const _$UserFieldMap = <String, String>{
   'punchInReminder': 'punchInReminder',
   'punchOutReminder': 'punchOutReminder',
   'currentTimeLogId': 'currentTimeLogId',
+  'userStatus': 'userStatus',
   'currentProjects': 'currentProjects',
 };
 
@@ -2176,6 +2178,7 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
           instance.punchOutReminder,
           const FirestoreTimestampConverter().toJson),
       'currentTimeLogId': instance.currentTimeLogId,
+      'userStatus': _$UserStatusEnumMap[instance.userStatus]!,
       'currentProjects':
           instance.currentProjects?.map((e) => e.toJson()).toList(),
     };
@@ -2191,6 +2194,13 @@ Value? _$JsonConverterFromJson<Json, Value>(
   Value? Function(Json json) fromJson,
 ) =>
     json == null ? null : fromJson(json as Json);
+
+const _$UserStatusEnumMap = {
+  UserStatus.BUSY: 'BUSY',
+  UserStatus.AVAILABLE: 'AVAILABLE',
+  UserStatus.AWAY: 'AWAY',
+  UserStatus.ON_LEAVE: 'ON_LEAVE',
+};
 
 Json? _$JsonConverterToJson<Json, Value>(
   Value? value,

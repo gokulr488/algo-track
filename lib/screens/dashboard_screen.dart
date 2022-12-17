@@ -4,6 +4,7 @@ import 'package:algo_track/components/responsive.dart';
 import 'package:algo_track/components/rounded_button.dart';
 import 'package:algo_track/models/current_project.dart';
 import 'package:algo_track/models/enums/user_roles.dart';
+import 'package:algo_track/models/enums/user_status.dart';
 import 'package:algo_track/models/enums/user_type.dart';
 import 'package:algo_track/models/user.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -58,14 +59,14 @@ class DashBoardScreen extends StatelessWidget {
       )
     ];
     User user = User(
-      userName: 'Gokul Raj',
-      emailId: 'gokulr488@gmail.com',
-      phoneNumber: '+917403991677',
-      password: 'testPass',
-      userType: UserType.SUPER_USER,
-      companyId: 'sdfghjkihgfghjnjshdgbvbnjokij',
-      currentProjects: projects,
-    );
+        userName: 'Gokul Raj',
+        emailId: 'gokulr488@gmail.com',
+        phoneNumber: '+917403991677',
+        password: 'testPass',
+        userType: UserType.SUPER_USER,
+        companyId: 'sdfghjkihgfghjnjshdgbvbnjokij',
+        currentProjects: projects,
+        userStatus: UserStatus.AVAILABLE);
     await usersRef.add(user);
     debugPrint('User saved');
   }
