@@ -9,7 +9,7 @@ import 'package:algo_track/screens/authentication/sign_in_screen.dart';
 import 'package:algo_track/screens/authentication/sms_code_input_screen.dart';
 import 'package:algo_track/screens/authentication/verify_email_screen.dart';
 import 'package:algo_track/screens/create_company/create_company_screen.dart';
-import 'package:algo_track/screens/dashboard_screen.dart';
+import 'package:algo_track/screens/dashboard/dashboard_screen.dart';
 import 'package:algo_track/screens/nfc_test_screen.dart';
 import 'package:algo_track/screens/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fba;
