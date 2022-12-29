@@ -1,3 +1,4 @@
+import 'package:algo_track/components/alerts.dart';
 import 'package:algo_track/components/cards/base_card.dart';
 import 'package:algo_track/components/rounded_button.dart';
 import 'package:algo_track/models/enums/user_status.dart';
@@ -33,12 +34,13 @@ class UserCard extends StatelessWidget {
                 shape: BoxShape.circle,
               )),
           Spacer(),
-          Expanded(
-              child: Padding(
+          Padding(
             padding: const EdgeInsets.all(8),
             child: RoundedButton(
-                title: 'Request Support', onPressed: onPressed(), width: 20),
-          ))
+                title: 'Request Support',
+                onPressed: () => onPressed(context),
+                width: 20),
+          ),
         ],
       ),
     );
@@ -56,18 +58,18 @@ class UserCard extends StatelessWidget {
         return Colors.red;
 
       case UserStatus.ON_LEAVE:
-        return Colors.grey;
+        return Colors.white;
 
       default:
         return Colors.white;
     }
   }
 
-  onPressed() {
+  onPressed(BuildContext context) {
     if (user.userStatus == UserStatus.AVAILABLE) {
       print('Requesting...');
     } else {
-      print('...');
+      showErrorAlert(context, '${user.userName} is not available');
     }
   }
 }
