@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'projects.dart';
+part of 'project.dart';
 
 // **************************************************************************
 // CollectionGenerator
@@ -21,34 +21,34 @@ const _sentinel = _Sentinel();
 abstract class ProjectsCollectionReference
     implements
         ProjectsQuery,
-        FirestoreCollectionReference<Projects, ProjectsQuerySnapshot> {
+        FirestoreCollectionReference<Project, ProjectsQuerySnapshot> {
   factory ProjectsCollectionReference([
     FirebaseFirestore? firestore,
   ]) = _$ProjectsCollectionReference;
 
-  static Projects fromFirestore(
+  static Project fromFirestore(
     DocumentSnapshot<Map<String, Object?>> snapshot,
     SnapshotOptions? options,
   ) {
-    return Projects.fromJson({'id': snapshot.id, ...?snapshot.data()});
+    return Project.fromJson({'id': snapshot.id, ...?snapshot.data()});
   }
 
   static Map<String, Object?> toFirestore(
-    Projects value,
+    Project value,
     SetOptions? options,
   ) {
     return {...value.toJson()}..remove('id');
   }
 
   @override
-  CollectionReference<Projects> get reference;
+  CollectionReference<Project> get reference;
 
   @override
   ProjectsDocumentReference doc([String? id]);
 
   /// Add a new document to this collection with the specified data,
   /// assigning it a document ID automatically.
-  Future<ProjectsDocumentReference> add(Projects value);
+  Future<ProjectsDocumentReference> add(Project value);
 }
 
 class _$ProjectsCollectionReference extends _$ProjectsQuery
@@ -65,14 +65,14 @@ class _$ProjectsCollectionReference extends _$ProjectsQuery
   }
 
   _$ProjectsCollectionReference._(
-    CollectionReference<Projects> reference,
+    CollectionReference<Project> reference,
   ) : super(reference, $referenceWithoutCursor: reference);
 
   String get path => reference.path;
 
   @override
-  CollectionReference<Projects> get reference =>
-      super.reference as CollectionReference<Projects>;
+  CollectionReference<Project> get reference =>
+      super.reference as CollectionReference<Project>;
 
   @override
   ProjectsDocumentReference doc([String? id]) {
@@ -86,7 +86,7 @@ class _$ProjectsCollectionReference extends _$ProjectsQuery
   }
 
   @override
-  Future<ProjectsDocumentReference> add(Projects value) {
+  Future<ProjectsDocumentReference> add(Project value) {
     return reference.add(value).then((ref) => ProjectsDocumentReference(ref));
   }
 
@@ -102,11 +102,11 @@ class _$ProjectsCollectionReference extends _$ProjectsQuery
 }
 
 abstract class ProjectsDocumentReference
-    extends FirestoreDocumentReference<Projects, ProjectsDocumentSnapshot> {
-  factory ProjectsDocumentReference(DocumentReference<Projects> reference) =
+    extends FirestoreDocumentReference<Project, ProjectsDocumentSnapshot> {
+  factory ProjectsDocumentReference(DocumentReference<Project> reference) =
       _$ProjectsDocumentReference;
 
-  DocumentReference<Projects> get reference;
+  DocumentReference<Project> get reference;
 
   /// A reference to the [ProjectsCollectionReference] containing this document.
   ProjectsCollectionReference get parent {
@@ -158,12 +158,12 @@ abstract class ProjectsDocumentReference
 }
 
 class _$ProjectsDocumentReference
-    extends FirestoreDocumentReference<Projects, ProjectsDocumentSnapshot>
+    extends FirestoreDocumentReference<Project, ProjectsDocumentSnapshot>
     implements ProjectsDocumentReference {
   _$ProjectsDocumentReference(this.reference);
 
   @override
-  final DocumentReference<Projects> reference;
+  final DocumentReference<Project> reference;
 
   /// A reference to the [ProjectsCollectionReference] containing this document.
   ProjectsCollectionReference get parent {
@@ -315,7 +315,7 @@ class _$ProjectsDocumentReference
 }
 
 abstract class ProjectsQuery
-    implements QueryReference<Projects, ProjectsQuerySnapshot> {
+    implements QueryReference<Project, ProjectsQuerySnapshot> {
   @override
   ProjectsQuery limit(int limit);
 
@@ -527,11 +527,11 @@ abstract class ProjectsQuery
   });
 }
 
-class _$ProjectsQuery extends QueryReference<Projects, ProjectsQuerySnapshot>
+class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
     implements ProjectsQuery {
   _$ProjectsQuery(
     this._collection, {
-    required Query<Projects> $referenceWithoutCursor,
+    required Query<Project> $referenceWithoutCursor,
     $QueryCursor $queryCursor = const $QueryCursor(),
   }) : super(
           $referenceWithoutCursor: $referenceWithoutCursor,
@@ -1293,11 +1293,11 @@ class _$ProjectsQuery extends QueryReference<Projects, ProjectsQuerySnapshot>
   int get hashCode => Object.hash(runtimeType, reference);
 }
 
-class ProjectsDocumentSnapshot extends FirestoreDocumentSnapshot<Projects> {
+class ProjectsDocumentSnapshot extends FirestoreDocumentSnapshot<Project> {
   ProjectsDocumentSnapshot._(this.snapshot) : data = snapshot.data();
 
   @override
-  final DocumentSnapshot<Projects> snapshot;
+  final DocumentSnapshot<Project> snapshot;
 
   @override
   ProjectsDocumentReference get reference {
@@ -1307,11 +1307,11 @@ class ProjectsDocumentSnapshot extends FirestoreDocumentSnapshot<Projects> {
   }
 
   @override
-  final Projects? data;
+  final Project? data;
 }
 
 class ProjectsQuerySnapshot
-    extends FirestoreQuerySnapshot<Projects, ProjectsQueryDocumentSnapshot> {
+    extends FirestoreQuerySnapshot<Project, ProjectsQueryDocumentSnapshot> {
   ProjectsQuerySnapshot._(
     this.snapshot,
     this.docs,
@@ -1319,7 +1319,7 @@ class ProjectsQuerySnapshot
   );
 
   factory ProjectsQuerySnapshot._fromQuerySnapshot(
-    QuerySnapshot<Projects> snapshot,
+    QuerySnapshot<Project> snapshot,
   ) {
     final docs = snapshot.docs.map(ProjectsQueryDocumentSnapshot._).toList();
 
@@ -1350,7 +1350,7 @@ class ProjectsQuerySnapshot
     );
   }
 
-  final QuerySnapshot<Projects> snapshot;
+  final QuerySnapshot<Project> snapshot;
 
   @override
   final List<ProjectsQueryDocumentSnapshot> docs;
@@ -1360,15 +1360,15 @@ class ProjectsQuerySnapshot
 }
 
 class ProjectsQueryDocumentSnapshot
-    extends FirestoreQueryDocumentSnapshot<Projects>
+    extends FirestoreQueryDocumentSnapshot<Project>
     implements ProjectsDocumentSnapshot {
   ProjectsQueryDocumentSnapshot._(this.snapshot) : data = snapshot.data();
 
   @override
-  final QueryDocumentSnapshot<Projects> snapshot;
+  final QueryDocumentSnapshot<Project> snapshot;
 
   @override
-  final Projects data;
+  final Project data;
 
   @override
   ProjectsDocumentReference get reference {
@@ -1380,7 +1380,7 @@ class ProjectsQueryDocumentSnapshot
 // JsonSerializableGenerator
 // **************************************************************************
 
-Projects _$ProjectsFromJson(Map<String, dynamic> json) => Projects(
+Project _$ProjectsFromJson(Map<String, dynamic> json) => Project(
       id: json['id'] as String?,
       projectName: json['projectName'] as String,
       projectGroupId: json['projectGroupId'] as String,
@@ -1404,7 +1404,7 @@ const _$ProjectsFieldMap = <String, String>{
   'currentProjects': 'currentProjects',
 };
 
-Map<String, dynamic> _$ProjectsToJson(Projects instance) => <String, dynamic>{
+Map<String, dynamic> _$ProjectsToJson(Project instance) => <String, dynamic>{
       'id': instance.id,
       'projectName': instance.projectName,
       'projectGroupId': instance.projectGroupId,

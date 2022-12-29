@@ -48,4 +48,9 @@ class User {
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 
   Map<String, Object?> toJson() => _$UserToJson(this);
+
+  @override
+  String toString() {
+    return userName;
+  }
 }

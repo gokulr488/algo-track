@@ -138,7 +138,7 @@ class AlgoTrackApp extends StatelessWidget {
         name: DASHBOARD_SCREEN,
         path: '/dash',
         builder: (BuildContext context, GoRouterState state) =>
-            const DashBoardScreen(),
+            DashBoardScreen(),
         routes: <GoRoute>[
           GoRoute(
               name: NFC_TEST_SCREEN,

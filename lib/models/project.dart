@@ -3,13 +3,13 @@ import 'package:algo_track/models/current_project.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
 
-part 'projects.g.dart';
+part 'project.g.dart';
 
-@Collection<Projects>('projects')
+@Collection<Project>('projects')
 final projectsRef = ProjectsCollectionReference();
 
 @firestoreSerializable
-class Projects {
+class Project {
   @Id()
   final String? id;
   final String projectName;
@@ -19,7 +19,7 @@ class Projects {
   final String companyId;
   final List<CurrentProject>? currentProjects;
 
-  Projects(
+  Project(
       {this.id,
       required this.projectName,
       required this.projectGroupId,
@@ -28,8 +28,13 @@ class Projects {
       required this.companyId,
       this.currentProjects});
 
-  factory Projects.fromJson(Map<String, Object?> json) =>
+  factory Project.fromJson(Map<String, Object?> json) =>
       _$ProjectsFromJson(json);
 
   Map<String, Object?> toJson() => _$ProjectsToJson(this);
+
+  @override
+  String toString() {
+    return projectName;
+  }
 }

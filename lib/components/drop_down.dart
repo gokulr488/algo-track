@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 class DropDown extends StatelessWidget {
   const DropDown(
       {required this.onChanged,
-      required this.defaultValue,
+      this.defaultValue,
       required this.values,
       this.hintText});
-  final Function(String?) onChanged;
-  final String defaultValue;
-  final List<String> values;
+  final Function(dynamic?) onChanged;
+  final dynamic? defaultValue;
+  final List<dynamic>? values;
   final String? hintText;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-      child: DropdownButtonFormField<String>(
+      child: DropdownButtonFormField<dynamic>(
         icon: Icon(
           Icons.arrow_drop_down_circle_outlined,
           color: Theme.of(context).colorScheme.secondary,
@@ -27,8 +27,15 @@ class DropDown extends StatelessWidget {
         value: defaultValue,
         onChanged: onChanged,
         items: values
-            .map((String value) =>
-                DropdownMenuItem<String>(value: value, child: Text(value)))
+            ?.map((dynamic value) => DropdownMenuItem<dynamic>(
+                value: value,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(value.toString()),
+                    Icon(Icons.personal_injury)
+                  ],
+                )))
             .toList(),
       ),
     );
