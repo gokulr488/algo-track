@@ -69,7 +69,7 @@ class UserCard extends StatelessWidget {
     if (user.userStatus == UserStatus.AVAILABLE) {
       print('Requesting...');
     } else {
-      showErrorAlert(context, '${user.userName} is not available');
+      showWarning(context, '${user.userName} is not available');
     }
   }
 }

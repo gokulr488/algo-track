@@ -97,3 +97,20 @@ void showSilentAlerts(String message) {
       textColor: Colors.white,
       fontSize: 16.0);
 }
+
+void showWarning(BuildContext context, String errorMessage) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return Alerts(
+        title: 'WARNING!!',
+        actions: [
+          Text(errorMessage, style: const TextStyle(fontSize: 18)),
+          TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'))
+        ],
+      );
+    },
+  );
+}
