@@ -2,11 +2,14 @@ import 'package:algo_track/common/constants.dart';
 import 'package:algo_track/components/base_screen.dart';
 import 'package:algo_track/components/responsive.dart';
 import 'package:algo_track/components/rounded_button.dart';
+import 'package:algo_track/components/scrollable_list.dart';
 import 'package:algo_track/models/current_project.dart';
 import 'package:algo_track/models/enums/user_roles.dart';
 import 'package:algo_track/models/enums/user_status.dart';
 import 'package:algo_track/models/enums/user_type.dart';
 import 'package:algo_track/models/user.dart';
+import 'package:algo_track/screens/dashboard/start_work.dart';
+import 'package:algo_track/screens/dashboard/user_card.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -22,26 +25,25 @@ class DashBoardScreen extends StatelessWidget {
           mobile: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              RoundedButton(
-                  title: 'Nfc Test',
-                  onPressed: () => context.goNamed(NFC_TEST_SCREEN)),
-              RoundedButton(
-                  title: 'Profile Screen',
-                  onPressed: () => context.goNamed(AUTH_PROFILE_SCREEN)),
-              RoundedButton(
-                  title: 'Test Crashlytics log',
-                  onPressed: () {
-                    try {
-                      throw Exception('Exception thrown when button pressed');
-                    } catch (e, stacktrace) {
-                      FirebaseCrashlytics.instance.recordError(
-                          'Pressing the button is throwing an error',
-                          stacktrace,
-                          fatal: true);
-                    }
-                  }),
-              RoundedButton(
-                  title: 'Create Dummy User', onPressed: createDummyUser)
+              StartWork(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: RoundedButton(title: 'Start Work', onPressed: () {}),
+              ),
+              Expanded(
+                child: ScrollableList(items: [
+                  UserCard(
+                    user: User(
+                      companyId: '',
+                      userName: 'Amritha',
+                      emailId: '',
+                      phoneNumber: '',
+                      userStatus: UserStatus.AVAILABLE,
+                      userType: UserType.ADMIN,
+                    ),
+                  )
+                ], childrenHeight: 60),
+              )
             ],
           ),
           desktop: Column()),
