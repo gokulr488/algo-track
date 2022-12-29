@@ -35,7 +35,7 @@ class DashBoardScreen extends StatelessWidget {
                   UserCard(
                     user: User(
                       companyId: '',
-                      userName: 'Amritha',
+                      userName: 'Kodathi Amritha',
                       emailId: '',
                       phoneNumber: '',
                       userStatus: UserStatus.AVAILABLE,
