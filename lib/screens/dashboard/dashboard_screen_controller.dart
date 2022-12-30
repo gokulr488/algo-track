@@ -3,6 +3,7 @@ import 'package:algo_track/models/enums/user_status.dart';
 import 'package:algo_track/models/enums/user_type.dart';
 import 'package:algo_track/models/project.dart';
 import 'package:algo_track/models/user.dart';
+import 'package:algo_track/screens/dashboard/user_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -75,5 +76,18 @@ class DashBoardScreenController {
     //     adminUserId: 'E2O0YV7SbBjKyusIBqxz');
     // await companiesRef.add(company);
     // debugPrint('Project saved');
+  }
+
+  List<UserCard> getUserCards(BuildContext context) {
+    UiState uiState = Provider.of<UiState>(context, listen: false);
+
+    List<UserCard>? userCards = [];
+    for (User user in uiState.allUsers!) {
+      if (uiState.user?.id != user.id) {
+        UserCard card = UserCard(user: user);
+        userCards.add(card);
+      }
+    }
+    return userCards;
   }
 }

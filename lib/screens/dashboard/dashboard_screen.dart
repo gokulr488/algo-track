@@ -1,3 +1,4 @@
+import 'package:algo_track/common/ui_state.dart';
 import 'package:algo_track/components/base_screen.dart';
 import 'package:algo_track/components/drop_down.dart';
 import 'package:algo_track/components/responsive.dart';
@@ -10,6 +11,7 @@ import 'package:algo_track/screens/dashboard/dashboard_screen_controller.dart';
 import 'package:algo_track/screens/dashboard/start_work.dart';
 import 'package:algo_track/screens/dashboard/user_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DashBoardScreen extends StatefulWidget {
   @override
@@ -35,7 +37,19 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             children: [
               StartWork(),
               Expanded(
-                child: ScrollableList(items: [
+                child: ScrollableList(
+                    items: ctrl.getUserCards(context), childrenHeight: 60),
+              ),
+            ],
+          ),
+          desktop: Column()),
+    );
+  }
+}
+
+
+/*
+[
                   UserCard(
                     user: User(
                       companyId: '',
@@ -46,11 +60,5 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       userType: UserType.ADMIN,
                     ),
                   )
-                ], childrenHeight: 60),
-              ),
-            ],
-          ),
-          desktop: Column()),
-    );
-  }
-}
+                ]
+*/

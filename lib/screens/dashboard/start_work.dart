@@ -2,7 +2,6 @@ import 'package:algo_track/common/ui_state.dart';
 import 'package:algo_track/components/drop_down.dart';
 import 'package:algo_track/components/loading_dots.dart';
 import 'package:algo_track/components/rounded_button.dart';
-import 'package:algo_track/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
