@@ -6,7 +6,7 @@ import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
 part 'project.g.dart';
 
 @Collection<Project>('projects')
-final projectsRef = ProjectsCollectionReference();
+final projectRef = ProjectCollectionReference();
 
 @firestoreSerializable
 class Project {
@@ -29,9 +29,9 @@ class Project {
       this.currentProjects});
 
   factory Project.fromJson(Map<String, Object?> json) =>
-      _$ProjectsFromJson(json);
+      _$ProjectFromJson(json);
 
-  Map<String, Object?> toJson() => _$ProjectsToJson(this);
+  Map<String, Object?> toJson() => _$ProjectToJson(this);
 
   @override
   String toString() {

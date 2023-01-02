@@ -31,9 +31,9 @@ class DashBoardScreenController {
 
   Future<void> getProjects(UiState uiState) async {
     debugPrint('Getting All Projects');
-    ProjectsQuerySnapshot projectSnapshot = await projectsRef.get();
+    ProjectQuerySnapshot projectSnapshot = await projectRef.get();
     List<Project> projects = [];
-    for (ProjectsQueryDocumentSnapshot project in projectSnapshot.docs) {
+    for (ProjectQueryDocumentSnapshot project in projectSnapshot.docs) {
       projects.add(project.data);
     }
     uiState.setAllProjects(projects);
@@ -59,7 +59,7 @@ class DashBoardScreenController {
         projectGroupId: '1O91xUBHfMyvkuxSBBC1',
         leadUserId: 'GR9dlIuCVfBUKridw54i',
         companyId: 'EB6GRMPIXTjUbEo3zK0I');
-    projectsRef.add(projects);
+    projectRef.add(projects);
     // CompanyQuerySnapshot companySnap = await companiesRef
     //     .whereCompanyName(isEqualTo: 'Algol soft')
     //     .whereEmailId(isEqualTo: 'algolsoft@algols.in')

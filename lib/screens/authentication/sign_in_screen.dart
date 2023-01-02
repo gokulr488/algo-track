@@ -23,7 +23,7 @@ class SignInWidget extends StatelessWidget {
             context.goNamed(VERIFY_EMAIL_SCREEN);
           } else {
             ctrl.verifyUser(context, state);
-            context.goNamed(DASHBOARD_SCREEN);
+            //context.goNamed(DASHBOARD_SCREEN);
           }
         }),
         AuthStateChangeAction<UserCreated>((context, state) {
