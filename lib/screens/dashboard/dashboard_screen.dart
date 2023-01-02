@@ -26,6 +26,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   Widget build(BuildContext context) {
     return BaseScreen(
       headerText: 'Dashboard',
+      floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.account_circle),
+          onPressed: () => context.goNamed(AUTH_PROFILE_SCREEN)),
       child: Responsive(
           mobile: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -34,10 +37,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               Expanded(
                 child: ScrollableList(
                     items: ctrl.getUserCards(context), childrenHeight: 60),
-              ),
-              RoundedButton(
-                  title: 'Profile Screen',
-                  onPressed: () => context.goNamed(AUTH_PROFILE_SCREEN))
+              )
             ],
           ),
           desktop: Column()),

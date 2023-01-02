@@ -11,6 +11,7 @@ import 'package:algo_track/screens/authentication/verify_email_screen.dart';
 import 'package:algo_track/screens/create_company/create_company_screen.dart';
 import 'package:algo_track/screens/dashboard/dashboard_screen.dart';
 import 'package:algo_track/screens/nfc_test_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fba;
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
@@ -47,12 +48,17 @@ void initialise() {
       return true;
     };
     FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+  } else {
+    FirebaseFirestore.instance
+        .enablePersistence(const PersistenceSettings(synchronizeTabs: true));
   }
   FirebaseUIAuth.configureProviders([
     EmailAuthProvider(),
     EmailLinkAuthProvider(actionCodeSettings: actionCodeSettings),
     PhoneAuthProvider(),
   ]);
+  FirebaseFirestore.instance.settings =
+      const Settings(persistenceEnabled: true);
 }
 
 class AlgoTrackApp extends StatelessWidget {

@@ -43,7 +43,7 @@ class UiState extends ChangeNotifier {
 
   set user(User? user) {
     _user = user;
-    notifyListeners();
+    // notifyListeners();
   }
 
   void toggleTheme() {

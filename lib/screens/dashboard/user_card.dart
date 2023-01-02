@@ -22,17 +22,17 @@ class UserCard extends StatelessWidget {
             Icons.account_circle,
             size: 50,
           ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text(user.userName),
-          ),
           Container(
-              width: 15.0,
-              height: 15.0,
+              width: 10,
+              height: 10,
               decoration: BoxDecoration(
                 color: getStatusColor(),
                 shape: BoxShape.circle,
               )),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: Text(user.userName),
+          ),
           const Spacer(),
           Padding(
             padding: const EdgeInsets.all(8),
