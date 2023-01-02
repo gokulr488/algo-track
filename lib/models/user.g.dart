@@ -147,6 +147,8 @@ abstract class UserDocumentReference
     FieldValue punchOutReminderFieldValue,
     String? currentTimeLogId,
     FieldValue currentTimeLogIdFieldValue,
+    String? authUid,
+    FieldValue authUidFieldValue,
   });
 
   /// Updates fields in the current document using the transaction API.
@@ -174,6 +176,8 @@ abstract class UserDocumentReference
     FieldValue punchOutReminderFieldValue,
     String? currentTimeLogId,
     FieldValue currentTimeLogIdFieldValue,
+    String? authUid,
+    FieldValue authUidFieldValue,
   });
 }
 
@@ -226,6 +230,8 @@ class _$UserDocumentReference
     FieldValue? punchOutReminderFieldValue,
     Object? currentTimeLogId = _sentinel,
     FieldValue? currentTimeLogIdFieldValue,
+    Object? authUid = _sentinel,
+    FieldValue? authUidFieldValue,
   }) async {
     assert(
       userName == _sentinel || userNameFieldValue == null,
@@ -268,6 +274,10 @@ class _$UserDocumentReference
       currentTimeLogId == _sentinel || currentTimeLogIdFieldValue == null,
       "Cannot specify both currentTimeLogId and currentTimeLogIdFieldValue",
     );
+    assert(
+      authUid == _sentinel || authUidFieldValue == null,
+      "Cannot specify both authUid and authUidFieldValue",
+    );
     final json = {
       if (userName != _sentinel)
         _$UserFieldMap['userName']!: userName as String,
@@ -309,6 +319,9 @@ class _$UserDocumentReference
         _$UserFieldMap['currentTimeLogId']!: currentTimeLogId as String?,
       if (currentTimeLogIdFieldValue != null)
         _$UserFieldMap['currentTimeLogId']!: currentTimeLogIdFieldValue,
+      if (authUid != _sentinel) _$UserFieldMap['authUid']!: authUid as String?,
+      if (authUidFieldValue != null)
+        _$UserFieldMap['authUid']!: authUidFieldValue,
     };
 
     return reference.update(json);
@@ -336,6 +349,8 @@ class _$UserDocumentReference
     FieldValue? punchOutReminderFieldValue,
     Object? currentTimeLogId = _sentinel,
     FieldValue? currentTimeLogIdFieldValue,
+    Object? authUid = _sentinel,
+    FieldValue? authUidFieldValue,
   }) {
     assert(
       userName == _sentinel || userNameFieldValue == null,
@@ -378,6 +393,10 @@ class _$UserDocumentReference
       currentTimeLogId == _sentinel || currentTimeLogIdFieldValue == null,
       "Cannot specify both currentTimeLogId and currentTimeLogIdFieldValue",
     );
+    assert(
+      authUid == _sentinel || authUidFieldValue == null,
+      "Cannot specify both authUid and authUidFieldValue",
+    );
     final json = {
       if (userName != _sentinel)
         _$UserFieldMap['userName']!: userName as String,
@@ -419,6 +438,9 @@ class _$UserDocumentReference
         _$UserFieldMap['currentTimeLogId']!: currentTimeLogId as String?,
       if (currentTimeLogIdFieldValue != null)
         _$UserFieldMap['currentTimeLogId']!: currentTimeLogIdFieldValue,
+      if (authUid != _sentinel) _$UserFieldMap['authUid']!: authUid as String?,
+      if (authUidFieldValue != null)
+        _$UserFieldMap['authUid']!: authUidFieldValue,
     };
 
     transaction.update(reference, json);
@@ -629,6 +651,17 @@ abstract class UserQuery implements QueryReference<User, UserQuerySnapshot> {
     List<String?>? whereIn,
     List<String?>? whereNotIn,
   });
+  UserQuery whereAuthUid({
+    String? isEqualTo,
+    String? isNotEqualTo,
+    String? isLessThan,
+    String? isLessThanOrEqualTo,
+    String? isGreaterThan,
+    String? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<String?>? whereIn,
+    List<String?>? whereNotIn,
+  });
 
   UserQuery orderByDocumentId({
     bool descending = false,
@@ -751,6 +784,18 @@ abstract class UserQuery implements QueryReference<User, UserQuerySnapshot> {
   });
 
   UserQuery orderByCurrentTimeLogId({
+    bool descending = false,
+    String? startAt,
+    String? startAfter,
+    String? endAt,
+    String? endBefore,
+    UserDocumentSnapshot? startAtDocument,
+    UserDocumentSnapshot? endAtDocument,
+    UserDocumentSnapshot? endBeforeDocument,
+    UserDocumentSnapshot? startAfterDocument,
+  });
+
+  UserQuery orderByAuthUid({
     bool descending = false,
     String? startAt,
     String? startAfter,
@@ -1215,6 +1260,35 @@ class _$UserQuery extends QueryReference<User, UserQuerySnapshot>
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
         _$UserFieldMap['currentTimeLogId']!,
+        isEqualTo: isEqualTo,
+        isNotEqualTo: isNotEqualTo,
+        isLessThan: isLessThan,
+        isLessThanOrEqualTo: isLessThanOrEqualTo,
+        isGreaterThan: isGreaterThan,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+        isNull: isNull,
+        whereIn: whereIn,
+        whereNotIn: whereNotIn,
+      ),
+      $queryCursor: $queryCursor,
+    );
+  }
+
+  UserQuery whereAuthUid({
+    String? isEqualTo,
+    String? isNotEqualTo,
+    String? isLessThan,
+    String? isLessThanOrEqualTo,
+    String? isGreaterThan,
+    String? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<String?>? whereIn,
+    List<String?>? whereNotIn,
+  }) {
+    return _$UserQuery(
+      _collection,
+      $referenceWithoutCursor: $referenceWithoutCursor.where(
+        _$UserFieldMap['authUid']!,
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -2022,6 +2096,78 @@ class _$UserQuery extends QueryReference<User, UserQuerySnapshot>
     );
   }
 
+  UserQuery orderByAuthUid({
+    bool descending = false,
+    Object? startAt = _sentinel,
+    Object? startAfter = _sentinel,
+    Object? endAt = _sentinel,
+    Object? endBefore = _sentinel,
+    UserDocumentSnapshot? startAtDocument,
+    UserDocumentSnapshot? endAtDocument,
+    UserDocumentSnapshot? endBeforeDocument,
+    UserDocumentSnapshot? startAfterDocument,
+  }) {
+    final query = $referenceWithoutCursor.orderBy(_$UserFieldMap['authUid']!,
+        descending: descending);
+    var queryCursor = $queryCursor;
+
+    if (startAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAt: const [],
+        startAtDocumentSnapshot: startAtDocument.snapshot,
+      );
+    }
+    if (startAfterDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: const [],
+        startAfterDocumentSnapshot: startAfterDocument.snapshot,
+      );
+    }
+    if (endAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endAt: const [],
+        endAtDocumentSnapshot: endAtDocument.snapshot,
+      );
+    }
+    if (endBeforeDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: const [],
+        endBeforeDocumentSnapshot: endBeforeDocument.snapshot,
+      );
+    }
+
+    if (startAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAt: [...queryCursor.startAt, startAt],
+        startAtDocumentSnapshot: null,
+      );
+    }
+    if (startAfter != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: [...queryCursor.startAfter, startAfter],
+        startAfterDocumentSnapshot: null,
+      );
+    }
+    if (endAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endAt: [...queryCursor.endAt, endAt],
+        endAtDocumentSnapshot: null,
+      );
+    }
+    if (endBefore != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: [...queryCursor.endBefore, endBefore],
+        endBeforeDocumentSnapshot: null,
+      );
+    }
+
+    return _$UserQuery(
+      _collection,
+      $referenceWithoutCursor: query,
+      $queryCursor: queryCursor,
+    );
+  }
+
   @override
   bool operator ==(Object other) {
     return other is _$UserQuery &&
@@ -2141,6 +2287,7 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
           json['profilePicUpdateTime'],
           const FirestoreTimestampConverter().fromJson),
       userStatus: $enumDecode(_$UserStatusEnumMap, json['userStatus']),
+      authUid: json['authUid'] as String?,
     );
 
 const _$UserFieldMap = <String, String>{
@@ -2158,6 +2305,7 @@ const _$UserFieldMap = <String, String>{
   'currentTimeLogId': 'currentTimeLogId',
   'userStatus': 'userStatus',
   'currentProjects': 'currentProjects',
+  'authUid': 'authUid',
 };
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
@@ -2181,6 +2329,7 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'userStatus': _$UserStatusEnumMap[instance.userStatus]!,
       'currentProjects':
           instance.currentProjects?.map((e) => e.toJson()).toList(),
+      'authUid': instance.authUid,
     };
 
 const _$UserTypeEnumMap = {

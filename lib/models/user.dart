@@ -28,6 +28,7 @@ class User {
   final String? currentTimeLogId;
   final UserStatus userStatus;
   final List<CurrentProject>? currentProjects;
+  final String? authUid;
 
   User(
       {this.id,
@@ -43,7 +44,8 @@ class User {
       this.currentTimeLogId,
       this.currentProjects,
       this.profilePicUpdateTime,
-      required this.userStatus});
+      required this.userStatus,
+      this.authUid});
 
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 

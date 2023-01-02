@@ -1,10 +1,12 @@
 import 'package:algo_track/common/constants.dart';
+import 'package:algo_track/screens/authentication/authentication_controller.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class SignInWidget extends StatelessWidget {
-  const SignInWidget({super.key});
+  SignInWidget({super.key});
+  AuthenticationController ctrl = AuthenticationController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,7 @@ class SignInWidget extends StatelessWidget {
           if (!state.user!.emailVerified) {
             context.goNamed(VERIFY_EMAIL_SCREEN);
           } else {
+            ctrl.verifyUser(context, state);
             context.goNamed(DASHBOARD_SCREEN);
           }
         }),

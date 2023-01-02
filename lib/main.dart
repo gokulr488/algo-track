@@ -84,7 +84,7 @@ class AlgoTrackApp extends StatelessWidget {
           name: WELCOME_SCREEN,
           path: '/',
           builder: (BuildContext context, GoRouterState state) =>
-              WelcomeScreen(),
+              SignInWidget(),
           routes: [
             GoRoute(
                 name: CREATE_COMPANY_SCREEN,
@@ -95,7 +95,7 @@ class AlgoTrackApp extends StatelessWidget {
                 name: SIGN_IN_SCREEN,
                 path: 'signIn',
                 builder: (BuildContext context, GoRouterState state) =>
-                    const SignInWidget(),
+                    SignInWidget(),
                 routes: [
                   GoRoute(
                       name: VERIFY_EMAIL_SCREEN,

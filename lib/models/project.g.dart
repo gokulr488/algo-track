@@ -18,13 +18,13 @@ const _sentinel = _Sentinel();
 /// A collection reference object can be used for adding documents,
 /// getting document references, and querying for documents
 /// (using the methods inherited from Query).
-abstract class ProjectsCollectionReference
+abstract class ProjectCollectionReference
     implements
-        ProjectsQuery,
-        FirestoreCollectionReference<Project, ProjectsQuerySnapshot> {
-  factory ProjectsCollectionReference([
+        ProjectQuery,
+        FirestoreCollectionReference<Project, ProjectQuerySnapshot> {
+  factory ProjectCollectionReference([
     FirebaseFirestore? firestore,
-  ]) = _$ProjectsCollectionReference;
+  ]) = _$ProjectCollectionReference;
 
   static Project fromFirestore(
     DocumentSnapshot<Map<String, Object?>> snapshot,
@@ -44,27 +44,27 @@ abstract class ProjectsCollectionReference
   CollectionReference<Project> get reference;
 
   @override
-  ProjectsDocumentReference doc([String? id]);
+  ProjectDocumentReference doc([String? id]);
 
   /// Add a new document to this collection with the specified data,
   /// assigning it a document ID automatically.
-  Future<ProjectsDocumentReference> add(Project value);
+  Future<ProjectDocumentReference> add(Project value);
 }
 
-class _$ProjectsCollectionReference extends _$ProjectsQuery
-    implements ProjectsCollectionReference {
-  factory _$ProjectsCollectionReference([FirebaseFirestore? firestore]) {
+class _$ProjectCollectionReference extends _$ProjectQuery
+    implements ProjectCollectionReference {
+  factory _$ProjectCollectionReference([FirebaseFirestore? firestore]) {
     firestore ??= FirebaseFirestore.instance;
 
-    return _$ProjectsCollectionReference._(
+    return _$ProjectCollectionReference._(
       firestore.collection('projects').withConverter(
-            fromFirestore: ProjectsCollectionReference.fromFirestore,
-            toFirestore: ProjectsCollectionReference.toFirestore,
+            fromFirestore: ProjectCollectionReference.fromFirestore,
+            toFirestore: ProjectCollectionReference.toFirestore,
           ),
     );
   }
 
-  _$ProjectsCollectionReference._(
+  _$ProjectCollectionReference._(
     CollectionReference<Project> reference,
   ) : super(reference, $referenceWithoutCursor: reference);
 
@@ -75,24 +75,24 @@ class _$ProjectsCollectionReference extends _$ProjectsQuery
       super.reference as CollectionReference<Project>;
 
   @override
-  ProjectsDocumentReference doc([String? id]) {
+  ProjectDocumentReference doc([String? id]) {
     assert(
       id == null || id.split('/').length == 1,
       'The document ID cannot be from a different collection',
     );
-    return ProjectsDocumentReference(
+    return ProjectDocumentReference(
       reference.doc(id),
     );
   }
 
   @override
-  Future<ProjectsDocumentReference> add(Project value) {
-    return reference.add(value).then((ref) => ProjectsDocumentReference(ref));
+  Future<ProjectDocumentReference> add(Project value) {
+    return reference.add(value).then((ref) => ProjectDocumentReference(ref));
   }
 
   @override
   bool operator ==(Object other) {
-    return other is _$ProjectsCollectionReference &&
+    return other is _$ProjectCollectionReference &&
         other.runtimeType == runtimeType &&
         other.reference == reference;
   }
@@ -101,23 +101,23 @@ class _$ProjectsCollectionReference extends _$ProjectsQuery
   int get hashCode => Object.hash(runtimeType, reference);
 }
 
-abstract class ProjectsDocumentReference
-    extends FirestoreDocumentReference<Project, ProjectsDocumentSnapshot> {
-  factory ProjectsDocumentReference(DocumentReference<Project> reference) =
-      _$ProjectsDocumentReference;
+abstract class ProjectDocumentReference
+    extends FirestoreDocumentReference<Project, ProjectDocumentSnapshot> {
+  factory ProjectDocumentReference(DocumentReference<Project> reference) =
+      _$ProjectDocumentReference;
 
   DocumentReference<Project> get reference;
 
-  /// A reference to the [ProjectsCollectionReference] containing this document.
-  ProjectsCollectionReference get parent {
-    return _$ProjectsCollectionReference(reference.firestore);
+  /// A reference to the [ProjectCollectionReference] containing this document.
+  ProjectCollectionReference get parent {
+    return _$ProjectCollectionReference(reference.firestore);
   }
 
   @override
-  Stream<ProjectsDocumentSnapshot> snapshots();
+  Stream<ProjectDocumentSnapshot> snapshots();
 
   @override
-  Future<ProjectsDocumentSnapshot> get([GetOptions? options]);
+  Future<ProjectDocumentSnapshot> get([GetOptions? options]);
 
   @override
   Future<void> delete();
@@ -157,32 +157,32 @@ abstract class ProjectsDocumentReference
   });
 }
 
-class _$ProjectsDocumentReference
-    extends FirestoreDocumentReference<Project, ProjectsDocumentSnapshot>
-    implements ProjectsDocumentReference {
-  _$ProjectsDocumentReference(this.reference);
+class _$ProjectDocumentReference
+    extends FirestoreDocumentReference<Project, ProjectDocumentSnapshot>
+    implements ProjectDocumentReference {
+  _$ProjectDocumentReference(this.reference);
 
   @override
   final DocumentReference<Project> reference;
 
-  /// A reference to the [ProjectsCollectionReference] containing this document.
-  ProjectsCollectionReference get parent {
-    return _$ProjectsCollectionReference(reference.firestore);
+  /// A reference to the [ProjectCollectionReference] containing this document.
+  ProjectCollectionReference get parent {
+    return _$ProjectCollectionReference(reference.firestore);
   }
 
   @override
-  Stream<ProjectsDocumentSnapshot> snapshots() {
-    return reference.snapshots().map(ProjectsDocumentSnapshot._);
+  Stream<ProjectDocumentSnapshot> snapshots() {
+    return reference.snapshots().map(ProjectDocumentSnapshot._);
   }
 
   @override
-  Future<ProjectsDocumentSnapshot> get([GetOptions? options]) {
-    return reference.get(options).then(ProjectsDocumentSnapshot._);
+  Future<ProjectDocumentSnapshot> get([GetOptions? options]) {
+    return reference.get(options).then(ProjectDocumentSnapshot._);
   }
 
   @override
-  Future<ProjectsDocumentSnapshot> transactionGet(Transaction transaction) {
-    return transaction.get(reference).then(ProjectsDocumentSnapshot._);
+  Future<ProjectDocumentSnapshot> transactionGet(Transaction transaction) {
+    return transaction.get(reference).then(ProjectDocumentSnapshot._);
   }
 
   Future<void> update({
@@ -219,25 +219,25 @@ class _$ProjectsDocumentReference
     );
     final json = {
       if (projectName != _sentinel)
-        _$ProjectsFieldMap['projectName']!: projectName as String,
+        _$ProjectFieldMap['projectName']!: projectName as String,
       if (projectNameFieldValue != null)
-        _$ProjectsFieldMap['projectName']!: projectNameFieldValue,
+        _$ProjectFieldMap['projectName']!: projectNameFieldValue,
       if (projectGroupId != _sentinel)
-        _$ProjectsFieldMap['projectGroupId']!: projectGroupId as String,
+        _$ProjectFieldMap['projectGroupId']!: projectGroupId as String,
       if (projectGroupIdFieldValue != null)
-        _$ProjectsFieldMap['projectGroupId']!: projectGroupIdFieldValue,
+        _$ProjectFieldMap['projectGroupId']!: projectGroupIdFieldValue,
       if (leadUserId != _sentinel)
-        _$ProjectsFieldMap['leadUserId']!: leadUserId as String,
+        _$ProjectFieldMap['leadUserId']!: leadUserId as String,
       if (leadUserIdFieldValue != null)
-        _$ProjectsFieldMap['leadUserId']!: leadUserIdFieldValue,
+        _$ProjectFieldMap['leadUserId']!: leadUserIdFieldValue,
       if (adminUsers != _sentinel)
-        _$ProjectsFieldMap['adminUsers']!: adminUsers as List<String>?,
+        _$ProjectFieldMap['adminUsers']!: adminUsers as List<String>?,
       if (adminUsersFieldValue != null)
-        _$ProjectsFieldMap['adminUsers']!: adminUsersFieldValue,
+        _$ProjectFieldMap['adminUsers']!: adminUsersFieldValue,
       if (companyId != _sentinel)
-        _$ProjectsFieldMap['companyId']!: companyId as String,
+        _$ProjectFieldMap['companyId']!: companyId as String,
       if (companyIdFieldValue != null)
-        _$ProjectsFieldMap['companyId']!: companyIdFieldValue,
+        _$ProjectFieldMap['companyId']!: companyIdFieldValue,
     };
 
     return reference.update(json);
@@ -278,25 +278,25 @@ class _$ProjectsDocumentReference
     );
     final json = {
       if (projectName != _sentinel)
-        _$ProjectsFieldMap['projectName']!: projectName as String,
+        _$ProjectFieldMap['projectName']!: projectName as String,
       if (projectNameFieldValue != null)
-        _$ProjectsFieldMap['projectName']!: projectNameFieldValue,
+        _$ProjectFieldMap['projectName']!: projectNameFieldValue,
       if (projectGroupId != _sentinel)
-        _$ProjectsFieldMap['projectGroupId']!: projectGroupId as String,
+        _$ProjectFieldMap['projectGroupId']!: projectGroupId as String,
       if (projectGroupIdFieldValue != null)
-        _$ProjectsFieldMap['projectGroupId']!: projectGroupIdFieldValue,
+        _$ProjectFieldMap['projectGroupId']!: projectGroupIdFieldValue,
       if (leadUserId != _sentinel)
-        _$ProjectsFieldMap['leadUserId']!: leadUserId as String,
+        _$ProjectFieldMap['leadUserId']!: leadUserId as String,
       if (leadUserIdFieldValue != null)
-        _$ProjectsFieldMap['leadUserId']!: leadUserIdFieldValue,
+        _$ProjectFieldMap['leadUserId']!: leadUserIdFieldValue,
       if (adminUsers != _sentinel)
-        _$ProjectsFieldMap['adminUsers']!: adminUsers as List<String>?,
+        _$ProjectFieldMap['adminUsers']!: adminUsers as List<String>?,
       if (adminUsersFieldValue != null)
-        _$ProjectsFieldMap['adminUsers']!: adminUsersFieldValue,
+        _$ProjectFieldMap['adminUsers']!: adminUsersFieldValue,
       if (companyId != _sentinel)
-        _$ProjectsFieldMap['companyId']!: companyId as String,
+        _$ProjectFieldMap['companyId']!: companyId as String,
       if (companyIdFieldValue != null)
-        _$ProjectsFieldMap['companyId']!: companyIdFieldValue,
+        _$ProjectFieldMap['companyId']!: companyIdFieldValue,
     };
 
     transaction.update(reference, json);
@@ -304,7 +304,7 @@ class _$ProjectsDocumentReference
 
   @override
   bool operator ==(Object other) {
-    return other is ProjectsDocumentReference &&
+    return other is ProjectDocumentReference &&
         other.runtimeType == runtimeType &&
         other.parent == parent &&
         other.id == id;
@@ -314,13 +314,13 @@ class _$ProjectsDocumentReference
   int get hashCode => Object.hash(runtimeType, parent, id);
 }
 
-abstract class ProjectsQuery
-    implements QueryReference<Project, ProjectsQuerySnapshot> {
+abstract class ProjectQuery
+    implements QueryReference<Project, ProjectQuerySnapshot> {
   @override
-  ProjectsQuery limit(int limit);
+  ProjectQuery limit(int limit);
 
   @override
-  ProjectsQuery limitToLast(int limit);
+  ProjectQuery limitToLast(int limit);
 
   /// Perform an order query based on a [FieldPath].
   ///
@@ -342,17 +342,17 @@ abstract class ProjectsQuery
   /// ```dart
   /// collection.orderByTitle(startAt: 'title');
   /// ```
-  ProjectsQuery orderByFieldPath(
+  ProjectQuery orderByFieldPath(
     FieldPath fieldPath, {
     bool descending = false,
     Object? startAt,
     Object? startAfter,
     Object? endAt,
     Object? endBefore,
-    ProjectsDocumentSnapshot? startAtDocument,
-    ProjectsDocumentSnapshot? endAtDocument,
-    ProjectsDocumentSnapshot? endBeforeDocument,
-    ProjectsDocumentSnapshot? startAfterDocument,
+    ProjectDocumentSnapshot? startAtDocument,
+    ProjectDocumentSnapshot? endAtDocument,
+    ProjectDocumentSnapshot? endBeforeDocument,
+    ProjectDocumentSnapshot? startAfterDocument,
   });
 
   /// Perform a where query based on a [FieldPath].
@@ -372,7 +372,7 @@ abstract class ProjectsQuery
   /// ```dart
   /// collection.whereTitle(isEqualTo: 'title');
   /// ```
-  ProjectsQuery whereFieldPath(
+  ProjectQuery whereFieldPath(
     FieldPath fieldPath, {
     Object? isEqualTo,
     Object? isNotEqualTo,
@@ -387,7 +387,7 @@ abstract class ProjectsQuery
     bool? isNull,
   });
 
-  ProjectsQuery whereDocumentId({
+  ProjectQuery whereDocumentId({
     String? isEqualTo,
     String? isNotEqualTo,
     String? isLessThan,
@@ -398,7 +398,7 @@ abstract class ProjectsQuery
     List<String>? whereIn,
     List<String>? whereNotIn,
   });
-  ProjectsQuery whereProjectName({
+  ProjectQuery whereProjectName({
     String? isEqualTo,
     String? isNotEqualTo,
     String? isLessThan,
@@ -409,7 +409,7 @@ abstract class ProjectsQuery
     List<String>? whereIn,
     List<String>? whereNotIn,
   });
-  ProjectsQuery whereProjectGroupId({
+  ProjectQuery whereProjectGroupId({
     String? isEqualTo,
     String? isNotEqualTo,
     String? isLessThan,
@@ -420,7 +420,7 @@ abstract class ProjectsQuery
     List<String>? whereIn,
     List<String>? whereNotIn,
   });
-  ProjectsQuery whereLeadUserId({
+  ProjectQuery whereLeadUserId({
     String? isEqualTo,
     String? isNotEqualTo,
     String? isLessThan,
@@ -431,7 +431,7 @@ abstract class ProjectsQuery
     List<String>? whereIn,
     List<String>? whereNotIn,
   });
-  ProjectsQuery whereAdminUsers({
+  ProjectQuery whereAdminUsers({
     List<String>? isEqualTo,
     List<String>? isNotEqualTo,
     List<String>? isLessThan,
@@ -442,7 +442,7 @@ abstract class ProjectsQuery
     String? arrayContains,
     List<String>? arrayContainsAny,
   });
-  ProjectsQuery whereCompanyId({
+  ProjectQuery whereCompanyId({
     String? isEqualTo,
     String? isNotEqualTo,
     String? isLessThan,
@@ -454,82 +454,82 @@ abstract class ProjectsQuery
     List<String>? whereNotIn,
   });
 
-  ProjectsQuery orderByDocumentId({
+  ProjectQuery orderByDocumentId({
     bool descending = false,
     String startAt,
     String startAfter,
     String endAt,
     String endBefore,
-    ProjectsDocumentSnapshot? startAtDocument,
-    ProjectsDocumentSnapshot? endAtDocument,
-    ProjectsDocumentSnapshot? endBeforeDocument,
-    ProjectsDocumentSnapshot? startAfterDocument,
+    ProjectDocumentSnapshot? startAtDocument,
+    ProjectDocumentSnapshot? endAtDocument,
+    ProjectDocumentSnapshot? endBeforeDocument,
+    ProjectDocumentSnapshot? startAfterDocument,
   });
 
-  ProjectsQuery orderByProjectName({
+  ProjectQuery orderByProjectName({
     bool descending = false,
     String startAt,
     String startAfter,
     String endAt,
     String endBefore,
-    ProjectsDocumentSnapshot? startAtDocument,
-    ProjectsDocumentSnapshot? endAtDocument,
-    ProjectsDocumentSnapshot? endBeforeDocument,
-    ProjectsDocumentSnapshot? startAfterDocument,
+    ProjectDocumentSnapshot? startAtDocument,
+    ProjectDocumentSnapshot? endAtDocument,
+    ProjectDocumentSnapshot? endBeforeDocument,
+    ProjectDocumentSnapshot? startAfterDocument,
   });
 
-  ProjectsQuery orderByProjectGroupId({
+  ProjectQuery orderByProjectGroupId({
     bool descending = false,
     String startAt,
     String startAfter,
     String endAt,
     String endBefore,
-    ProjectsDocumentSnapshot? startAtDocument,
-    ProjectsDocumentSnapshot? endAtDocument,
-    ProjectsDocumentSnapshot? endBeforeDocument,
-    ProjectsDocumentSnapshot? startAfterDocument,
+    ProjectDocumentSnapshot? startAtDocument,
+    ProjectDocumentSnapshot? endAtDocument,
+    ProjectDocumentSnapshot? endBeforeDocument,
+    ProjectDocumentSnapshot? startAfterDocument,
   });
 
-  ProjectsQuery orderByLeadUserId({
+  ProjectQuery orderByLeadUserId({
     bool descending = false,
     String startAt,
     String startAfter,
     String endAt,
     String endBefore,
-    ProjectsDocumentSnapshot? startAtDocument,
-    ProjectsDocumentSnapshot? endAtDocument,
-    ProjectsDocumentSnapshot? endBeforeDocument,
-    ProjectsDocumentSnapshot? startAfterDocument,
+    ProjectDocumentSnapshot? startAtDocument,
+    ProjectDocumentSnapshot? endAtDocument,
+    ProjectDocumentSnapshot? endBeforeDocument,
+    ProjectDocumentSnapshot? startAfterDocument,
   });
 
-  ProjectsQuery orderByAdminUsers({
+  ProjectQuery orderByAdminUsers({
     bool descending = false,
     List<String>? startAt,
     List<String>? startAfter,
     List<String>? endAt,
     List<String>? endBefore,
-    ProjectsDocumentSnapshot? startAtDocument,
-    ProjectsDocumentSnapshot? endAtDocument,
-    ProjectsDocumentSnapshot? endBeforeDocument,
-    ProjectsDocumentSnapshot? startAfterDocument,
+    ProjectDocumentSnapshot? startAtDocument,
+    ProjectDocumentSnapshot? endAtDocument,
+    ProjectDocumentSnapshot? endBeforeDocument,
+    ProjectDocumentSnapshot? startAfterDocument,
   });
 
-  ProjectsQuery orderByCompanyId({
+  ProjectQuery orderByCompanyId({
     bool descending = false,
     String startAt,
     String startAfter,
     String endAt,
     String endBefore,
-    ProjectsDocumentSnapshot? startAtDocument,
-    ProjectsDocumentSnapshot? endAtDocument,
-    ProjectsDocumentSnapshot? endBeforeDocument,
-    ProjectsDocumentSnapshot? startAfterDocument,
+    ProjectDocumentSnapshot? startAtDocument,
+    ProjectDocumentSnapshot? endAtDocument,
+    ProjectDocumentSnapshot? endBeforeDocument,
+    ProjectDocumentSnapshot? startAfterDocument,
   });
 }
 
-class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
-    implements ProjectsQuery {
-  _$ProjectsQuery(
+class _$ProjectQuery extends QueryReference<Project, ProjectQuerySnapshot>
+    implements ProjectQuery {
+  _$ProjectQuery(
     this._collection, {
     required Query<Project> $referenceWithoutCursor,
     $QueryCursor $queryCursor = const $QueryCursor(),
@@ -541,20 +541,18 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
   final CollectionReference<Object?> _collection;
 
   @override
-  Stream<ProjectsQuerySnapshot> snapshots([SnapshotOptions? options]) {
-    return reference.snapshots().map(ProjectsQuerySnapshot._fromQuerySnapshot);
+  Stream<ProjectQuerySnapshot> snapshots([SnapshotOptions? options]) {
+    return reference.snapshots().map(ProjectQuerySnapshot._fromQuerySnapshot);
   }
 
   @override
-  Future<ProjectsQuerySnapshot> get([GetOptions? options]) {
-    return reference
-        .get(options)
-        .then(ProjectsQuerySnapshot._fromQuerySnapshot);
+  Future<ProjectQuerySnapshot> get([GetOptions? options]) {
+    return reference.get(options).then(ProjectQuerySnapshot._fromQuerySnapshot);
   }
 
   @override
-  ProjectsQuery limit(int limit) {
-    return _$ProjectsQuery(
+  ProjectQuery limit(int limit) {
+    return _$ProjectQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.limit(limit),
       $queryCursor: $queryCursor,
@@ -562,25 +560,25 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
   }
 
   @override
-  ProjectsQuery limitToLast(int limit) {
-    return _$ProjectsQuery(
+  ProjectQuery limitToLast(int limit) {
+    return _$ProjectQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.limitToLast(limit),
       $queryCursor: $queryCursor,
     );
   }
 
-  ProjectsQuery orderByFieldPath(
+  ProjectQuery orderByFieldPath(
     FieldPath fieldPath, {
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    ProjectsDocumentSnapshot? startAtDocument,
-    ProjectsDocumentSnapshot? endAtDocument,
-    ProjectsDocumentSnapshot? endBeforeDocument,
-    ProjectsDocumentSnapshot? startAfterDocument,
+    ProjectDocumentSnapshot? startAtDocument,
+    ProjectDocumentSnapshot? endAtDocument,
+    ProjectDocumentSnapshot? endBeforeDocument,
+    ProjectDocumentSnapshot? startAfterDocument,
   }) {
     final query =
         $referenceWithoutCursor.orderBy(fieldPath, descending: descending);
@@ -635,14 +633,14 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
         endBeforeDocumentSnapshot: null,
       );
     }
-    return _$ProjectsQuery(
+    return _$ProjectQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
     );
   }
 
-  ProjectsQuery whereFieldPath(
+  ProjectQuery whereFieldPath(
     FieldPath fieldPath, {
     Object? isEqualTo,
     Object? isNotEqualTo,
@@ -656,7 +654,7 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
     List<Object?>? whereNotIn,
     bool? isNull,
   }) {
-    return _$ProjectsQuery(
+    return _$ProjectQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
         fieldPath,
@@ -676,7 +674,7 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
     );
   }
 
-  ProjectsQuery whereDocumentId({
+  ProjectQuery whereDocumentId({
     String? isEqualTo,
     String? isNotEqualTo,
     String? isLessThan,
@@ -687,7 +685,7 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
     List<String>? whereIn,
     List<String>? whereNotIn,
   }) {
-    return _$ProjectsQuery(
+    return _$ProjectQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
         FieldPath.documentId,
@@ -705,7 +703,7 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
     );
   }
 
-  ProjectsQuery whereProjectName({
+  ProjectQuery whereProjectName({
     String? isEqualTo,
     String? isNotEqualTo,
     String? isLessThan,
@@ -716,10 +714,10 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
     List<String>? whereIn,
     List<String>? whereNotIn,
   }) {
-    return _$ProjectsQuery(
+    return _$ProjectQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
-        _$ProjectsFieldMap['projectName']!,
+        _$ProjectFieldMap['projectName']!,
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -734,7 +732,7 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
     );
   }
 
-  ProjectsQuery whereProjectGroupId({
+  ProjectQuery whereProjectGroupId({
     String? isEqualTo,
     String? isNotEqualTo,
     String? isLessThan,
@@ -745,10 +743,10 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
     List<String>? whereIn,
     List<String>? whereNotIn,
   }) {
-    return _$ProjectsQuery(
+    return _$ProjectQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
-        _$ProjectsFieldMap['projectGroupId']!,
+        _$ProjectFieldMap['projectGroupId']!,
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -763,7 +761,7 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
     );
   }
 
-  ProjectsQuery whereLeadUserId({
+  ProjectQuery whereLeadUserId({
     String? isEqualTo,
     String? isNotEqualTo,
     String? isLessThan,
@@ -774,10 +772,10 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
     List<String>? whereIn,
     List<String>? whereNotIn,
   }) {
-    return _$ProjectsQuery(
+    return _$ProjectQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
-        _$ProjectsFieldMap['leadUserId']!,
+        _$ProjectFieldMap['leadUserId']!,
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -792,7 +790,7 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
     );
   }
 
-  ProjectsQuery whereAdminUsers({
+  ProjectQuery whereAdminUsers({
     List<String>? isEqualTo,
     List<String>? isNotEqualTo,
     List<String>? isLessThan,
@@ -803,10 +801,10 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
     String? arrayContains,
     List<String>? arrayContainsAny,
   }) {
-    return _$ProjectsQuery(
+    return _$ProjectQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
-        _$ProjectsFieldMap['adminUsers']!,
+        _$ProjectFieldMap['adminUsers']!,
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -821,7 +819,7 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
     );
   }
 
-  ProjectsQuery whereCompanyId({
+  ProjectQuery whereCompanyId({
     String? isEqualTo,
     String? isNotEqualTo,
     String? isLessThan,
@@ -832,10 +830,10 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
     List<String>? whereIn,
     List<String>? whereNotIn,
   }) {
-    return _$ProjectsQuery(
+    return _$ProjectQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
-        _$ProjectsFieldMap['companyId']!,
+        _$ProjectFieldMap['companyId']!,
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -850,16 +848,16 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
     );
   }
 
-  ProjectsQuery orderByDocumentId({
+  ProjectQuery orderByDocumentId({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    ProjectsDocumentSnapshot? startAtDocument,
-    ProjectsDocumentSnapshot? endAtDocument,
-    ProjectsDocumentSnapshot? endBeforeDocument,
-    ProjectsDocumentSnapshot? startAfterDocument,
+    ProjectDocumentSnapshot? startAtDocument,
+    ProjectDocumentSnapshot? endAtDocument,
+    ProjectDocumentSnapshot? endBeforeDocument,
+    ProjectDocumentSnapshot? startAfterDocument,
   }) {
     final query = $referenceWithoutCursor.orderBy(FieldPath.documentId,
         descending: descending);
@@ -915,26 +913,26 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
       );
     }
 
-    return _$ProjectsQuery(
+    return _$ProjectQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
     );
   }
 
-  ProjectsQuery orderByProjectName({
+  ProjectQuery orderByProjectName({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    ProjectsDocumentSnapshot? startAtDocument,
-    ProjectsDocumentSnapshot? endAtDocument,
-    ProjectsDocumentSnapshot? endBeforeDocument,
-    ProjectsDocumentSnapshot? startAfterDocument,
+    ProjectDocumentSnapshot? startAtDocument,
+    ProjectDocumentSnapshot? endAtDocument,
+    ProjectDocumentSnapshot? endBeforeDocument,
+    ProjectDocumentSnapshot? startAfterDocument,
   }) {
     final query = $referenceWithoutCursor
-        .orderBy(_$ProjectsFieldMap['projectName']!, descending: descending);
+        .orderBy(_$ProjectFieldMap['projectName']!, descending: descending);
     var queryCursor = $queryCursor;
 
     if (startAtDocument != null) {
@@ -987,26 +985,26 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
       );
     }
 
-    return _$ProjectsQuery(
+    return _$ProjectQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
     );
   }
 
-  ProjectsQuery orderByProjectGroupId({
+  ProjectQuery orderByProjectGroupId({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    ProjectsDocumentSnapshot? startAtDocument,
-    ProjectsDocumentSnapshot? endAtDocument,
-    ProjectsDocumentSnapshot? endBeforeDocument,
-    ProjectsDocumentSnapshot? startAfterDocument,
+    ProjectDocumentSnapshot? startAtDocument,
+    ProjectDocumentSnapshot? endAtDocument,
+    ProjectDocumentSnapshot? endBeforeDocument,
+    ProjectDocumentSnapshot? startAfterDocument,
   }) {
     final query = $referenceWithoutCursor
-        .orderBy(_$ProjectsFieldMap['projectGroupId']!, descending: descending);
+        .orderBy(_$ProjectFieldMap['projectGroupId']!, descending: descending);
     var queryCursor = $queryCursor;
 
     if (startAtDocument != null) {
@@ -1059,26 +1057,26 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
       );
     }
 
-    return _$ProjectsQuery(
+    return _$ProjectQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
     );
   }
 
-  ProjectsQuery orderByLeadUserId({
+  ProjectQuery orderByLeadUserId({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    ProjectsDocumentSnapshot? startAtDocument,
-    ProjectsDocumentSnapshot? endAtDocument,
-    ProjectsDocumentSnapshot? endBeforeDocument,
-    ProjectsDocumentSnapshot? startAfterDocument,
+    ProjectDocumentSnapshot? startAtDocument,
+    ProjectDocumentSnapshot? endAtDocument,
+    ProjectDocumentSnapshot? endBeforeDocument,
+    ProjectDocumentSnapshot? startAfterDocument,
   }) {
     final query = $referenceWithoutCursor
-        .orderBy(_$ProjectsFieldMap['leadUserId']!, descending: descending);
+        .orderBy(_$ProjectFieldMap['leadUserId']!, descending: descending);
     var queryCursor = $queryCursor;
 
     if (startAtDocument != null) {
@@ -1131,26 +1129,26 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
       );
     }
 
-    return _$ProjectsQuery(
+    return _$ProjectQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
     );
   }
 
-  ProjectsQuery orderByAdminUsers({
+  ProjectQuery orderByAdminUsers({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    ProjectsDocumentSnapshot? startAtDocument,
-    ProjectsDocumentSnapshot? endAtDocument,
-    ProjectsDocumentSnapshot? endBeforeDocument,
-    ProjectsDocumentSnapshot? startAfterDocument,
+    ProjectDocumentSnapshot? startAtDocument,
+    ProjectDocumentSnapshot? endAtDocument,
+    ProjectDocumentSnapshot? endBeforeDocument,
+    ProjectDocumentSnapshot? startAfterDocument,
   }) {
     final query = $referenceWithoutCursor
-        .orderBy(_$ProjectsFieldMap['adminUsers']!, descending: descending);
+        .orderBy(_$ProjectFieldMap['adminUsers']!, descending: descending);
     var queryCursor = $queryCursor;
 
     if (startAtDocument != null) {
@@ -1203,26 +1201,26 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
       );
     }
 
-    return _$ProjectsQuery(
+    return _$ProjectQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
     );
   }
 
-  ProjectsQuery orderByCompanyId({
+  ProjectQuery orderByCompanyId({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    ProjectsDocumentSnapshot? startAtDocument,
-    ProjectsDocumentSnapshot? endAtDocument,
-    ProjectsDocumentSnapshot? endBeforeDocument,
-    ProjectsDocumentSnapshot? startAfterDocument,
+    ProjectDocumentSnapshot? startAtDocument,
+    ProjectDocumentSnapshot? endAtDocument,
+    ProjectDocumentSnapshot? endBeforeDocument,
+    ProjectDocumentSnapshot? startAfterDocument,
   }) {
     final query = $referenceWithoutCursor
-        .orderBy(_$ProjectsFieldMap['companyId']!, descending: descending);
+        .orderBy(_$ProjectFieldMap['companyId']!, descending: descending);
     var queryCursor = $queryCursor;
 
     if (startAtDocument != null) {
@@ -1275,7 +1273,7 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
       );
     }
 
-    return _$ProjectsQuery(
+    return _$ProjectQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
@@ -1284,7 +1282,7 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
 
   @override
   bool operator ==(Object other) {
-    return other is _$ProjectsQuery &&
+    return other is _$ProjectQuery &&
         other.runtimeType == runtimeType &&
         other.reference == reference;
   }
@@ -1293,15 +1291,15 @@ class _$ProjectsQuery extends QueryReference<Project, ProjectsQuerySnapshot>
   int get hashCode => Object.hash(runtimeType, reference);
 }
 
-class ProjectsDocumentSnapshot extends FirestoreDocumentSnapshot<Project> {
-  ProjectsDocumentSnapshot._(this.snapshot) : data = snapshot.data();
+class ProjectDocumentSnapshot extends FirestoreDocumentSnapshot<Project> {
+  ProjectDocumentSnapshot._(this.snapshot) : data = snapshot.data();
 
   @override
   final DocumentSnapshot<Project> snapshot;
 
   @override
-  ProjectsDocumentReference get reference {
-    return ProjectsDocumentReference(
+  ProjectDocumentReference get reference {
+    return ProjectDocumentReference(
       snapshot.reference,
     );
   }
@@ -1310,39 +1308,39 @@ class ProjectsDocumentSnapshot extends FirestoreDocumentSnapshot<Project> {
   final Project? data;
 }
 
-class ProjectsQuerySnapshot
-    extends FirestoreQuerySnapshot<Project, ProjectsQueryDocumentSnapshot> {
-  ProjectsQuerySnapshot._(
+class ProjectQuerySnapshot
+    extends FirestoreQuerySnapshot<Project, ProjectQueryDocumentSnapshot> {
+  ProjectQuerySnapshot._(
     this.snapshot,
     this.docs,
     this.docChanges,
   );
 
-  factory ProjectsQuerySnapshot._fromQuerySnapshot(
+  factory ProjectQuerySnapshot._fromQuerySnapshot(
     QuerySnapshot<Project> snapshot,
   ) {
-    final docs = snapshot.docs.map(ProjectsQueryDocumentSnapshot._).toList();
+    final docs = snapshot.docs.map(ProjectQueryDocumentSnapshot._).toList();
 
     final docChanges = snapshot.docChanges.map((change) {
       return _decodeDocumentChange(
         change,
-        ProjectsDocumentSnapshot._,
+        ProjectDocumentSnapshot._,
       );
     }).toList();
 
-    return ProjectsQuerySnapshot._(
+    return ProjectQuerySnapshot._(
       snapshot,
       docs,
       docChanges,
     );
   }
 
-  static FirestoreDocumentChange<ProjectsDocumentSnapshot>
+  static FirestoreDocumentChange<ProjectDocumentSnapshot>
       _decodeDocumentChange<T>(
     DocumentChange<T> docChange,
-    ProjectsDocumentSnapshot Function(DocumentSnapshot<T> doc) decodeDoc,
+    ProjectDocumentSnapshot Function(DocumentSnapshot<T> doc) decodeDoc,
   ) {
-    return FirestoreDocumentChange<ProjectsDocumentSnapshot>(
+    return FirestoreDocumentChange<ProjectDocumentSnapshot>(
       type: docChange.type,
       oldIndex: docChange.oldIndex,
       newIndex: docChange.newIndex,
@@ -1353,16 +1351,16 @@ class ProjectsQuerySnapshot
   final QuerySnapshot<Project> snapshot;
 
   @override
-  final List<ProjectsQueryDocumentSnapshot> docs;
+  final List<ProjectQueryDocumentSnapshot> docs;
 
   @override
-  final List<FirestoreDocumentChange<ProjectsDocumentSnapshot>> docChanges;
+  final List<FirestoreDocumentChange<ProjectDocumentSnapshot>> docChanges;
 }
 
-class ProjectsQueryDocumentSnapshot
+class ProjectQueryDocumentSnapshot
     extends FirestoreQueryDocumentSnapshot<Project>
-    implements ProjectsDocumentSnapshot {
-  ProjectsQueryDocumentSnapshot._(this.snapshot) : data = snapshot.data();
+    implements ProjectDocumentSnapshot {
+  ProjectQueryDocumentSnapshot._(this.snapshot) : data = snapshot.data();
 
   @override
   final QueryDocumentSnapshot<Project> snapshot;
@@ -1371,8 +1369,8 @@ class ProjectsQueryDocumentSnapshot
   final Project data;
 
   @override
-  ProjectsDocumentReference get reference {
-    return ProjectsDocumentReference(snapshot.reference);
+  ProjectDocumentReference get reference {
+    return ProjectDocumentReference(snapshot.reference);
   }
 }
 
@@ -1380,7 +1378,7 @@ class ProjectsQueryDocumentSnapshot
 // JsonSerializableGenerator
 // **************************************************************************
 
-Project _$ProjectsFromJson(Map<String, dynamic> json) => Project(
+Project _$ProjectFromJson(Map<String, dynamic> json) => Project(
       id: json['id'] as String?,
       projectName: json['projectName'] as String,
       projectGroupId: json['projectGroupId'] as String,
@@ -1394,7 +1392,7 @@ Project _$ProjectsFromJson(Map<String, dynamic> json) => Project(
           .toList(),
     );
 
-const _$ProjectsFieldMap = <String, String>{
+const _$ProjectFieldMap = <String, String>{
   'id': 'id',
   'projectName': 'projectName',
   'projectGroupId': 'projectGroupId',
@@ -1404,7 +1402,7 @@ const _$ProjectsFieldMap = <String, String>{
   'currentProjects': 'currentProjects',
 };
 
-Map<String, dynamic> _$ProjectsToJson(Project instance) => <String, dynamic>{
+Map<String, dynamic> _$ProjectToJson(Project instance) => <String, dynamic>{
       'id': instance.id,
       'projectName': instance.projectName,
       'projectGroupId': instance.projectGroupId,
