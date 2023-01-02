@@ -82,7 +82,7 @@ class DashBoardScreenController {
     UiState uiState = Provider.of<UiState>(context, listen: false);
 
     List<UserCard>? userCards = [];
-    for (User user in uiState.allUsers!) {
+    for (User user in uiState.allUsers ?? []) {
       if (uiState.user?.id != user.id) {
         UserCard card = UserCard(user: user);
         userCards.add(card);

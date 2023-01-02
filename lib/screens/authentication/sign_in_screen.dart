@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class SignInWidget extends StatelessWidget {
-  SignInWidget({super.key});
-  AuthenticationController ctrl = AuthenticationController();
+  final AuthenticationController ctrl = AuthenticationController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +22,13 @@ class SignInWidget extends StatelessWidget {
             context.goNamed(VERIFY_EMAIL_SCREEN);
           } else {
             ctrl.verifyUser(context, state);
-            //context.goNamed(DASHBOARD_SCREEN);
           }
         }),
         AuthStateChangeAction<UserCreated>((context, state) {
           if (!state.credential.user!.emailVerified) {
             context.goNamed(VERIFY_EMAIL_SCREEN);
           } else {
-            context.goNamed(DASHBOARD_SCREEN);
+            ctrl.verifyUser(context, state);
           }
         }),
         AuthStateChangeAction<MFARequired>((context, state) async {

@@ -18,7 +18,7 @@ class UserCard extends StatelessWidget {
       cardChild: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Icon(
+          const Icon(
             Icons.account_circle,
             size: 50,
           ),
@@ -33,7 +33,7 @@ class UserCard extends StatelessWidget {
                 color: getStatusColor(),
                 shape: BoxShape.circle,
               )),
-          Spacer(),
+          const Spacer(),
           Padding(
             padding: const EdgeInsets.all(8),
             child: RoundedButton(
@@ -67,7 +67,7 @@ class UserCard extends StatelessWidget {
 
   onPressed(BuildContext context) {
     if (user.userStatus == UserStatus.AVAILABLE) {
-      print('Requesting...');
+      debugPrint('Requesting...');
     } else {
       showWarning(context, '${user.userName} is not available');
     }

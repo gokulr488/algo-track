@@ -7,8 +7,8 @@ class DropDown extends StatelessWidget {
       this.defaultValue,
       required this.values,
       this.hintText});
-  final Function(dynamic?) onChanged;
-  final dynamic? defaultValue;
+  final Function(dynamic) onChanged;
+  final dynamic defaultValue;
   final List<dynamic>? values;
   final String? hintText;
 
@@ -33,7 +33,7 @@ class DropDown extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(value.toString()),
-                    Icon(Icons.personal_injury)
+                    const Icon(Icons.personal_injury)
                   ],
                 )))
             .toList(),

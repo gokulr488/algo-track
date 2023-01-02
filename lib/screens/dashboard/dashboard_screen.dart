@@ -1,19 +1,12 @@
 import 'package:algo_track/common/constants.dart';
-import 'package:algo_track/common/ui_state.dart';
 import 'package:algo_track/components/base_screen.dart';
-import 'package:algo_track/components/drop_down.dart';
 import 'package:algo_track/components/responsive.dart';
 import 'package:algo_track/components/rounded_button.dart';
 import 'package:algo_track/components/scrollable_list.dart';
-import 'package:algo_track/models/enums/user_status.dart';
-import 'package:algo_track/models/enums/user_type.dart';
-import 'package:algo_track/models/user.dart';
 import 'package:algo_track/screens/dashboard/dashboard_screen_controller.dart';
 import 'package:algo_track/screens/dashboard/start_work.dart';
-import 'package:algo_track/screens/dashboard/user_card.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
 class DashBoardScreen extends StatefulWidget {
   @override
