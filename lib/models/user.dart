@@ -28,7 +28,7 @@ class User {
   final String? currentTimeLogId;
   final UserStatus userStatus;
   final List<CurrentProject>? currentProjects;
-  final String? authUid;
+  String? authUid;
 
   User(
       {this.id,
