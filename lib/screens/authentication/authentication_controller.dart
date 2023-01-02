@@ -14,7 +14,7 @@ class AuthenticationController {
         .whereEmailId(isEqualTo: authUser.email)
         .get()
         .then((UserQuerySnapshot value) {
-      if (value.docs.isNotEmpty && value.docs.length == 1) {
+      if (value.docs.length == 1) {
         UiState uiState = Provider.of<UiState>(context, listen: false);
         User user = value.docs.first.data;
         uiState.user = user;
@@ -25,6 +25,8 @@ class AuthenticationController {
         } else if (user.authUid != authUser.uid) {
           showErrorAlert(context, 'Invalid User. Contact Admin');
           fba.FirebaseAuth.instance.signOut();
+        } else {
+          context.goNamed(DASHBOARD_SCREEN);
         }
       }
     });
