@@ -1,6 +1,7 @@
 import 'package:algo_track/common/constants.dart';
 import 'package:algo_track/common/ui_constants.dart';
 import 'package:algo_track/common/ui_state.dart';
+import 'package:algo_track/notifications/notification_service.dart';
 import 'package:algo_track/screens/authentication/auth_profile_screen.dart';
 import 'package:algo_track/screens/authentication/email_signin_screen.dart';
 import 'package:algo_track/screens/authentication/forgot_password_screen.dart';
@@ -14,6 +15,7 @@ import 'package:algo_track/screens/nfc_test_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fba;
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -28,17 +30,20 @@ import 'firebase_options.dart';
 // flutter pub run build_runner watch --delete-conflicting-outputs
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  initialise();
+  await initialise();
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider<UiState>(create: (_) => UiState()),
   ], child: AlgoTrackApp()));
 }
 
-void initialise() {
+Future<void> initialise() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  FirebaseMessaging.onBackgroundMessage((message) => Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      ));
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   if (!kIsWeb) {
     // If you wish to record a "non-fatal" exception, please use `FirebaseCrashlytics.instance.recordFlutterError` instead
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
@@ -59,6 +64,8 @@ void initialise() {
   ]);
   FirebaseFirestore.instance.settings =
       const Settings(persistenceEnabled: true);
+
+  initNotifications();
 }
 
 class AlgoTrackApp extends StatelessWidget {

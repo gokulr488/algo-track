@@ -44,19 +44,3 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     );
   }
 }
-
-
-/*
-[
-                  UserCard(
-                    user: User(
-                      companyId: '',
-                      userName: 'Amritha',
-                      emailId: '',
-                      phoneNumber: '',
-                      userStatus: UserStatus.BUSY,
-                      userType: UserType.ADMIN,
-                    ),
-                  )
-                ]
-*/
