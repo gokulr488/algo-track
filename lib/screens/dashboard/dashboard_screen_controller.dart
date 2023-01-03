@@ -5,6 +5,7 @@ import 'package:algo_track/models/project.dart';
 import 'package:algo_track/models/user.dart';
 import 'package:algo_track/screens/dashboard/user_card.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fba;
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,12 +24,18 @@ class DashBoardScreenController {
   Future<void> getUserData(UiState uiState) async {
     debugPrint('Getting All userdata');
     fba.User? authUser = fba.FirebaseAuth.instance.currentUser;
+    String? fcmToken = await FirebaseMessaging.instance.getToken();
     UserQuerySnapshot userSnapshot = await usersRef.get();
     List<User> users = [];
     for (UserQueryDocumentSnapshot user in userSnapshot.docs) {
       users.add(user.data);
       if (user.data.authUid == authUser?.uid) {
         uiState.user = user.data;
+        if (uiState.user?.fcmToken == null ||
+            uiState.user?.fcmToken != fcmToken) {
+          uiState.user?.fcmToken = fcmToken;
+          user.reference.update(fcmToken: fcmToken);
+        }
       }
     }
     uiState.setAllUsers(users);

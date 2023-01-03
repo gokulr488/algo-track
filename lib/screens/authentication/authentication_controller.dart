@@ -15,11 +15,9 @@ class AuthenticationController {
         .get()
         .then((UserQuerySnapshot value) {
       if (value.docs.length == 1) {
-        UiState uiState = Provider.of<UiState>(context, listen: false);
+        //UiState uiState = Provider.of<UiState>(context, listen: false);
         User user = value.docs.first.data;
-        uiState.user = user;
         if (user.authUid == null) {
-          user.authUid = authUser.uid;
           value.docs.first.reference.update(authUid: authUser.uid);
           context.goNamed(DASHBOARD_SCREEN);
         } else if (user.authUid != authUser.uid) {
