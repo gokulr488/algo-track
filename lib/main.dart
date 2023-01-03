@@ -15,7 +15,6 @@ import 'package:algo_track/screens/nfc_test_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fba;
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -38,9 +37,6 @@ Future<void> main() async {
 
 Future<void> initialise() async {
   WidgetsFlutterBinding.ensureInitialized();
-  FirebaseMessaging.onBackgroundMessage((message) => Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      ));
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

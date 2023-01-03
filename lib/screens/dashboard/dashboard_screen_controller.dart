@@ -10,6 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class DashBoardScreenController {
+  Project? selectedProject;
+  User? assistingUser;
+
   void getData(BuildContext context) async {
     UiState uiState = Provider.of<UiState>(context, listen: false);
     if (uiState.allUsers == null) {
@@ -28,14 +31,16 @@ class DashBoardScreenController {
     UserQuerySnapshot userSnapshot = await usersRef.get();
     List<User> users = [];
     for (UserQueryDocumentSnapshot user in userSnapshot.docs) {
-      users.add(user.data);
       if (user.data.authUid == authUser?.uid) {
         uiState.user = user.data;
         if (uiState.user?.fcmToken == null ||
             uiState.user?.fcmToken != fcmToken) {
+          debugPrint('Updating Notifications Token');
           uiState.user?.fcmToken = fcmToken;
           user.reference.update(fcmToken: fcmToken);
         }
+      } else {
+        users.add(user.data);
       }
     }
     uiState.setAllUsers(users);
@@ -95,11 +100,13 @@ class DashBoardScreenController {
 
     List<UserCard>? userCards = [];
     for (User user in uiState.allUsers ?? []) {
-      if (uiState.user?.id != user.id) {
-        UserCard card = UserCard(user: user);
-        userCards.add(card);
-      }
+      UserCard card = UserCard(user: user);
+      userCards.add(card);
     }
     return userCards;
+  }
+
+  void onStartWorkPressed() {
+    print('object');
   }
 }
