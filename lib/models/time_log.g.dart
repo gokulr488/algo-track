@@ -129,14 +129,16 @@ abstract class TimeLogDocumentReference
   Future<void> update({
     Timestamp startTime,
     FieldValue startTimeFieldValue,
-    Timestamp endTime,
+    Timestamp? endTime,
     FieldValue endTimeFieldValue,
-    String projectId,
+    String? projectId,
     FieldValue projectIdFieldValue,
     String? location,
     FieldValue locationFieldValue,
     String userId,
     FieldValue userIdFieldValue,
+    String? assistingUserId,
+    FieldValue assistingUserIdFieldValue,
   });
 
   /// Updates fields in the current document using the transaction API.
@@ -146,14 +148,16 @@ abstract class TimeLogDocumentReference
     Transaction transaction, {
     Timestamp startTime,
     FieldValue startTimeFieldValue,
-    Timestamp endTime,
+    Timestamp? endTime,
     FieldValue endTimeFieldValue,
-    String projectId,
+    String? projectId,
     FieldValue projectIdFieldValue,
     String? location,
     FieldValue locationFieldValue,
     String userId,
     FieldValue userIdFieldValue,
+    String? assistingUserId,
+    FieldValue assistingUserIdFieldValue,
   });
 }
 
@@ -196,6 +200,8 @@ class _$TimeLogDocumentReference
     FieldValue? locationFieldValue,
     Object? userId = _sentinel,
     FieldValue? userIdFieldValue,
+    Object? assistingUserId = _sentinel,
+    FieldValue? assistingUserIdFieldValue,
   }) async {
     assert(
       startTime == _sentinel || startTimeFieldValue == null,
@@ -217,17 +223,21 @@ class _$TimeLogDocumentReference
       userId == _sentinel || userIdFieldValue == null,
       "Cannot specify both userId and userIdFieldValue",
     );
+    assert(
+      assistingUserId == _sentinel || assistingUserIdFieldValue == null,
+      "Cannot specify both assistingUserId and assistingUserIdFieldValue",
+    );
     final json = {
       if (startTime != _sentinel)
         _$TimeLogFieldMap['startTime']!: startTime as Timestamp,
       if (startTimeFieldValue != null)
         _$TimeLogFieldMap['startTime']!: startTimeFieldValue,
       if (endTime != _sentinel)
-        _$TimeLogFieldMap['endTime']!: endTime as Timestamp,
+        _$TimeLogFieldMap['endTime']!: endTime as Timestamp?,
       if (endTimeFieldValue != null)
         _$TimeLogFieldMap['endTime']!: endTimeFieldValue,
       if (projectId != _sentinel)
-        _$TimeLogFieldMap['projectId']!: projectId as String,
+        _$TimeLogFieldMap['projectId']!: projectId as String?,
       if (projectIdFieldValue != null)
         _$TimeLogFieldMap['projectId']!: projectIdFieldValue,
       if (location != _sentinel)
@@ -237,6 +247,10 @@ class _$TimeLogDocumentReference
       if (userId != _sentinel) _$TimeLogFieldMap['userId']!: userId as String,
       if (userIdFieldValue != null)
         _$TimeLogFieldMap['userId']!: userIdFieldValue,
+      if (assistingUserId != _sentinel)
+        _$TimeLogFieldMap['assistingUserId']!: assistingUserId as String?,
+      if (assistingUserIdFieldValue != null)
+        _$TimeLogFieldMap['assistingUserId']!: assistingUserIdFieldValue,
     };
 
     return reference.update(json);
@@ -254,6 +268,8 @@ class _$TimeLogDocumentReference
     FieldValue? locationFieldValue,
     Object? userId = _sentinel,
     FieldValue? userIdFieldValue,
+    Object? assistingUserId = _sentinel,
+    FieldValue? assistingUserIdFieldValue,
   }) {
     assert(
       startTime == _sentinel || startTimeFieldValue == null,
@@ -275,17 +291,21 @@ class _$TimeLogDocumentReference
       userId == _sentinel || userIdFieldValue == null,
       "Cannot specify both userId and userIdFieldValue",
     );
+    assert(
+      assistingUserId == _sentinel || assistingUserIdFieldValue == null,
+      "Cannot specify both assistingUserId and assistingUserIdFieldValue",
+    );
     final json = {
       if (startTime != _sentinel)
         _$TimeLogFieldMap['startTime']!: startTime as Timestamp,
       if (startTimeFieldValue != null)
         _$TimeLogFieldMap['startTime']!: startTimeFieldValue,
       if (endTime != _sentinel)
-        _$TimeLogFieldMap['endTime']!: endTime as Timestamp,
+        _$TimeLogFieldMap['endTime']!: endTime as Timestamp?,
       if (endTimeFieldValue != null)
         _$TimeLogFieldMap['endTime']!: endTimeFieldValue,
       if (projectId != _sentinel)
-        _$TimeLogFieldMap['projectId']!: projectId as String,
+        _$TimeLogFieldMap['projectId']!: projectId as String?,
       if (projectIdFieldValue != null)
         _$TimeLogFieldMap['projectId']!: projectIdFieldValue,
       if (location != _sentinel)
@@ -295,6 +315,10 @@ class _$TimeLogDocumentReference
       if (userId != _sentinel) _$TimeLogFieldMap['userId']!: userId as String,
       if (userIdFieldValue != null)
         _$TimeLogFieldMap['userId']!: userIdFieldValue,
+      if (assistingUserId != _sentinel)
+        _$TimeLogFieldMap['assistingUserId']!: assistingUserId as String?,
+      if (assistingUserIdFieldValue != null)
+        _$TimeLogFieldMap['assistingUserId']!: assistingUserIdFieldValue,
     };
 
     transaction.update(reference, json);
@@ -415,8 +439,8 @@ abstract class TimeLogQuery
     Timestamp? isGreaterThan,
     Timestamp? isGreaterThanOrEqualTo,
     bool? isNull,
-    List<Timestamp>? whereIn,
-    List<Timestamp>? whereNotIn,
+    List<Timestamp?>? whereIn,
+    List<Timestamp?>? whereNotIn,
   });
   TimeLogQuery whereProjectId({
     String? isEqualTo,
@@ -426,8 +450,8 @@ abstract class TimeLogQuery
     String? isGreaterThan,
     String? isGreaterThanOrEqualTo,
     bool? isNull,
-    List<String>? whereIn,
-    List<String>? whereNotIn,
+    List<String?>? whereIn,
+    List<String?>? whereNotIn,
   });
   TimeLogQuery whereLocation({
     String? isEqualTo,
@@ -450,6 +474,17 @@ abstract class TimeLogQuery
     bool? isNull,
     List<String>? whereIn,
     List<String>? whereNotIn,
+  });
+  TimeLogQuery whereAssistingUserId({
+    String? isEqualTo,
+    String? isNotEqualTo,
+    String? isLessThan,
+    String? isLessThanOrEqualTo,
+    String? isGreaterThan,
+    String? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<String?>? whereIn,
+    List<String?>? whereNotIn,
   });
 
   TimeLogQuery orderByDocumentId({
@@ -478,10 +513,10 @@ abstract class TimeLogQuery
 
   TimeLogQuery orderByEndTime({
     bool descending = false,
-    Timestamp startAt,
-    Timestamp startAfter,
-    Timestamp endAt,
-    Timestamp endBefore,
+    Timestamp? startAt,
+    Timestamp? startAfter,
+    Timestamp? endAt,
+    Timestamp? endBefore,
     TimeLogDocumentSnapshot? startAtDocument,
     TimeLogDocumentSnapshot? endAtDocument,
     TimeLogDocumentSnapshot? endBeforeDocument,
@@ -490,10 +525,10 @@ abstract class TimeLogQuery
 
   TimeLogQuery orderByProjectId({
     bool descending = false,
-    String startAt,
-    String startAfter,
-    String endAt,
-    String endBefore,
+    String? startAt,
+    String? startAfter,
+    String? endAt,
+    String? endBefore,
     TimeLogDocumentSnapshot? startAtDocument,
     TimeLogDocumentSnapshot? endAtDocument,
     TimeLogDocumentSnapshot? endBeforeDocument,
@@ -518,6 +553,18 @@ abstract class TimeLogQuery
     String startAfter,
     String endAt,
     String endBefore,
+    TimeLogDocumentSnapshot? startAtDocument,
+    TimeLogDocumentSnapshot? endAtDocument,
+    TimeLogDocumentSnapshot? endBeforeDocument,
+    TimeLogDocumentSnapshot? startAfterDocument,
+  });
+
+  TimeLogQuery orderByAssistingUserId({
+    bool descending = false,
+    String? startAt,
+    String? startAfter,
+    String? endAt,
+    String? endBefore,
     TimeLogDocumentSnapshot? startAtDocument,
     TimeLogDocumentSnapshot? endAtDocument,
     TimeLogDocumentSnapshot? endBeforeDocument,
@@ -738,8 +785,8 @@ class _$TimeLogQuery extends QueryReference<TimeLog, TimeLogQuerySnapshot>
     Timestamp? isGreaterThan,
     Timestamp? isGreaterThanOrEqualTo,
     bool? isNull,
-    List<Timestamp>? whereIn,
-    List<Timestamp>? whereNotIn,
+    List<Timestamp?>? whereIn,
+    List<Timestamp?>? whereNotIn,
   }) {
     return _$TimeLogQuery(
       _collection,
@@ -767,8 +814,8 @@ class _$TimeLogQuery extends QueryReference<TimeLog, TimeLogQuerySnapshot>
     String? isGreaterThan,
     String? isGreaterThanOrEqualTo,
     bool? isNull,
-    List<String>? whereIn,
-    List<String>? whereNotIn,
+    List<String?>? whereIn,
+    List<String?>? whereNotIn,
   }) {
     return _$TimeLogQuery(
       _collection,
@@ -832,6 +879,35 @@ class _$TimeLogQuery extends QueryReference<TimeLog, TimeLogQuerySnapshot>
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
         _$TimeLogFieldMap['userId']!,
+        isEqualTo: isEqualTo,
+        isNotEqualTo: isNotEqualTo,
+        isLessThan: isLessThan,
+        isLessThanOrEqualTo: isLessThanOrEqualTo,
+        isGreaterThan: isGreaterThan,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+        isNull: isNull,
+        whereIn: whereIn,
+        whereNotIn: whereNotIn,
+      ),
+      $queryCursor: $queryCursor,
+    );
+  }
+
+  TimeLogQuery whereAssistingUserId({
+    String? isEqualTo,
+    String? isNotEqualTo,
+    String? isLessThan,
+    String? isLessThanOrEqualTo,
+    String? isGreaterThan,
+    String? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<String?>? whereIn,
+    List<String?>? whereNotIn,
+  }) {
+    return _$TimeLogQuery(
+      _collection,
+      $referenceWithoutCursor: $referenceWithoutCursor.where(
+        _$TimeLogFieldMap['assistingUserId']!,
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -1278,6 +1354,78 @@ class _$TimeLogQuery extends QueryReference<TimeLog, TimeLogQuerySnapshot>
     );
   }
 
+  TimeLogQuery orderByAssistingUserId({
+    bool descending = false,
+    Object? startAt = _sentinel,
+    Object? startAfter = _sentinel,
+    Object? endAt = _sentinel,
+    Object? endBefore = _sentinel,
+    TimeLogDocumentSnapshot? startAtDocument,
+    TimeLogDocumentSnapshot? endAtDocument,
+    TimeLogDocumentSnapshot? endBeforeDocument,
+    TimeLogDocumentSnapshot? startAfterDocument,
+  }) {
+    final query = $referenceWithoutCursor
+        .orderBy(_$TimeLogFieldMap['assistingUserId']!, descending: descending);
+    var queryCursor = $queryCursor;
+
+    if (startAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAt: const [],
+        startAtDocumentSnapshot: startAtDocument.snapshot,
+      );
+    }
+    if (startAfterDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: const [],
+        startAfterDocumentSnapshot: startAfterDocument.snapshot,
+      );
+    }
+    if (endAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endAt: const [],
+        endAtDocumentSnapshot: endAtDocument.snapshot,
+      );
+    }
+    if (endBeforeDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: const [],
+        endBeforeDocumentSnapshot: endBeforeDocument.snapshot,
+      );
+    }
+
+    if (startAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAt: [...queryCursor.startAt, startAt],
+        startAtDocumentSnapshot: null,
+      );
+    }
+    if (startAfter != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: [...queryCursor.startAfter, startAfter],
+        startAfterDocumentSnapshot: null,
+      );
+    }
+    if (endAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endAt: [...queryCursor.endAt, endAt],
+        endAtDocumentSnapshot: null,
+      );
+    }
+    if (endBefore != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: [...queryCursor.endBefore, endBefore],
+        endBeforeDocumentSnapshot: null,
+      );
+    }
+
+    return _$TimeLogQuery(
+      _collection,
+      $referenceWithoutCursor: query,
+      $queryCursor: queryCursor,
+    );
+  }
+
   @override
   bool operator ==(Object other) {
     return other is _$TimeLogQuery &&
@@ -1386,9 +1534,10 @@ TimeLog _$TimeLogFromJson(Map<String, dynamic> json) => TimeLog(
           .toList(),
       startTime: const FirestoreTimestampConverter()
           .fromJson(json['startTime'] as Timestamp),
-      endTime: const FirestoreTimestampConverter()
-          .fromJson(json['endTime'] as Timestamp),
-      projectId: json['projectId'] as String,
+      endTime: _$JsonConverterFromJson<Timestamp, Timestamp>(
+          json['endTime'], const FirestoreTimestampConverter().fromJson),
+      projectId: json['projectId'] as String?,
+      assistingUserId: json['assistingUserId'] as String?,
     );
 
 const _$TimeLogFieldMap = <String, String>{
@@ -1400,21 +1549,36 @@ const _$TimeLogFieldMap = <String, String>{
   'location': 'location',
   'userId': 'userId',
   'breakTimes': 'breakTimes',
+  'assistingUserId': 'assistingUserId',
 };
 
 Map<String, dynamic> _$TimeLogToJson(TimeLog instance) => <String, dynamic>{
       'id': instance.id,
       'startTime':
           const FirestoreTimestampConverter().toJson(instance.startTime),
-      'endTime': const FirestoreTimestampConverter().toJson(instance.endTime),
+      'endTime': _$JsonConverterToJson<Timestamp, Timestamp>(
+          instance.endTime, const FirestoreTimestampConverter().toJson),
       'projectId': instance.projectId,
       'timeLogType': _$TimeLogTypeEnumMap[instance.timeLogType]!,
       'location': instance.location,
       'userId': instance.userId,
       'breakTimes': instance.breakTimes?.map((e) => e.toJson()).toList(),
+      'assistingUserId': instance.assistingUserId,
     };
 
 const _$TimeLogTypeEnumMap = {
   TimeLogType.MANUAL: 'MANUAL',
   TimeLogType.PUNCH_TIME: 'PUNCH_TIME',
 };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);

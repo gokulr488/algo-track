@@ -51,8 +51,8 @@ class SignInWidget extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 8),
           child: Text(
             action == AuthAction.signIn
-                ? 'Welcome to Algo Track! Please sign in to continue.'
-                : 'Welcome to Algo Track! Please create an account to continue',
+                ? 'Welcome to Algo Log! Please sign in to continue.'
+                : 'Welcome to Algo Log! Please create an account to continue',
           ),
         );
       },

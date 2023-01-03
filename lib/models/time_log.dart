@@ -13,24 +13,26 @@ final timeLogsRef = TimeLogCollectionReference();
 @firestoreSerializable
 class TimeLog {
   @Id()
-  final String? id;
-  final Timestamp startTime;
-  final Timestamp endTime;
-  final String projectId;
-  final TimeLogType timeLogType;
-  final String? location;
-  final String userId;
-  final List<BreakTime>? breakTimes;
+  String? id;
+  Timestamp startTime;
+  Timestamp? endTime;
+  String? projectId;
+  TimeLogType timeLogType;
+  String? location;
+  String userId;
+  List<BreakTime>? breakTimes;
+  String? assistingUserId;
 
   TimeLog({
     this.id,
     required this.timeLogType,
-    required this.location,
+    this.location,
     required this.userId,
     this.breakTimes,
     required this.startTime,
-    required this.endTime,
+    this.endTime,
     required this.projectId,
+    this.assistingUserId,
   });
 
   factory TimeLog.fromJson(Map<String, Object?> json) =>

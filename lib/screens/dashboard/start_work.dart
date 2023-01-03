@@ -16,21 +16,24 @@ class StartWork extends StatelessWidget {
         children: [
           uiState.allProjects != null
               ? DropDown(
-                  onChanged: (value) => ctrl.selectedProject = value,
+                  onChanged: (value) =>
+                      DashBoardScreenController.selectedProject = value,
                   hintText: 'Project Name',
                   values: uiState.allProjects)
               : const LoadingDots(size: 50),
           uiState.allUsers != null
               ? DropDown(
-                  onChanged: (value) => ctrl.assistingUser = value,
+                  onChanged: (value) =>
+                      DashBoardScreenController.assistingUser = value,
                   hintText: 'Assisting who ',
                   values: uiState.allUsers)
               : const LoadingDots(size: 50),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: RoundedButton(
-                title: 'Start Work', onPressed: ctrl.onStartWorkPressed),
-          )
+              padding: const EdgeInsets.all(8.0),
+              child: RoundedButton(
+                title: 'Start Work',
+                onPressed: () => ctrl.onStartWorkPressed(context),
+              ))
         ],
       );
     });

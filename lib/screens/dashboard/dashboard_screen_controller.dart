@@ -1,17 +1,21 @@
 import 'package:algo_track/common/ui_state.dart';
+import 'package:algo_track/components/alerts.dart';
+import 'package:algo_track/models/enums/time_log_type.dart';
 import 'package:algo_track/models/enums/user_status.dart';
 import 'package:algo_track/models/enums/user_type.dart';
 import 'package:algo_track/models/project.dart';
+import 'package:algo_track/models/time_log.dart';
 import 'package:algo_track/models/user.dart';
 import 'package:algo_track/screens/dashboard/user_card.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fba;
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class DashBoardScreenController {
-  Project? selectedProject;
-  User? assistingUser;
+  static Project? selectedProject;
+  static User? assistingUser;
 
   void getData(BuildContext context) async {
     UiState uiState = Provider.of<UiState>(context, listen: false);
@@ -106,7 +110,19 @@ class DashBoardScreenController {
     return userCards;
   }
 
-  void onStartWorkPressed() {
-    print('object');
+  onStartWorkPressed(BuildContext context) async {
+    if (selectedProject == null) {
+      showErrorAlert(context, 'Please Select a Project');
+      return;
+    }
+    UiState uiState = Provider.of<UiState>(context, listen: false);
+    TimeLog timeLog = TimeLog(
+        timeLogType: TimeLogType.MANUAL,
+        userId: uiState.user?.id ?? '',
+        startTime: Timestamp.now(),
+        projectId: selectedProject?.id,
+        assistingUserId: assistingUser?.id);
+    await timeLogsRef.add(timeLog);
+    showSilentAlerts('Work started succesfully');
   }
 }
