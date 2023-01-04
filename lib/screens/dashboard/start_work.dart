@@ -1,3 +1,4 @@
+import 'package:algo_track/common/app_state.dart';
 import 'package:algo_track/common/ui_state.dart';
 import 'package:algo_track/components/drop_down.dart';
 import 'package:algo_track/components/loading_dots.dart';
@@ -10,27 +11,27 @@ class StartWork extends StatelessWidget {
   final DashBoardScreenController ctrl = DashBoardScreenController();
   @override
   Widget build(BuildContext context) {
-    return Consumer<UiState>(
-        builder: (BuildContext context, UiState uiState, _) {
+    return Consumer<AppState>(
+        builder: (BuildContext context, AppState appState, _) {
       return Column(
         children: [
-          uiState.allProjects != null
+          appState.allProjects != null
               ? DropDown(
                   onChanged: (value) =>
                       DashBoardScreenController.selectedProject = value,
                   hintText: 'Project Name',
-                  values: uiState.allProjects)
+                  values: appState.allProjects)
               : const LoadingDots(size: 50),
-          uiState.allUsers != null
+          appState.allUsers != null
               ? DropDown(
                   onChanged: (value) =>
                       DashBoardScreenController.assistingUser = value,
                   hintText: 'Assisting who ',
-                  values: uiState.allUsers)
+                  values: appState.allUsers)
               : const LoadingDots(size: 50),
           Padding(
               padding: const EdgeInsets.all(8.0),
-              child: uiState.timeLog == null
+              child: appState.timeLog == null
                   ? RoundedButton(
                       width: 200,
                       title: 'Start Work',

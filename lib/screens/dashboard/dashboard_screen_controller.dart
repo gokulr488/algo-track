@@ -1,3 +1,4 @@
+import 'package:algo_track/common/app_state.dart';
 import 'package:algo_track/common/ui_state.dart';
 import 'package:algo_track/components/alerts.dart';
 import 'package:algo_track/models/enums/time_log_type.dart';
@@ -17,25 +18,26 @@ class DashBoardScreenController {
   static User? assistingUser;
 
   void getData(BuildContext context) async {
-    UiState uiState = Provider.of<UiState>(context, listen: false);
-    if (uiState.allUsers == null) {
-      //await getUserData(uiState);
+    AppState appState = Provider.of<AppState>(context, listen: false);
+    if (appState.allUsers == null) {
+      await getUserData(appState);
+      //TODO duplicate db call. need to avoid this.
     }
-    if (uiState.allProjects == null) {
-      await getProjects(uiState);
+    if (appState.allProjects == null) {
+      await getProjects(appState);
     }
-    uiState.updateUi();
+    appState.updateUi();
   }
 
   Future<void> onRefresh(BuildContext context) async {
-    UiState uiState = Provider.of<UiState>(context, listen: false);
-    uiState.allUsers = null;
-    await getUserData(uiState);
-    uiState.updateUi;
+    AppState appState = Provider.of<AppState>(context, listen: false);
+    appState.allUsers = null;
+    await getUserData(appState);
+    appState.updateUi;
     debugPrint('Reloaded All Users data');
   }
 
-  Future<void> getUserData(UiState uiState) async {
+  Future<void> getUserData(AppState appState) async {
     debugPrint('Getting All userdata');
     fba.User? authUser = fba.FirebaseAuth.instance.currentUser;
     //String? fcmToken = await FirebaseMessaging.instance.getToken();
@@ -43,16 +45,16 @@ class DashBoardScreenController {
     List<User> users = [];
     for (UserQueryDocumentSnapshot user in userSnapshot.docs) {
       if (user.data.authUid == authUser?.uid) {
-        processCurrentUser(uiState, user);
+        processCurrentUser(appState, user);
       } else {
         users.add(user.data);
       }
     }
-    uiState.allUsers = users;
+    appState.allUsers = users;
   }
 
-  void processCurrentUser(UiState uiState, UserQueryDocumentSnapshot user) {
-    uiState.userSnapshot = user;
+  void processCurrentUser(AppState appState, UserQueryDocumentSnapshot user) {
+    appState.userSnapshot = user;
     if (user.data.userStatus == UserStatus.BUSY) {
       timeLogsRef
           .whereUserId(isEqualTo: user.id)
@@ -60,27 +62,27 @@ class DashBoardScreenController {
           .get()
           .then((value) {
         if (value.docs.length == 1) {
-          uiState.timeLog = value.docs.first.data;
-          uiState.timeLogSnapshot = value.docs.first.reference;
+          appState.timeLog = value.docs.first.data;
+          appState.timeLogSnapshot = value.docs.first.reference;
         }
       });
     }
-    // if (uiState.userSnapshot?.fcmToken == null ||
-    //     uiState.userSnapshot?.fcmToken != fcmToken) {
+    // if (appState.userSnapshot?.fcmToken == null ||
+    //     appState.userSnapshot?.fcmToken != fcmToken) {
     //   debugPrint('Updating Notifications Token');
-    //   uiState.userSnapshot?.fcmToken = fcmToken;
+    //   appState.userSnapshot?.fcmToken = fcmToken;
     //   user.reference.update(fcmToken: fcmToken);
     // }
   }
 
-  Future<void> getProjects(UiState uiState) async {
+  Future<void> getProjects(AppState appState) async {
     debugPrint('Getting All Projects');
     ProjectQuerySnapshot projectSnapshot = await projectRef.get();
     List<Project> projects = [];
     for (ProjectQueryDocumentSnapshot project in projectSnapshot.docs) {
       projects.add(project.data);
     }
-    uiState.allProjects = projects;
+    appState.allProjects = projects;
   }
 
   createDummyUser() async {
@@ -123,10 +125,10 @@ class DashBoardScreenController {
   }
 
   List<UserCard> getUserCards(BuildContext context) {
-    UiState uiState = Provider.of<UiState>(context, listen: false);
+    AppState appState = Provider.of<AppState>(context, listen: false);
 
     List<UserCard>? userCards = [];
-    for (User user in uiState.allUsers ?? []) {
+    for (User user in appState.allUsers ?? []) {
       UserCard card = UserCard(user: user);
       userCards.add(card);
     }
@@ -138,36 +140,36 @@ class DashBoardScreenController {
       showErrorAlert(context, 'Please Select a Project');
       return;
     }
-    UiState uiState = Provider.of<UiState>(context, listen: false);
+    AppState appState = Provider.of<AppState>(context, listen: false);
     TimeLog timeLog = TimeLog(
         timeLogType: TimeLogType.MANUAL,
-        userId: uiState.userSnapshot?.id ?? '',
+        userId: appState.userSnapshot?.id ?? '',
         startTime: Timestamp.now(),
         projectId: selectedProject?.id,
         assistingUserId: assistingUser?.id);
     // await FirebaseFirestore.instance.runTransaction((transaction) async {
-    //   uiState.userSnapshot?.reference
+    //   appState.userSnapshot?.reference
     //       .transactionUpdate(transaction, userStatus: UserStatus.BUSY);
-    //   uiState.timeLogSnapshot = await timeLogsRef.add(timeLog);
-    //   uiState.timeLog = timeLog;
+    //   appState.timeLogSnapshot = await timeLogsRef.add(timeLog);
+    //   appState.timeLog = timeLog;
     // });
-    uiState.userSnapshot?.reference.update(userStatus: UserStatus.BUSY);
-    uiState.timeLogSnapshot = await timeLogsRef.add(timeLog);
-    uiState.timeLog = timeLog;
+    appState.userSnapshot?.reference.update(userStatus: UserStatus.BUSY);
+    appState.timeLogSnapshot = await timeLogsRef.add(timeLog);
+    appState.timeLog = timeLog;
 
     showSilentAlerts('Work started succesfully');
   }
 
   onStopWorkPressed(BuildContext context) async {
-    UiState uiState = Provider.of<UiState>(context, listen: false);
+    AppState appState = Provider.of<AppState>(context, listen: false);
     await FirebaseFirestore.instance.runTransaction((transaction) async {
-      uiState.timeLogSnapshot
+      appState.timeLogSnapshot
           ?.transactionUpdate(transaction, endTime: Timestamp.now());
-      uiState.userSnapshot?.reference
+      appState.userSnapshot?.reference
           .transactionUpdate(transaction, userStatus: UserStatus.AVAILABLE);
-      uiState.timeLogSnapshot = null;
-      uiState.timeLog = null;
     });
+    appState.timeLogSnapshot = null;
+    appState.timeLog = null;
 
     showSilentAlerts('Succesfully stopped Work');
     // on restart, need to check user status
@@ -176,15 +178,18 @@ class DashBoardScreenController {
   void onUserData(
       AsyncSnapshot<UserQuerySnapshot> snapshot, BuildContext context) {
     fba.User? authUser = fba.FirebaseAuth.instance.currentUser;
-    UiState uiState = Provider.of<UiState>(context, listen: false);
+    AppState appState = Provider.of<AppState>(context, listen: false);
     List<User> users = [];
     for (UserQueryDocumentSnapshot user in snapshot.data?.docs ?? []) {
       if (user.data.authUid == authUser?.uid) {
-        processCurrentUser(uiState, user);
+        processCurrentUser(appState, user);
       } else {
-        users.add(user.data);
+        if (!users.contains(user.data)) {
+          users.add(user.data);
+        }
       }
     }
-    uiState.allUsers = users;
+    appState.allUsers = users;
+    //appState.updateUi();
   }
 }

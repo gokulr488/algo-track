@@ -1,3 +1,4 @@
+import 'package:algo_track/common/app_state.dart';
 import 'package:algo_track/common/constants.dart';
 import 'package:algo_track/common/ui_constants.dart';
 import 'package:algo_track/common/ui_state.dart';
@@ -32,15 +33,18 @@ Future<void> main() async {
   await initialise();
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider<UiState>(create: (_) => UiState()),
+    ChangeNotifierProvider<AppState>(create: (_) => AppState()),
   ], child: AlgoTrackApp()));
 }
+
+bool crashlyticsEnabled = false;
 
 Future<void> initialise() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  if (!kIsWeb) {
+  if (!kIsWeb && crashlyticsEnabled) {
     // If you wish to record a "non-fatal" exception, please use `FirebaseCrashlytics.instance.recordFlutterError` instead
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
     PlatformDispatcher.instance.onError = (error, stack) {
@@ -49,9 +53,6 @@ Future<void> initialise() async {
       return true;
     };
     FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
-  } else {
-    FirebaseFirestore.instance
-        .enablePersistence(const PersistenceSettings(synchronizeTabs: true));
   }
   FirebaseUIAuth.configureProviders([
     EmailAuthProvider(),

@@ -66,7 +66,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyB4BXzlHkKr_V5MNDN26XbDj4Kmxcz4_F8',
-    appId: '1:279750973519:ios:8d09c2872cbc4e353c723a',
+    appId: '1:279750973519:ios:d5931f567401683b3c723a',
     messagingSenderId: '279750973519',
     projectId: 'algotrack-35fd7',
     storageBucket: 'algotrack-35fd7.appspot.com',
