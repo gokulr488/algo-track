@@ -6,13 +6,15 @@ class RoundedButton extends StatelessWidget {
       this.colour,
       required this.onPressed,
       this.width,
-      this.elevation});
+      this.elevation,
+      this.fontSize});
 
   final Color? colour;
   final String title;
   final double? width;
   final Function() onPressed;
   final double? elevation;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class RoundedButton extends StatelessWidget {
             minWidth: width ?? MediaQuery.of(context).size.width * 0.75,
             height: 45,
             child: Text(title,
-                style: const TextStyle(
-                    fontSize: 17, fontWeight: FontWeight.bold))));
+                style: TextStyle(
+                    fontSize: fontSize ?? 18, fontWeight: FontWeight.bold))));
   }
 }

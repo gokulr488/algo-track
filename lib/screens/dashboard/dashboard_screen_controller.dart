@@ -27,7 +27,13 @@ class DashBoardScreenController {
     uiState.updateUi();
   }
 
-  void onRefresh(BuildContext context) {}
+  Future<void> onRefresh(BuildContext context) async {
+    UiState uiState = Provider.of<UiState>(context, listen: false);
+    uiState.allUsers = null;
+    await getUserData(uiState);
+    uiState.updateUi;
+    debugPrint('Reloaded All Users data');
+  }
 
   Future<void> getUserData(UiState uiState) async {
     debugPrint('Getting All userdata');
@@ -79,9 +85,9 @@ class DashBoardScreenController {
 
   createDummyUser() async {
     User user = User(
-        userName: '',
-        emailId: 'arunviswanathan@gmail.com',
-        phoneNumber: '+917907337469',
+        userName: 'Shineed Basheer',
+        emailId: 'shineedbasheer@gmail.com',
+        phoneNumber: '+917994411090',
         password: 'testPass',
         userType: UserType.EMPLOYEE,
         companyId: 'EB6GRMPIXTjUbEo3zK0I',

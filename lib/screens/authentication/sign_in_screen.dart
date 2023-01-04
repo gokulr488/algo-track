@@ -28,7 +28,8 @@ class SignInWidget extends StatelessWidget {
           if (!state.credential.user!.emailVerified) {
             context.goNamed(VERIFY_EMAIL_SCREEN);
           } else {
-            ctrl.verifyUser(context, state);
+            context.goNamed(WELCOME_SCREEN);
+            //ctrl.verifyUser(context, state);
           }
         }),
         AuthStateChangeAction<MFARequired>((context, state) async {

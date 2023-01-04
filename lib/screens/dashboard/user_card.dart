@@ -33,12 +33,19 @@ class UserCard extends StatelessWidget {
                 )),
             Padding(
               padding: const EdgeInsets.all(8),
-              child: Text(user.userName),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.28,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Text(user.userName),
+                ),
+              ),
             ),
             const Spacer(),
             Padding(
               padding: const EdgeInsets.all(8),
               child: RoundedButton(
+                  fontSize: 15,
                   title: 'Request Support',
                   onPressed: () => onPressed(context),
                   width: 20),
@@ -71,6 +78,7 @@ class UserCard extends StatelessWidget {
   onPressed(BuildContext context) {
     if (user.userStatus == UserStatus.AVAILABLE) {
       debugPrint('Requesting...');
+      showWarning(context, 'Curently unavailable. contact via whatsapp');
     } else {
       showWarning(context, '${user.userName} is not available');
     }

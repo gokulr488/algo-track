@@ -1,6 +1,7 @@
 import 'package:algo_track/common/constants.dart';
 import 'package:algo_track/components/base_screen.dart';
 import 'package:algo_track/components/responsive.dart';
+import 'package:algo_track/components/rounded_button.dart';
 import 'package:algo_track/components/scrollable_list.dart';
 import 'package:algo_track/screens/dashboard/dashboard_screen_controller.dart';
 import 'package:algo_track/screens/dashboard/start_work.dart';
@@ -38,10 +39,11 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   items: ctrl.getUserCards(context),
                   childrenHeight: 60,
                   onRefresh: () async {
-                    print('testt');
+                    await ctrl.onRefresh(context);
+                    setState(() {});
                   },
                 ),
-              )
+              ),
             ],
           ),
           desktop: Column()),
