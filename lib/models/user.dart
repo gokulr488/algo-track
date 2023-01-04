@@ -1,10 +1,7 @@
 import 'package:algo_track/common/constants.dart';
 import 'package:algo_track/models/current_project.dart';
-import 'package:algo_track/models/enums/user_status.dart';
-import 'package:algo_track/models/enums/user_type.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
 
@@ -19,7 +16,7 @@ class User {
   String emailId;
   String phoneNumber;
   String? password;
-  UserType userType;
+  String userType;
   String companyId;
   String? profilePicKey;
   Timestamp? profilePicUpdateTime;

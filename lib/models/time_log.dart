@@ -1,9 +1,7 @@
 import 'package:algo_track/common/constants.dart';
 import 'package:algo_track/models/break_time.dart';
-import 'package:algo_track/models/enums/time_log_type.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part 'time_log.g.dart';
 
@@ -17,7 +15,7 @@ class TimeLog {
   Timestamp startTime;
   Timestamp? endTime;
   String? projectId;
-  TimeLogType timeLogType;
+  String timeLogType;
   String? location;
   String userId;
   List<BreakTime>? breakTimes;

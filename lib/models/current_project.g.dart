@@ -12,7 +12,7 @@ CurrentProject _$CurrentProjectFromJson(Map<String, dynamic> json) =>
       projectName: json['projectName'] as String,
       userId: json['userId'] as String,
       userName: json['userName'] as String,
-      userRole: $enumDecode(_$UserRoleEnumMap, json['userRole']),
+      userRole: json['userRole'] as String,
     );
 
 const _$CurrentProjectFieldMap = <String, String>{
@@ -29,14 +29,5 @@ Map<String, dynamic> _$CurrentProjectToJson(CurrentProject instance) =>
       'projectName': instance.projectName,
       'userId': instance.userId,
       'userName': instance.userName,
-      'userRole': _$UserRoleEnumMap[instance.userRole]!,
+      'userRole': instance.userRole,
     };
-
-const _$UserRoleEnumMap = {
-  UserRole.DEVELOPER: 'DEVELOPER',
-  UserRole.PROJECT_LEAD: 'PROJECT_LEAD',
-  UserRole.PROJECT_MANAGER: 'PROJECT_MANAGER',
-  UserRole.ARCHITECT: 'ARCHITECT',
-  UserRole.TESTER: 'TESTER',
-  UserRole.BA: 'BA',
-};

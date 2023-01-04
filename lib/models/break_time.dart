@@ -11,7 +11,7 @@ class BreakTime {
   final Timestamp startTime;
   final Timestamp endTime;
   final String timeLogId;
-  final BreakType breakType;
+  final String breakType;
 
   BreakTime(
       {required this.startTime,

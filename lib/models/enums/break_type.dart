@@ -1,3 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-enum BreakType { LUNCH, CASUAL_BREAK }
+class BreakType {
+  static const String LUNCH = 'LUNCH';
+  static const String CASUAL_BREAK = 'CASUAL_BREAK';
+}

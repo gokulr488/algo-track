@@ -1,6 +1,4 @@
 import 'package:algo_track/common/constants.dart';
-import 'package:algo_track/models/enums/user_roles.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part 'current_project.g.dart';
 
@@ -10,7 +8,7 @@ class CurrentProject {
   final String projectName;
   final String userId;
   final String userName;
-  final UserRole userRole;
+  final String userRole;
 
   CurrentProject(
       {required this.projectId,

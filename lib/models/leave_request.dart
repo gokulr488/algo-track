@@ -1,9 +1,6 @@
 import 'package:algo_track/common/constants.dart';
-import 'package:algo_track/models/enums/availability.dart';
-import 'package:algo_track/models/enums/leave_type.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part 'leave_request.g.dart';
 
@@ -18,10 +15,10 @@ class LeaveRequest {
   final String? leaveDescription;
   final String userId;
   final String userName;
-  final LeaveType leaveType;
+  final String leaveType;
   final Timestamp startTime;
   final Timestamp endTime;
-  final Availability availability;
+  final String availability;
 
   LeaveRequest(
       {this.id,

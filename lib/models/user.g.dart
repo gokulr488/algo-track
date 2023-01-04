@@ -135,6 +135,8 @@ abstract class UserDocumentReference
     FieldValue phoneNumberFieldValue,
     String? password,
     FieldValue passwordFieldValue,
+    String userType,
+    FieldValue userTypeFieldValue,
     String companyId,
     FieldValue companyIdFieldValue,
     String? profilePicKey,
@@ -168,6 +170,8 @@ abstract class UserDocumentReference
     FieldValue phoneNumberFieldValue,
     String? password,
     FieldValue passwordFieldValue,
+    String userType,
+    FieldValue userTypeFieldValue,
     String companyId,
     FieldValue companyIdFieldValue,
     String? profilePicKey,
@@ -226,6 +230,8 @@ class _$UserDocumentReference
     FieldValue? phoneNumberFieldValue,
     Object? password = _sentinel,
     FieldValue? passwordFieldValue,
+    Object? userType = _sentinel,
+    FieldValue? userTypeFieldValue,
     Object? companyId = _sentinel,
     FieldValue? companyIdFieldValue,
     Object? profilePicKey = _sentinel,
@@ -260,6 +266,10 @@ class _$UserDocumentReference
     assert(
       password == _sentinel || passwordFieldValue == null,
       "Cannot specify both password and passwordFieldValue",
+    );
+    assert(
+      userType == _sentinel || userTypeFieldValue == null,
+      "Cannot specify both userType and userTypeFieldValue",
     );
     assert(
       companyId == _sentinel || companyIdFieldValue == null,
@@ -314,6 +324,10 @@ class _$UserDocumentReference
         _$UserFieldMap['password']!: password as String?,
       if (passwordFieldValue != null)
         _$UserFieldMap['password']!: passwordFieldValue,
+      if (userType != _sentinel)
+        _$UserFieldMap['userType']!: userType as String,
+      if (userTypeFieldValue != null)
+        _$UserFieldMap['userType']!: userTypeFieldValue,
       if (companyId != _sentinel)
         _$UserFieldMap['companyId']!: companyId as String,
       if (companyIdFieldValue != null)
@@ -365,6 +379,8 @@ class _$UserDocumentReference
     FieldValue? phoneNumberFieldValue,
     Object? password = _sentinel,
     FieldValue? passwordFieldValue,
+    Object? userType = _sentinel,
+    FieldValue? userTypeFieldValue,
     Object? companyId = _sentinel,
     FieldValue? companyIdFieldValue,
     Object? profilePicKey = _sentinel,
@@ -399,6 +415,10 @@ class _$UserDocumentReference
     assert(
       password == _sentinel || passwordFieldValue == null,
       "Cannot specify both password and passwordFieldValue",
+    );
+    assert(
+      userType == _sentinel || userTypeFieldValue == null,
+      "Cannot specify both userType and userTypeFieldValue",
     );
     assert(
       companyId == _sentinel || companyIdFieldValue == null,
@@ -453,6 +473,10 @@ class _$UserDocumentReference
         _$UserFieldMap['password']!: password as String?,
       if (passwordFieldValue != null)
         _$UserFieldMap['password']!: passwordFieldValue,
+      if (userType != _sentinel)
+        _$UserFieldMap['userType']!: userType as String,
+      if (userTypeFieldValue != null)
+        _$UserFieldMap['userType']!: userTypeFieldValue,
       if (companyId != _sentinel)
         _$UserFieldMap['companyId']!: companyId as String,
       if (companyIdFieldValue != null)
@@ -633,6 +657,17 @@ abstract class UserQuery implements QueryReference<User, UserQuerySnapshot> {
     List<String?>? whereIn,
     List<String?>? whereNotIn,
   });
+  UserQuery whereUserType({
+    String? isEqualTo,
+    String? isNotEqualTo,
+    String? isLessThan,
+    String? isLessThanOrEqualTo,
+    String? isGreaterThan,
+    String? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<String>? whereIn,
+    List<String>? whereNotIn,
+  });
   UserQuery whereCompanyId({
     String? isEqualTo,
     String? isNotEqualTo,
@@ -787,6 +822,18 @@ abstract class UserQuery implements QueryReference<User, UserQuerySnapshot> {
     String? startAfter,
     String? endAt,
     String? endBefore,
+    UserDocumentSnapshot? startAtDocument,
+    UserDocumentSnapshot? endAtDocument,
+    UserDocumentSnapshot? endBeforeDocument,
+    UserDocumentSnapshot? startAfterDocument,
+  });
+
+  UserQuery orderByUserType({
+    bool descending = false,
+    String startAt,
+    String startAfter,
+    String endAt,
+    String endBefore,
     UserDocumentSnapshot? startAtDocument,
     UserDocumentSnapshot? endAtDocument,
     UserDocumentSnapshot? endBeforeDocument,
@@ -1180,6 +1227,35 @@ class _$UserQuery extends QueryReference<User, UserQuerySnapshot>
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
         _$UserFieldMap['password']!,
+        isEqualTo: isEqualTo,
+        isNotEqualTo: isNotEqualTo,
+        isLessThan: isLessThan,
+        isLessThanOrEqualTo: isLessThanOrEqualTo,
+        isGreaterThan: isGreaterThan,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+        isNull: isNull,
+        whereIn: whereIn,
+        whereNotIn: whereNotIn,
+      ),
+      $queryCursor: $queryCursor,
+    );
+  }
+
+  UserQuery whereUserType({
+    String? isEqualTo,
+    String? isNotEqualTo,
+    String? isLessThan,
+    String? isLessThanOrEqualTo,
+    String? isGreaterThan,
+    String? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<String>? whereIn,
+    List<String>? whereNotIn,
+  }) {
+    return _$UserQuery(
+      _collection,
+      $referenceWithoutCursor: $referenceWithoutCursor.where(
+        _$UserFieldMap['userType']!,
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -1755,6 +1831,78 @@ class _$UserQuery extends QueryReference<User, UserQuerySnapshot>
     UserDocumentSnapshot? startAfterDocument,
   }) {
     final query = $referenceWithoutCursor.orderBy(_$UserFieldMap['password']!,
+        descending: descending);
+    var queryCursor = $queryCursor;
+
+    if (startAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAt: const [],
+        startAtDocumentSnapshot: startAtDocument.snapshot,
+      );
+    }
+    if (startAfterDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: const [],
+        startAfterDocumentSnapshot: startAfterDocument.snapshot,
+      );
+    }
+    if (endAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endAt: const [],
+        endAtDocumentSnapshot: endAtDocument.snapshot,
+      );
+    }
+    if (endBeforeDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: const [],
+        endBeforeDocumentSnapshot: endBeforeDocument.snapshot,
+      );
+    }
+
+    if (startAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAt: [...queryCursor.startAt, startAt],
+        startAtDocumentSnapshot: null,
+      );
+    }
+    if (startAfter != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: [...queryCursor.startAfter, startAfter],
+        startAfterDocumentSnapshot: null,
+      );
+    }
+    if (endAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endAt: [...queryCursor.endAt, endAt],
+        endAtDocumentSnapshot: null,
+      );
+    }
+    if (endBefore != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: [...queryCursor.endBefore, endBefore],
+        endBeforeDocumentSnapshot: null,
+      );
+    }
+
+    return _$UserQuery(
+      _collection,
+      $referenceWithoutCursor: query,
+      $queryCursor: queryCursor,
+    );
+  }
+
+  UserQuery orderByUserType({
+    bool descending = false,
+    Object? startAt = _sentinel,
+    Object? startAfter = _sentinel,
+    Object? endAt = _sentinel,
+    Object? endBefore = _sentinel,
+    UserDocumentSnapshot? startAtDocument,
+    UserDocumentSnapshot? endAtDocument,
+    UserDocumentSnapshot? endBeforeDocument,
+    UserDocumentSnapshot? startAfterDocument,
+  }) {
+    final query = $referenceWithoutCursor.orderBy(_$UserFieldMap['userType']!,
         descending: descending);
     var queryCursor = $queryCursor;
 
@@ -2566,7 +2714,7 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       emailId: json['emailId'] as String,
       phoneNumber: json['phoneNumber'] as String,
       password: json['password'] as String?,
-      userType: $enumDecode(_$UserTypeEnumMap, json['userType']),
+      userType: json['userType'] as String,
       companyId: json['companyId'] as String,
       profilePicKey: json['profilePicKey'] as String?,
       punchInReminder: _$JsonConverterFromJson<Timestamp, Timestamp>(
@@ -2612,7 +2760,7 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'emailId': instance.emailId,
       'phoneNumber': instance.phoneNumber,
       'password': instance.password,
-      'userType': _$UserTypeEnumMap[instance.userType]!,
+      'userType': instance.userType,
       'companyId': instance.companyId,
       'profilePicKey': instance.profilePicKey,
       'profilePicUpdateTime': _$JsonConverterToJson<Timestamp, Timestamp>(
@@ -2630,12 +2778,6 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'authUid': instance.authUid,
       'fcmToken': instance.fcmToken,
     };
-
-const _$UserTypeEnumMap = {
-  UserType.ADMIN: 'ADMIN',
-  UserType.SUPER_USER: 'SUPER_USER',
-  UserType.EMPLOYEE: 'EMPLOYEE',
-};
 
 Value? _$JsonConverterFromJson<Json, Value>(
   Object? json,

@@ -1,3 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-enum Availability { ON_CALL, UNREACHABLE }
+class Availability {
+  static const String ON_CALL = 'ON_CALL';
+  static const String UNREACHABLE = 'UNREACHABLE';
+}

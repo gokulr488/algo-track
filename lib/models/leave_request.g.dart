@@ -138,10 +138,14 @@ abstract class LeaveRequestDocumentReference extends FirestoreDocumentReference<
     FieldValue userIdFieldValue,
     String userName,
     FieldValue userNameFieldValue,
+    String leaveType,
+    FieldValue leaveTypeFieldValue,
     Timestamp startTime,
     FieldValue startTimeFieldValue,
     Timestamp endTime,
     FieldValue endTimeFieldValue,
+    String availability,
+    FieldValue availabilityFieldValue,
   });
 
   /// Updates fields in the current document using the transaction API.
@@ -157,10 +161,14 @@ abstract class LeaveRequestDocumentReference extends FirestoreDocumentReference<
     FieldValue userIdFieldValue,
     String userName,
     FieldValue userNameFieldValue,
+    String leaveType,
+    FieldValue leaveTypeFieldValue,
     Timestamp startTime,
     FieldValue startTimeFieldValue,
     Timestamp endTime,
     FieldValue endTimeFieldValue,
+    String availability,
+    FieldValue availabilityFieldValue,
   });
 }
 
@@ -201,10 +209,14 @@ class _$LeaveRequestDocumentReference extends FirestoreDocumentReference<
     FieldValue? userIdFieldValue,
     Object? userName = _sentinel,
     FieldValue? userNameFieldValue,
+    Object? leaveType = _sentinel,
+    FieldValue? leaveTypeFieldValue,
     Object? startTime = _sentinel,
     FieldValue? startTimeFieldValue,
     Object? endTime = _sentinel,
     FieldValue? endTimeFieldValue,
+    Object? availability = _sentinel,
+    FieldValue? availabilityFieldValue,
   }) async {
     assert(
       subject == _sentinel || subjectFieldValue == null,
@@ -223,12 +235,20 @@ class _$LeaveRequestDocumentReference extends FirestoreDocumentReference<
       "Cannot specify both userName and userNameFieldValue",
     );
     assert(
+      leaveType == _sentinel || leaveTypeFieldValue == null,
+      "Cannot specify both leaveType and leaveTypeFieldValue",
+    );
+    assert(
       startTime == _sentinel || startTimeFieldValue == null,
       "Cannot specify both startTime and startTimeFieldValue",
     );
     assert(
       endTime == _sentinel || endTimeFieldValue == null,
       "Cannot specify both endTime and endTimeFieldValue",
+    );
+    assert(
+      availability == _sentinel || availabilityFieldValue == null,
+      "Cannot specify both availability and availabilityFieldValue",
     );
     final json = {
       if (subject != _sentinel)
@@ -248,6 +268,10 @@ class _$LeaveRequestDocumentReference extends FirestoreDocumentReference<
         _$LeaveRequestFieldMap['userName']!: userName as String,
       if (userNameFieldValue != null)
         _$LeaveRequestFieldMap['userName']!: userNameFieldValue,
+      if (leaveType != _sentinel)
+        _$LeaveRequestFieldMap['leaveType']!: leaveType as String,
+      if (leaveTypeFieldValue != null)
+        _$LeaveRequestFieldMap['leaveType']!: leaveTypeFieldValue,
       if (startTime != _sentinel)
         _$LeaveRequestFieldMap['startTime']!: startTime as Timestamp,
       if (startTimeFieldValue != null)
@@ -256,6 +280,10 @@ class _$LeaveRequestDocumentReference extends FirestoreDocumentReference<
         _$LeaveRequestFieldMap['endTime']!: endTime as Timestamp,
       if (endTimeFieldValue != null)
         _$LeaveRequestFieldMap['endTime']!: endTimeFieldValue,
+      if (availability != _sentinel)
+        _$LeaveRequestFieldMap['availability']!: availability as String,
+      if (availabilityFieldValue != null)
+        _$LeaveRequestFieldMap['availability']!: availabilityFieldValue,
     };
 
     return reference.update(json);
@@ -271,10 +299,14 @@ class _$LeaveRequestDocumentReference extends FirestoreDocumentReference<
     FieldValue? userIdFieldValue,
     Object? userName = _sentinel,
     FieldValue? userNameFieldValue,
+    Object? leaveType = _sentinel,
+    FieldValue? leaveTypeFieldValue,
     Object? startTime = _sentinel,
     FieldValue? startTimeFieldValue,
     Object? endTime = _sentinel,
     FieldValue? endTimeFieldValue,
+    Object? availability = _sentinel,
+    FieldValue? availabilityFieldValue,
   }) {
     assert(
       subject == _sentinel || subjectFieldValue == null,
@@ -293,12 +325,20 @@ class _$LeaveRequestDocumentReference extends FirestoreDocumentReference<
       "Cannot specify both userName and userNameFieldValue",
     );
     assert(
+      leaveType == _sentinel || leaveTypeFieldValue == null,
+      "Cannot specify both leaveType and leaveTypeFieldValue",
+    );
+    assert(
       startTime == _sentinel || startTimeFieldValue == null,
       "Cannot specify both startTime and startTimeFieldValue",
     );
     assert(
       endTime == _sentinel || endTimeFieldValue == null,
       "Cannot specify both endTime and endTimeFieldValue",
+    );
+    assert(
+      availability == _sentinel || availabilityFieldValue == null,
+      "Cannot specify both availability and availabilityFieldValue",
     );
     final json = {
       if (subject != _sentinel)
@@ -318,6 +358,10 @@ class _$LeaveRequestDocumentReference extends FirestoreDocumentReference<
         _$LeaveRequestFieldMap['userName']!: userName as String,
       if (userNameFieldValue != null)
         _$LeaveRequestFieldMap['userName']!: userNameFieldValue,
+      if (leaveType != _sentinel)
+        _$LeaveRequestFieldMap['leaveType']!: leaveType as String,
+      if (leaveTypeFieldValue != null)
+        _$LeaveRequestFieldMap['leaveType']!: leaveTypeFieldValue,
       if (startTime != _sentinel)
         _$LeaveRequestFieldMap['startTime']!: startTime as Timestamp,
       if (startTimeFieldValue != null)
@@ -326,6 +370,10 @@ class _$LeaveRequestDocumentReference extends FirestoreDocumentReference<
         _$LeaveRequestFieldMap['endTime']!: endTime as Timestamp,
       if (endTimeFieldValue != null)
         _$LeaveRequestFieldMap['endTime']!: endTimeFieldValue,
+      if (availability != _sentinel)
+        _$LeaveRequestFieldMap['availability']!: availability as String,
+      if (availabilityFieldValue != null)
+        _$LeaveRequestFieldMap['availability']!: availabilityFieldValue,
     };
 
     transaction.update(reference, json);
@@ -471,6 +519,17 @@ abstract class LeaveRequestQuery
     List<String>? whereIn,
     List<String>? whereNotIn,
   });
+  LeaveRequestQuery whereLeaveType({
+    String? isEqualTo,
+    String? isNotEqualTo,
+    String? isLessThan,
+    String? isLessThanOrEqualTo,
+    String? isGreaterThan,
+    String? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<String>? whereIn,
+    List<String>? whereNotIn,
+  });
   LeaveRequestQuery whereStartTime({
     Timestamp? isEqualTo,
     Timestamp? isNotEqualTo,
@@ -492,6 +551,17 @@ abstract class LeaveRequestQuery
     bool? isNull,
     List<Timestamp>? whereIn,
     List<Timestamp>? whereNotIn,
+  });
+  LeaveRequestQuery whereAvailability({
+    String? isEqualTo,
+    String? isNotEqualTo,
+    String? isLessThan,
+    String? isLessThanOrEqualTo,
+    String? isGreaterThan,
+    String? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<String>? whereIn,
+    List<String>? whereNotIn,
   });
 
   LeaveRequestQuery orderByDocumentId({
@@ -554,6 +624,18 @@ abstract class LeaveRequestQuery
     LeaveRequestDocumentSnapshot? startAfterDocument,
   });
 
+  LeaveRequestQuery orderByLeaveType({
+    bool descending = false,
+    String startAt,
+    String startAfter,
+    String endAt,
+    String endBefore,
+    LeaveRequestDocumentSnapshot? startAtDocument,
+    LeaveRequestDocumentSnapshot? endAtDocument,
+    LeaveRequestDocumentSnapshot? endBeforeDocument,
+    LeaveRequestDocumentSnapshot? startAfterDocument,
+  });
+
   LeaveRequestQuery orderByStartTime({
     bool descending = false,
     Timestamp startAt,
@@ -572,6 +654,18 @@ abstract class LeaveRequestQuery
     Timestamp startAfter,
     Timestamp endAt,
     Timestamp endBefore,
+    LeaveRequestDocumentSnapshot? startAtDocument,
+    LeaveRequestDocumentSnapshot? endAtDocument,
+    LeaveRequestDocumentSnapshot? endBeforeDocument,
+    LeaveRequestDocumentSnapshot? startAfterDocument,
+  });
+
+  LeaveRequestQuery orderByAvailability({
+    bool descending = false,
+    String startAt,
+    String startAfter,
+    String endAt,
+    String endBefore,
     LeaveRequestDocumentSnapshot? startAtDocument,
     LeaveRequestDocumentSnapshot? endAtDocument,
     LeaveRequestDocumentSnapshot? endBeforeDocument,
@@ -876,6 +970,35 @@ class _$LeaveRequestQuery
     );
   }
 
+  LeaveRequestQuery whereLeaveType({
+    String? isEqualTo,
+    String? isNotEqualTo,
+    String? isLessThan,
+    String? isLessThanOrEqualTo,
+    String? isGreaterThan,
+    String? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<String>? whereIn,
+    List<String>? whereNotIn,
+  }) {
+    return _$LeaveRequestQuery(
+      _collection,
+      $referenceWithoutCursor: $referenceWithoutCursor.where(
+        _$LeaveRequestFieldMap['leaveType']!,
+        isEqualTo: isEqualTo,
+        isNotEqualTo: isNotEqualTo,
+        isLessThan: isLessThan,
+        isLessThanOrEqualTo: isLessThanOrEqualTo,
+        isGreaterThan: isGreaterThan,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+        isNull: isNull,
+        whereIn: whereIn,
+        whereNotIn: whereNotIn,
+      ),
+      $queryCursor: $queryCursor,
+    );
+  }
+
   LeaveRequestQuery whereStartTime({
     Timestamp? isEqualTo,
     Timestamp? isNotEqualTo,
@@ -920,6 +1043,35 @@ class _$LeaveRequestQuery
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
         _$LeaveRequestFieldMap['endTime']!,
+        isEqualTo: isEqualTo,
+        isNotEqualTo: isNotEqualTo,
+        isLessThan: isLessThan,
+        isLessThanOrEqualTo: isLessThanOrEqualTo,
+        isGreaterThan: isGreaterThan,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+        isNull: isNull,
+        whereIn: whereIn,
+        whereNotIn: whereNotIn,
+      ),
+      $queryCursor: $queryCursor,
+    );
+  }
+
+  LeaveRequestQuery whereAvailability({
+    String? isEqualTo,
+    String? isNotEqualTo,
+    String? isLessThan,
+    String? isLessThanOrEqualTo,
+    String? isGreaterThan,
+    String? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<String>? whereIn,
+    List<String>? whereNotIn,
+  }) {
+    return _$LeaveRequestQuery(
+      _collection,
+      $referenceWithoutCursor: $referenceWithoutCursor.where(
+        _$LeaveRequestFieldMap['availability']!,
         isEqualTo: isEqualTo,
         isNotEqualTo: isNotEqualTo,
         isLessThan: isLessThan,
@@ -1295,6 +1447,78 @@ class _$LeaveRequestQuery
     );
   }
 
+  LeaveRequestQuery orderByLeaveType({
+    bool descending = false,
+    Object? startAt = _sentinel,
+    Object? startAfter = _sentinel,
+    Object? endAt = _sentinel,
+    Object? endBefore = _sentinel,
+    LeaveRequestDocumentSnapshot? startAtDocument,
+    LeaveRequestDocumentSnapshot? endAtDocument,
+    LeaveRequestDocumentSnapshot? endBeforeDocument,
+    LeaveRequestDocumentSnapshot? startAfterDocument,
+  }) {
+    final query = $referenceWithoutCursor
+        .orderBy(_$LeaveRequestFieldMap['leaveType']!, descending: descending);
+    var queryCursor = $queryCursor;
+
+    if (startAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAt: const [],
+        startAtDocumentSnapshot: startAtDocument.snapshot,
+      );
+    }
+    if (startAfterDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: const [],
+        startAfterDocumentSnapshot: startAfterDocument.snapshot,
+      );
+    }
+    if (endAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endAt: const [],
+        endAtDocumentSnapshot: endAtDocument.snapshot,
+      );
+    }
+    if (endBeforeDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: const [],
+        endBeforeDocumentSnapshot: endBeforeDocument.snapshot,
+      );
+    }
+
+    if (startAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAt: [...queryCursor.startAt, startAt],
+        startAtDocumentSnapshot: null,
+      );
+    }
+    if (startAfter != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: [...queryCursor.startAfter, startAfter],
+        startAfterDocumentSnapshot: null,
+      );
+    }
+    if (endAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endAt: [...queryCursor.endAt, endAt],
+        endAtDocumentSnapshot: null,
+      );
+    }
+    if (endBefore != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: [...queryCursor.endBefore, endBefore],
+        endBeforeDocumentSnapshot: null,
+      );
+    }
+
+    return _$LeaveRequestQuery(
+      _collection,
+      $referenceWithoutCursor: query,
+      $queryCursor: queryCursor,
+    );
+  }
+
   LeaveRequestQuery orderByStartTime({
     bool descending = false,
     Object? startAt = _sentinel,
@@ -1380,6 +1604,79 @@ class _$LeaveRequestQuery
   }) {
     final query = $referenceWithoutCursor
         .orderBy(_$LeaveRequestFieldMap['endTime']!, descending: descending);
+    var queryCursor = $queryCursor;
+
+    if (startAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAt: const [],
+        startAtDocumentSnapshot: startAtDocument.snapshot,
+      );
+    }
+    if (startAfterDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: const [],
+        startAfterDocumentSnapshot: startAfterDocument.snapshot,
+      );
+    }
+    if (endAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endAt: const [],
+        endAtDocumentSnapshot: endAtDocument.snapshot,
+      );
+    }
+    if (endBeforeDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: const [],
+        endBeforeDocumentSnapshot: endBeforeDocument.snapshot,
+      );
+    }
+
+    if (startAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAt: [...queryCursor.startAt, startAt],
+        startAtDocumentSnapshot: null,
+      );
+    }
+    if (startAfter != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: [...queryCursor.startAfter, startAfter],
+        startAfterDocumentSnapshot: null,
+      );
+    }
+    if (endAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endAt: [...queryCursor.endAt, endAt],
+        endAtDocumentSnapshot: null,
+      );
+    }
+    if (endBefore != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: [...queryCursor.endBefore, endBefore],
+        endBeforeDocumentSnapshot: null,
+      );
+    }
+
+    return _$LeaveRequestQuery(
+      _collection,
+      $referenceWithoutCursor: query,
+      $queryCursor: queryCursor,
+    );
+  }
+
+  LeaveRequestQuery orderByAvailability({
+    bool descending = false,
+    Object? startAt = _sentinel,
+    Object? startAfter = _sentinel,
+    Object? endAt = _sentinel,
+    Object? endBefore = _sentinel,
+    LeaveRequestDocumentSnapshot? startAtDocument,
+    LeaveRequestDocumentSnapshot? endAtDocument,
+    LeaveRequestDocumentSnapshot? endBeforeDocument,
+    LeaveRequestDocumentSnapshot? startAfterDocument,
+  }) {
+    final query = $referenceWithoutCursor.orderBy(
+        _$LeaveRequestFieldMap['availability']!,
+        descending: descending);
     var queryCursor = $queryCursor;
 
     if (startAtDocument != null) {
@@ -1545,10 +1842,10 @@ LeaveRequest _$LeaveRequestFromJson(Map<String, dynamic> json) => LeaveRequest(
       leaveDescription: json['leaveDescription'] as String?,
       userId: json['userId'] as String,
       userName: json['userName'] as String,
-      leaveType: $enumDecode(_$LeaveTypeEnumMap, json['leaveType']),
+      leaveType: json['leaveType'] as String,
       startTime: const FirestoreTimestampConverter()
           .fromJson(json['startTime'] as Timestamp),
-      availability: $enumDecode(_$AvailabilityEnumMap, json['availability']),
+      availability: json['availability'] as String,
       endTime: const FirestoreTimestampConverter()
           .fromJson(json['endTime'] as Timestamp),
     );
@@ -1572,19 +1869,9 @@ Map<String, dynamic> _$LeaveRequestToJson(LeaveRequest instance) =>
       'leaveDescription': instance.leaveDescription,
       'userId': instance.userId,
       'userName': instance.userName,
-      'leaveType': _$LeaveTypeEnumMap[instance.leaveType]!,
+      'leaveType': instance.leaveType,
       'startTime':
           const FirestoreTimestampConverter().toJson(instance.startTime),
       'endTime': const FirestoreTimestampConverter().toJson(instance.endTime),
-      'availability': _$AvailabilityEnumMap[instance.availability]!,
+      'availability': instance.availability,
     };
-
-const _$LeaveTypeEnumMap = {
-  LeaveType.FULL_DAY: 'FULL_DAY',
-  LeaveType.HALF_DAY: 'HALF_DAY',
-};
-
-const _$AvailabilityEnumMap = {
-  Availability.ON_CALL: 'ON_CALL',
-  Availability.UNREACHABLE: 'UNREACHABLE',
-};
