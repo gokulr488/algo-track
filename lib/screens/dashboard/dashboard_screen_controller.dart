@@ -145,12 +145,15 @@ class DashBoardScreenController {
         startTime: Timestamp.now(),
         projectId: selectedProject?.id,
         assistingUserId: assistingUser?.id);
-    await FirebaseFirestore.instance.runTransaction((transaction) async {
-      uiState.userSnapshot?.reference
-          .transactionUpdate(transaction, userStatus: UserStatus.BUSY);
-      uiState.timeLogSnapshot = await timeLogsRef.add(timeLog);
-      uiState.timeLog = timeLog;
-    });
+    // await FirebaseFirestore.instance.runTransaction((transaction) async {
+    //   uiState.userSnapshot?.reference
+    //       .transactionUpdate(transaction, userStatus: UserStatus.BUSY);
+    //   uiState.timeLogSnapshot = await timeLogsRef.add(timeLog);
+    //   uiState.timeLog = timeLog;
+    // });
+    uiState.userSnapshot?.reference.update(userStatus: UserStatus.BUSY);
+    uiState.timeLogSnapshot = await timeLogsRef.add(timeLog);
+    uiState.timeLog = timeLog;
 
     showSilentAlerts('Work started succesfully');
   }
