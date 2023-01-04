@@ -19,7 +19,7 @@ class DashBoardScreenController {
   void getData(BuildContext context) async {
     UiState uiState = Provider.of<UiState>(context, listen: false);
     if (uiState.allUsers == null) {
-      await getUserData(uiState);
+      //await getUserData(uiState);
     }
     if (uiState.allProjects == null) {
       await getProjects(uiState);
@@ -171,5 +171,20 @@ class DashBoardScreenController {
 
     showSilentAlerts('Succesfully stopped Work');
     // on restart, need to check user status
+  }
+
+  void onUserData(
+      AsyncSnapshot<UserQuerySnapshot> snapshot, BuildContext context) {
+    fba.User? authUser = fba.FirebaseAuth.instance.currentUser;
+    UiState uiState = Provider.of<UiState>(context, listen: false);
+    List<User> users = [];
+    for (UserQueryDocumentSnapshot user in snapshot.data?.docs ?? []) {
+      if (user.data.authUid == authUser?.uid) {
+        processCurrentUser(uiState, user);
+      } else {
+        users.add(user.data);
+      }
+    }
+    uiState.allUsers = users;
   }
 }

@@ -16,6 +16,9 @@ class UserCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: BaseCard(
         elevation: 20,
+        color: user.userStatus == UserStatus.BUSY
+            ? Theme.of(context).colorScheme.onError
+            : null,
         //onTap: () {},
         cardChild: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

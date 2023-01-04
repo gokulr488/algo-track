@@ -1,10 +1,11 @@
 import 'package:algo_track/common/constants.dart';
 import 'package:algo_track/components/base_screen.dart';
 import 'package:algo_track/components/responsive.dart';
-import 'package:algo_track/components/rounded_button.dart';
 import 'package:algo_track/components/scrollable_list.dart';
+import 'package:algo_track/models/user.dart';
 import 'package:algo_track/screens/dashboard/dashboard_screen_controller.dart';
 import 'package:algo_track/screens/dashboard/start_work.dart';
+import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -34,16 +35,25 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               StartWork(),
-              Expanded(
-                child: ScrollableList(
-                  items: ctrl.getUserCards(context),
-                  childrenHeight: 60,
-                  onRefresh: () async {
-                    await ctrl.onRefresh(context);
-                    setState(() {});
-                  },
-                ),
-              ),
+              FirestoreBuilder<UserQuerySnapshot>(
+                  ref: usersRef,
+                  builder: (context, AsyncSnapshot<UserQuerySnapshot> snapshot,
+                      Widget? child) {
+                    if (snapshot.hasError) {
+                      return const Text('Something went wrong!');
+                    }
+                    ctrl.onUserData(snapshot, context);
+                    return Expanded(
+                      child: ScrollableList(
+                        items: ctrl.getUserCards(context),
+                        childrenHeight: 60,
+                        onRefresh: () async {
+                          await ctrl.onRefresh(context);
+                          setState(() {});
+                        },
+                      ),
+                    );
+                  }),
             ],
           ),
           desktop: Column()),
