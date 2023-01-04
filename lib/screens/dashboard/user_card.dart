@@ -12,36 +12,39 @@ class UserCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseCard(
-      elevation: 20,
-      //onTap: () {},
-      cardChild: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          const Icon(
-            Icons.account_circle,
-            size: 50,
-          ),
-          Container(
-              width: 10,
-              height: 10,
-              decoration: BoxDecoration(
-                color: getStatusColor(),
-                shape: BoxShape.circle,
-              )),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Text(user.userName),
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: RoundedButton(
-                title: 'Request Support',
-                onPressed: () => onPressed(context),
-                width: 20),
-          ),
-        ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: BaseCard(
+        elevation: 20,
+        //onTap: () {},
+        cardChild: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Icon(
+              Icons.account_circle,
+              size: 50,
+            ),
+            Container(
+                width: 10,
+                height: 10,
+                decoration: BoxDecoration(
+                  color: getStatusColor(),
+                  shape: BoxShape.circle,
+                )),
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Text(user.userName),
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: RoundedButton(
+                  title: 'Request Support',
+                  onPressed: () => onPressed(context),
+                  width: 20),
+            ),
+          ],
+        ),
       ),
     );
   }

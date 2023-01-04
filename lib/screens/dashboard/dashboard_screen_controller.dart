@@ -9,7 +9,6 @@ import 'package:algo_track/models/user.dart';
 import 'package:algo_track/screens/dashboard/user_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fba;
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -36,18 +35,34 @@ class DashBoardScreenController {
     List<User> users = [];
     for (UserQueryDocumentSnapshot user in userSnapshot.docs) {
       if (user.data.authUid == authUser?.uid) {
-        uiState.userSnapshot = user;
-        // if (uiState.userSnapshot?.fcmToken == null ||
-        //     uiState.userSnapshot?.fcmToken != fcmToken) {
-        //   debugPrint('Updating Notifications Token');
-        //   uiState.userSnapshot?.fcmToken = fcmToken;
-        //   user.reference.update(fcmToken: fcmToken);
-        // }
+        processCurrentUser(uiState, user);
       } else {
         users.add(user.data);
       }
     }
     uiState.allUsers = users;
+  }
+
+  void processCurrentUser(UiState uiState, UserQueryDocumentSnapshot user) {
+    uiState.userSnapshot = user;
+    if (user.data.userStatus == UserStatus.BUSY) {
+      timeLogsRef
+          .whereUserId(isEqualTo: user.id)
+          .whereEndTime(isNull: true)
+          .get()
+          .then((value) {
+        if (value.docs.length == 1) {
+          uiState.timeLog = value.docs.first.data;
+          uiState.timeLogSnapshot = value.docs.first.reference;
+        }
+      });
+    }
+    // if (uiState.userSnapshot?.fcmToken == null ||
+    //     uiState.userSnapshot?.fcmToken != fcmToken) {
+    //   debugPrint('Updating Notifications Token');
+    //   uiState.userSnapshot?.fcmToken = fcmToken;
+    //   user.reference.update(fcmToken: fcmToken);
+    // }
   }
 
   Future<void> getProjects(UiState uiState) async {
@@ -122,22 +137,28 @@ class DashBoardScreenController {
         startTime: Timestamp.now(),
         projectId: selectedProject?.id,
         assistingUserId: assistingUser?.id);
-
     await FirebaseFirestore.instance.runTransaction((transaction) async {
       uiState.userSnapshot?.reference
           .transactionUpdate(transaction, userStatus: UserStatus.BUSY);
-      transaction.set(timeLogsRef.reference.doc(), timeLog.toJson());
-      //uiState.timeLogSnapshot = await timeLogsRef.add(timeLog);
+      uiState.timeLogSnapshot = await timeLogsRef.add(timeLog);
       uiState.timeLog = timeLog;
     });
 
-//uiState.user
-
     showSilentAlerts('Work started succesfully');
-    //TODO
-    // current user status need to be changed to busy
-    // button need to be changed to stop work and red
-    //
-    // stop work button need to be implemented
+  }
+
+  onStopWorkPressed(BuildContext context) async {
+    UiState uiState = Provider.of<UiState>(context, listen: false);
+    await FirebaseFirestore.instance.runTransaction((transaction) async {
+      uiState.timeLogSnapshot
+          ?.transactionUpdate(transaction, endTime: Timestamp.now());
+      uiState.userSnapshot?.reference
+          .transactionUpdate(transaction, userStatus: UserStatus.AVAILABLE);
+      uiState.timeLogSnapshot = null;
+      uiState.timeLog = null;
+    });
+
+    showSilentAlerts('Succesfully stopped Work');
+    // on restart, need to check user status
   }
 }

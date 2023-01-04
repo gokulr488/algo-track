@@ -30,10 +30,18 @@ class StartWork extends StatelessWidget {
               : const LoadingDots(size: 50),
           Padding(
               padding: const EdgeInsets.all(8.0),
-              child: RoundedButton(
-                title: 'Start Work',
-                onPressed: () => ctrl.onStartWorkPressed(context),
-              ))
+              child: uiState.timeLog == null
+                  ? RoundedButton(
+                      width: 200,
+                      title: 'Start Work',
+                      onPressed: () => ctrl.onStartWorkPressed(context),
+                    )
+                  : RoundedButton(
+                      width: 200,
+                      colour: Theme.of(context).colorScheme.errorContainer,
+                      title: 'Stop Work',
+                      onPressed: () => ctrl.onStopWorkPressed(context),
+                    ))
         ],
       );
     });
