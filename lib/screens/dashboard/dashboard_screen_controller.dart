@@ -122,10 +122,14 @@ class DashBoardScreenController {
         startTime: Timestamp.now(),
         projectId: selectedProject?.id,
         assistingUserId: assistingUser?.id);
-    uiState.timeLogSnapshot = await timeLogsRef.add(timeLog);
-    uiState.timeLog = timeLog;
 
-    uiState.userSnapshot?.reference.update();
+    await FirebaseFirestore.instance.runTransaction((transaction) async {
+      uiState.userSnapshot?.reference
+          .transactionUpdate(transaction, userStatus: UserStatus.BUSY);
+      transaction.set(timeLogsRef.reference.doc(), timeLog.toJson());
+      //uiState.timeLogSnapshot = await timeLogsRef.add(timeLog);
+      uiState.timeLog = timeLog;
+    });
 
 //uiState.user
 
