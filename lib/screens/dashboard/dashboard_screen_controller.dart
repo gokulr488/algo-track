@@ -153,11 +153,13 @@ class DashBoardScreenController {
     //   appState.timeLogSnapshot = await timeLogsRef.add(timeLog);
     //   appState.timeLog = timeLog;
     // });
-    appState.userSnapshot?.reference.update(userStatus: UserStatus.BUSY);
-    appState.timeLogSnapshot = await timeLogsRef.add(timeLog);
-    appState.timeLog = timeLog;
-
-    showSilentAlerts('Work started succesfully');
+    await appState.userSnapshot?.reference.update(userStatus: UserStatus.BUSY);
+    timeLogsRef.add(timeLog).then((value) {
+      appState.timeLogSnapshot = value;
+      appState.timeLog = timeLog;
+      appState.updateUi();
+      showSilentAlerts('Work started succesfully');
+    });
   }
 
   onStopWorkPressed(BuildContext context) async {
@@ -167,11 +169,13 @@ class DashBoardScreenController {
           ?.transactionUpdate(transaction, endTime: Timestamp.now());
       appState.userSnapshot?.reference
           .transactionUpdate(transaction, userStatus: UserStatus.AVAILABLE);
+    }).then((value) {
+      appState.timeLogSnapshot = null;
+      appState.timeLog = null;
+      appState.updateUi();
+      showSilentAlerts('Succesfully stopped Work');
     });
-    appState.timeLogSnapshot = null;
-    appState.timeLog = null;
 
-    showSilentAlerts('Succesfully stopped Work');
     // on restart, need to check user status
   }
 
