@@ -31,18 +31,18 @@ class DashBoardScreenController {
   Future<void> getUserData(UiState uiState) async {
     debugPrint('Getting All userdata');
     fba.User? authUser = fba.FirebaseAuth.instance.currentUser;
-    String? fcmToken = await FirebaseMessaging.instance.getToken();
+    //String? fcmToken = await FirebaseMessaging.instance.getToken();
     UserQuerySnapshot userSnapshot = await usersRef.get();
     List<User> users = [];
     for (UserQueryDocumentSnapshot user in userSnapshot.docs) {
       if (user.data.authUid == authUser?.uid) {
-        uiState.user = user.data;
-        if (uiState.user?.fcmToken == null ||
-            uiState.user?.fcmToken != fcmToken) {
-          debugPrint('Updating Notifications Token');
-          uiState.user?.fcmToken = fcmToken;
-          user.reference.update(fcmToken: fcmToken);
-        }
+        uiState.userSnapshot = user;
+        // if (uiState.userSnapshot?.fcmToken == null ||
+        //     uiState.userSnapshot?.fcmToken != fcmToken) {
+        //   debugPrint('Updating Notifications Token');
+        //   uiState.userSnapshot?.fcmToken = fcmToken;
+        //   user.reference.update(fcmToken: fcmToken);
+        // }
       } else {
         users.add(user.data);
       }
@@ -118,12 +118,17 @@ class DashBoardScreenController {
     UiState uiState = Provider.of<UiState>(context, listen: false);
     TimeLog timeLog = TimeLog(
         timeLogType: TimeLogType.MANUAL,
-        userId: uiState.user?.id ?? '',
+        userId: uiState.userSnapshot?.id ?? '',
         startTime: Timestamp.now(),
         projectId: selectedProject?.id,
         assistingUserId: assistingUser?.id);
-    await timeLogsRef.add(timeLog);
+    uiState.timeLogSnapshot = await timeLogsRef.add(timeLog);
     uiState.timeLog = timeLog;
+
+    uiState.userSnapshot?.reference.update();
+
+//uiState.user
+
     showSilentAlerts('Work started succesfully');
     //TODO
     // current user status need to be changed to busy

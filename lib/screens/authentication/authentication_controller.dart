@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 
 class AuthenticationController {
   verifyUser(BuildContext context, state) {
-    fba.User authUser = state.user!;
+    fba.User authUser = state.userSnapshot!;
     usersRef
         .whereEmailId(isEqualTo: authUser.email)
         .get()

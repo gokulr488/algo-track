@@ -26,7 +26,7 @@ class User {
   Timestamp? punchInReminder;
   Timestamp? punchOutReminder;
   String? currentTimeLogId;
-  UserStatus userStatus;
+  String userStatus;
   List<CurrentProject>? currentProjects;
   String? authUid;
   String? fcmToken;

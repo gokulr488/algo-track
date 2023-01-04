@@ -7,16 +7,17 @@ class UiState extends ChangeNotifier {
   bool _isAdmin = true;
   Brightness _themeMode = Brightness.dark;
   Color _baseColor = Colors.lightBlue;
-  User? _user;
+  UserQueryDocumentSnapshot? _userSnapshot;
   List<User>? _allUsers;
   List<Project>? _allProjects;
   TimeLog? _timeLog;
+  TimeLogDocumentReference? timeLogSnapshot;
 
   //GETTERS
   bool get isAdmin => _isAdmin;
   Brightness get themeMode => _themeMode;
   Color get baseColor => _baseColor;
-  User? get user => _user;
+  UserQueryDocumentSnapshot? get userSnapshot => _userSnapshot;
   List<User>? get allUsers => _allUsers;
   List<Project>? get allProjects => _allProjects;
   TimeLog? get timeLog => _timeLog;
@@ -49,8 +50,8 @@ class UiState extends ChangeNotifier {
     notifyListeners();
   }
 
-  set user(User? user) {
-    _user = user;
+  set userSnapshot(UserQueryDocumentSnapshot? user) {
+    _userSnapshot = user;
     // notifyListeners();
   }
 
