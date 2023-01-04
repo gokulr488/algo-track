@@ -47,7 +47,7 @@ class DashBoardScreenController {
         users.add(user.data);
       }
     }
-    uiState.setAllUsers(users);
+    uiState.allUsers = users;
   }
 
   Future<void> getProjects(UiState uiState) async {
@@ -57,7 +57,7 @@ class DashBoardScreenController {
     for (ProjectQueryDocumentSnapshot project in projectSnapshot.docs) {
       projects.add(project.data);
     }
-    uiState.setAllProjects(projects);
+    uiState.allProjects = projects;
   }
 
   createDummyUser() async {
@@ -123,6 +123,12 @@ class DashBoardScreenController {
         projectId: selectedProject?.id,
         assistingUserId: assistingUser?.id);
     await timeLogsRef.add(timeLog);
+    uiState.timeLog = timeLog;
     showSilentAlerts('Work started succesfully');
+    //TODO
+    // current user status need to be changed to busy
+    // button need to be changed to stop work and red
+    //
+    // stop work button need to be implemented
   }
 }

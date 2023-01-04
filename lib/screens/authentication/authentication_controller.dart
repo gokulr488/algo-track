@@ -1,11 +1,9 @@
 import 'package:algo_track/common/constants.dart';
-import 'package:algo_track/common/ui_state.dart';
 import 'package:algo_track/components/alerts.dart';
 import 'package:algo_track/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fba;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
 class AuthenticationController {
   verifyUser(BuildContext context, state) {
