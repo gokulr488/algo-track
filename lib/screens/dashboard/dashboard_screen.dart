@@ -36,7 +36,13 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               StartWork(),
               Expanded(
                 child: ScrollableList(
-                    items: ctrl.getUserCards(context), childrenHeight: 60),
+                  scrollController: ctrl.scrollController,
+                  items: ctrl.getUserCards(context),
+                  childrenHeight: 60,
+                  onRefresh: () async {
+                    print('testt');
+                  },
+                ),
               )
             ],
           ),

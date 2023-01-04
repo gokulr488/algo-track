@@ -16,6 +16,8 @@ class DashBoardScreenController {
   static Project? selectedProject;
   static User? assistingUser;
 
+  ScrollController scrollController = ScrollController();
+
   void getData(BuildContext context) async {
     UiState uiState = Provider.of<UiState>(context, listen: false);
     if (uiState.allUsers == null) {
