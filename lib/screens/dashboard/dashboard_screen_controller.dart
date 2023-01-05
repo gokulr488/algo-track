@@ -153,7 +153,6 @@ class DashBoardScreenController {
         userName: 'Shineed Basheer',
         emailId: 'shineedbasheer@gmail.com',
         phoneNumber: '+917994411090',
-        password: 'testPass',
         userType: UserType.EMPLOYEE,
         companyId: 'EB6GRMPIXTjUbEo3zK0I',
         // currentProjects: projects,

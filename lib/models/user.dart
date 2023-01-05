@@ -15,7 +15,6 @@ class User {
   String userName;
   String emailId;
   String phoneNumber;
-  String? password;
   String userType;
   String companyId;
   String? profilePicKey;
@@ -33,7 +32,6 @@ class User {
     required this.userName,
     required this.emailId,
     required this.phoneNumber,
-    this.password,
     required this.userType,
     required this.companyId,
     this.profilePicKey,

@@ -37,7 +37,7 @@ class UserCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8),
               child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.25,
+                width: MediaQuery.of(context).size.width * 0.28,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Text(user.userName),
@@ -49,7 +49,7 @@ class UserCard extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               child: RoundedButton(
                   fontSize: 13,
-                  title: 'Request Support',
+                  title: 'Help Me',
                   onPressed: () => onPressed(context),
                   width: 20),
             ),
