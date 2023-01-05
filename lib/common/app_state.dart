@@ -5,12 +5,21 @@ import 'package:flutter/material.dart';
 
 class AppState extends ChangeNotifier {
   UserQueryDocumentSnapshot? userSnapshot;
-  List<User>? allUsers;
+  final List<User> _allUsers = [];
   List<Project>? allProjects;
   TimeLog? timeLog;
   TimeLogDocumentReference? timeLogSnapshot;
 
+  List<User> get allUsers => _allUsers;
+
   void updateUi() {
     notifyListeners();
+  }
+
+  void addUser(User user) {
+    if (_allUsers.contains(user)) {
+      _allUsers.remove(user);
+    }
+    _allUsers.add(user);
   }
 }

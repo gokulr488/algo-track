@@ -1,5 +1,4 @@
 import 'package:algo_track/common/app_state.dart';
-import 'package:algo_track/common/ui_state.dart';
 import 'package:algo_track/components/drop_down.dart';
 import 'package:algo_track/components/loading_dots.dart';
 import 'package:algo_track/components/rounded_button.dart';
@@ -22,7 +21,7 @@ class StartWork extends StatelessWidget {
                   hintText: 'Project Name',
                   values: appState.allProjects)
               : const LoadingDots(size: 50),
-          appState.allUsers != null
+          appState.allUsers.isNotEmpty
               ? DropDown(
                   onChanged: (value) =>
                       DashBoardScreenController.assistingUser = value,

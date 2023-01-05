@@ -1,5 +1,4 @@
 import 'package:algo_track/common/app_state.dart';
-import 'package:algo_track/common/ui_state.dart';
 import 'package:algo_track/components/alerts.dart';
 import 'package:algo_track/models/enums/time_log_type.dart';
 import 'package:algo_track/models/enums/user_status.dart';
@@ -19,8 +18,8 @@ class DashBoardScreenController {
 
   void getData(BuildContext context) async {
     AppState appState = Provider.of<AppState>(context, listen: false);
-    if (appState.allUsers == null) {
-      await getUserData(appState);
+    if (appState.allUsers.isEmpty) {
+      //await getUserData(appState);
       //TODO duplicate db call. need to avoid this.
     }
     if (appState.allProjects == null) {
@@ -31,7 +30,6 @@ class DashBoardScreenController {
 
   Future<void> onRefresh(BuildContext context) async {
     AppState appState = Provider.of<AppState>(context, listen: false);
-    appState.allUsers = null;
     await getUserData(appState);
     appState.updateUi;
     debugPrint('Reloaded All Users data');
@@ -42,15 +40,13 @@ class DashBoardScreenController {
     fba.User? authUser = fba.FirebaseAuth.instance.currentUser;
     //String? fcmToken = await FirebaseMessaging.instance.getToken();
     UserQuerySnapshot userSnapshot = await usersRef.get();
-    List<User> users = [];
     for (UserQueryDocumentSnapshot user in userSnapshot.docs) {
       if (user.data.authUid == authUser?.uid) {
         processCurrentUser(appState, user);
       } else {
-        users.add(user.data);
+        appState.addUser(user.data);
       }
     }
-    appState.allUsers = users;
   }
 
   void processCurrentUser(AppState appState, UserQueryDocumentSnapshot user) {
@@ -64,6 +60,7 @@ class DashBoardScreenController {
         if (value.docs.length == 1) {
           appState.timeLog = value.docs.first.data;
           appState.timeLogSnapshot = value.docs.first.reference;
+          appState.updateUi();
         }
       });
     }
@@ -85,50 +82,11 @@ class DashBoardScreenController {
     appState.allProjects = projects;
   }
 
-  createDummyUser() async {
-    User user = User(
-        userName: 'Shineed Basheer',
-        emailId: 'shineedbasheer@gmail.com',
-        phoneNumber: '+917994411090',
-        password: 'testPass',
-        userType: UserType.EMPLOYEE,
-        companyId: 'EB6GRMPIXTjUbEo3zK0I',
-        // currentProjects: projects,
-        userStatus: UserStatus.AVAILABLE);
-    await usersRef.add(user);
-    debugPrint('User saved');
-  }
-
-  createProjects() async {
-    Project projects = Project(
-        projectName: 'Algo Bot',
-        projectGroupId: '1O91xUBHfMyvkuxSBBC1',
-        leadUserId: 'GR9dlIuCVfBUKridw54i',
-        companyId: 'EB6GRMPIXTjUbEo3zK0I');
-    projectRef.add(projects);
-    // CompanyQuerySnapshot companySnap = await companiesRef
-    //     .whereCompanyName(isEqualTo: 'Algol soft')
-    //     .whereEmailId(isEqualTo: 'algolsoft@algols.in')
-    //     .get();
-    // Company company = companySnap.docs.first.data;
-
-    // ProjectGroup projectGroup = ProjectGroup(
-    //     projectGroupName: 'projectGroupName', companyId: company.id ?? '');
-    // projectGroupRef.add(projectGroup);
-    // Company company = Company(
-    //     companyName: 'Algol soft',
-    //     emailId: 'algolsoft@algols.in',
-    //     password: 'algols@123',
-    //     adminUserId: 'E2O0YV7SbBjKyusIBqxz');
-    // await companiesRef.add(company);
-    // debugPrint('Project saved');
-  }
-
   List<UserCard> getUserCards(BuildContext context) {
     AppState appState = Provider.of<AppState>(context, listen: false);
 
     List<UserCard>? userCards = [];
-    for (User user in appState.allUsers ?? []) {
+    for (User user in appState.allUsers) {
       UserCard card = UserCard(user: user);
       userCards.add(card);
     }
@@ -183,17 +141,52 @@ class DashBoardScreenController {
       AsyncSnapshot<UserQuerySnapshot> snapshot, BuildContext context) {
     fba.User? authUser = fba.FirebaseAuth.instance.currentUser;
     AppState appState = Provider.of<AppState>(context, listen: false);
-    List<User> users = [];
     for (UserQueryDocumentSnapshot user in snapshot.data?.docs ?? []) {
       if (user.data.authUid == authUser?.uid) {
         processCurrentUser(appState, user);
       } else {
-        if (!users.contains(user.data)) {
-          users.add(user.data);
-        }
+        appState.addUser(user.data);
       }
     }
-    appState.allUsers = users;
     //appState.updateUi();
+  }
+
+  createDummyUser() async {
+    User user = User(
+        userName: 'Shineed Basheer',
+        emailId: 'shineedbasheer@gmail.com',
+        phoneNumber: '+917994411090',
+        password: 'testPass',
+        userType: UserType.EMPLOYEE,
+        companyId: 'EB6GRMPIXTjUbEo3zK0I',
+        // currentProjects: projects,
+        userStatus: UserStatus.AVAILABLE);
+    await usersRef.add(user);
+    debugPrint('User saved');
+  }
+
+  createProjects() async {
+    Project projects = Project(
+        projectName: 'Algo Bot',
+        projectGroupId: '1O91xUBHfMyvkuxSBBC1',
+        leadUserId: 'GR9dlIuCVfBUKridw54i',
+        companyId: 'EB6GRMPIXTjUbEo3zK0I');
+    projectRef.add(projects);
+    // CompanyQuerySnapshot companySnap = await companiesRef
+    //     .whereCompanyName(isEqualTo: 'Algol soft')
+    //     .whereEmailId(isEqualTo: 'algolsoft@algols.in')
+    //     .get();
+    // Company company = companySnap.docs.first.data;
+
+    // ProjectGroup projectGroup = ProjectGroup(
+    //     projectGroupName: 'projectGroupName', companyId: company.id ?? '');
+    // projectGroupRef.add(projectGroup);
+    // Company company = Company(
+    //     companyName: 'Algol soft',
+    //     emailId: 'algolsoft@algols.in',
+    //     password: 'algols@123',
+    //     adminUserId: 'E2O0YV7SbBjKyusIBqxz');
+    // await companiesRef.add(company);
+    // debugPrint('Project saved');
   }
 }

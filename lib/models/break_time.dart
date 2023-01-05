@@ -1,8 +1,6 @@
 import 'package:algo_track/common/constants.dart';
-import 'package:algo_track/models/enums/break_type.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part 'break_time.g.dart';
 

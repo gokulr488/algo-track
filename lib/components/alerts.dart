@@ -6,7 +6,7 @@ class Alerts extends StatelessWidget {
   final String title;
   final List<Widget> actions;
 
-  Alerts({
+  const Alerts({
     required this.title,
     this.actions = const [],
   });
@@ -25,9 +25,9 @@ void showSendingDialogue(BuildContext context) {
   showDialog(
     context: context,
     builder: (context) {
-      return Alerts(
+      return const Alerts(
         title: 'Submitting...',
-        actions: const [LoadingDots(size: 50)],
+        actions: [LoadingDots(size: 50)],
       );
     },
   );

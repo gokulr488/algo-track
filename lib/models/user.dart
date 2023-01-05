@@ -55,4 +55,14 @@ class User {
   String toString() {
     return userName;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      other is User &&
+      other.runtimeType == runtimeType &&
+      other.id == id &&
+      other.userName == userName;
+
+  @override
+  int get hashCode => id.hashCode;
 }
