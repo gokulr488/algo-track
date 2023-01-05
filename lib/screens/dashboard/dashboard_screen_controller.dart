@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:algo_track/common/app_state.dart';
 import 'package:algo_track/components/alerts.dart';
 import 'package:algo_track/models/enums/time_log_type.dart';
@@ -19,10 +21,6 @@ class DashBoardScreenController {
 
   void getData(BuildContext context) async {
     AppState appState = Provider.of<AppState>(context, listen: false);
-    if (appState.allUsers.isEmpty) {
-      //await getUserData(appState);
-      //TODO duplicate db call. need to avoid this.
-    }
     if (appState.allProjects == null) {
       await getProjects(appState);
     }
@@ -134,14 +132,12 @@ class DashBoardScreenController {
       appState.updateUi();
       showSilentAlerts('Succesfully stopped Work');
     });
-
-    // on restart, need to check user status
   }
 
   void onUserData(
       AsyncSnapshot<UserQuerySnapshot> snapshot, BuildContext context) {
     fba.User? authUser = fba.FirebaseAuth.instance.currentUser;
-    AppState appState = Provider.of<AppState>(context, listen: false);
+    AppState appState = Provider.of<AppState>(context);
     for (UserQueryDocumentSnapshot user in snapshot.data?.docs ?? []) {
       if (user.data.authUid == authUser?.uid) {
         processCurrentUser(appState, user);
@@ -149,7 +145,7 @@ class DashBoardScreenController {
         appState.addUser(user.data);
       }
     }
-    // appState.updateUi();
+    Timer(const Duration(seconds: 1), () => appState.updateUi());
   }
 
   createDummyUser() async {

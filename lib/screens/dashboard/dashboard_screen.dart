@@ -39,9 +39,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   ref: usersRef,
                   builder: (context, AsyncSnapshot<UserQuerySnapshot> snapshot,
                       Widget? child) {
-                    if (snapshot.hasError) {
-                      return const Text('Something went wrong!');
-                    }
                     ctrl.onUserData(snapshot, context);
                     return Expanded(
                       child: ScrollableList(
