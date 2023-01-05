@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:algo_track/common/constants.dart';
 import 'package:algo_track/screens/authentication/authentication_controller.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
@@ -21,7 +23,7 @@ class SignInWidget extends StatelessWidget {
           if (!state.user!.emailVerified) {
             context.goNamed(VERIFY_EMAIL_SCREEN);
           } else {
-            ctrl.verifyUser(context, state);
+            ctrl.verifyUser(context);
           }
         }),
         AuthStateChangeAction<UserCreated>((context, state) {
@@ -35,7 +37,6 @@ class SignInWidget extends StatelessWidget {
         AuthStateChangeAction<MFARequired>((context, state) async {
           await startMFAVerification(
               resolver: state.resolver, context: context);
-          // ignore: use_build_context_synchronously
           context.goNamed(DASHBOARD_SCREEN);
         }),
         EmailLinkSignInAction((context) {

@@ -1,4 +1,5 @@
 import 'package:algo_track/common/constants.dart';
+import 'package:algo_track/screens/authentication/authentication_controller.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -14,7 +15,7 @@ class VerifyEmailScreen extends StatelessWidget {
       actionCodeSettings: actionCodeSettings,
       actions: [
         EmailVerifiedAction(() {
-          context.goNamed(DASHBOARD_SCREEN);
+          AuthenticationController().verifyUser(context);
         }),
         AuthCancelledAction((context) {
           FirebaseUIAuth.signOut(context: context);

@@ -9,6 +9,7 @@ import 'package:algo_track/models/user.dart';
 import 'package:algo_track/screens/dashboard/user_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fba;
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,14 +31,15 @@ class DashBoardScreenController {
 
   Future<void> onRefresh(BuildContext context) async {
     AppState appState = Provider.of<AppState>(context, listen: false);
-    await getUserData(appState);
-    appState.updateUi;
+    await getUserData(appState, context);
+    appState.updateUi();
     debugPrint('Reloaded All Users data');
   }
 
-  Future<void> getUserData(AppState appState) async {
+  Future<void> getUserData(AppState appState, BuildContext context) async {
     debugPrint('Getting All userdata');
     fba.User? authUser = fba.FirebaseAuth.instance.currentUser;
+    if (authUser == null) FirebaseUIAuth.signOut(context: context);
     //String? fcmToken = await FirebaseMessaging.instance.getToken();
     UserQuerySnapshot userSnapshot = await usersRef.get();
     for (UserQueryDocumentSnapshot user in userSnapshot.docs) {
@@ -60,7 +62,6 @@ class DashBoardScreenController {
         if (value.docs.length == 1) {
           appState.timeLog = value.docs.first.data;
           appState.timeLogSnapshot = value.docs.first.reference;
-          appState.updateUi();
         }
       });
     }
@@ -148,7 +149,7 @@ class DashBoardScreenController {
         appState.addUser(user.data);
       }
     }
-    //appState.updateUi();
+    // appState.updateUi();
   }
 
   createDummyUser() async {
