@@ -150,11 +150,12 @@ class DashBoardScreenController {
 
   createDummyUser() async {
     User user = User(
-        userName: 'Shineed Basheer',
-        emailId: 'shineedbasheer@gmail.com',
-        phoneNumber: '+917994411090',
+        userName: 'Lalkrishna Udayakumar',
+        emailId: 'lalkrishnaudayakumar40@gmail.com',
+        phoneNumber: '+919074827514',
         userType: UserType.EMPLOYEE,
         companyId: 'EB6GRMPIXTjUbEo3zK0I',
+        authUid: 'k6R2iJULOLXOtWTPRjrSuykW3WS2',
         // currentProjects: projects,
         userStatus: UserStatus.AVAILABLE);
     await usersRef.add(user);
@@ -163,11 +164,12 @@ class DashBoardScreenController {
 
   createProjects() async {
     Project projects = Project(
-        projectName: 'Algo Bot',
+        projectName: 'Trading',
         projectGroupId: '1O91xUBHfMyvkuxSBBC1',
-        leadUserId: 'GR9dlIuCVfBUKridw54i',
+        leadUserId: 'Tw3ZnbSfhNZJAb2XypJW',
         companyId: 'EB6GRMPIXTjUbEo3zK0I');
-    projectRef.add(projects);
+    await projectRef.add(projects);
+    debugPrint('project created');
     // CompanyQuerySnapshot companySnap = await companiesRef
     //     .whereCompanyName(isEqualTo: 'Algol soft')
     //     .whereEmailId(isEqualTo: 'algolsoft@algols.in')

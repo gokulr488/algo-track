@@ -34,7 +34,7 @@ class BaseScreen extends StatelessWidget {
                         fontSize: 20,
                       ),
                     ),
-                    Text('Algo Log',
+                    Text('Algo Log 1.0',
                         style: GoogleFonts.dancingScript(
                             color: Theme.of(context).colorScheme.inversePrimary,
                             shadows: shadow,

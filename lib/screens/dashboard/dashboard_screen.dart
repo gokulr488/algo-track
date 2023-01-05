@@ -1,6 +1,7 @@
 import 'package:algo_track/common/constants.dart';
 import 'package:algo_track/components/base_screen.dart';
 import 'package:algo_track/components/responsive.dart';
+import 'package:algo_track/components/rounded_button.dart';
 import 'package:algo_track/components/scrollable_list.dart';
 import 'package:algo_track/models/user.dart';
 import 'package:algo_track/screens/dashboard/dashboard_screen_controller.dart';
@@ -51,6 +52,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       ),
                     );
                   }),
+              RoundedButton(
+                  title: 'Add user', onPressed: () => ctrl.createProjects())
             ],
           ),
           desktop: Column()),
