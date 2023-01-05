@@ -13,7 +13,7 @@ InputDecoration kTextFieldDecoration(ThemeData theme) {
   return InputDecoration().applyDefaults(theme.inputDecorationTheme);
 }
 
-InputDecorationTheme kTextFieldDecorationTheme(ThemeData theme) {
+InputDecorationTheme kTextFieldDecorationTheme(Color color) {
   return InputDecorationTheme(
     labelStyle: const TextStyle(fontSize: 14),
     hintStyle: const TextStyle(fontSize: 17),
@@ -21,11 +21,11 @@ InputDecorationTheme kTextFieldDecorationTheme(ThemeData theme) {
     border: OutlineInputBorder(
         borderRadius: const BorderRadius.all(Radius.circular(22))),
     enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: theme.colorScheme.secondary),
+      borderSide: BorderSide(color: color.withOpacity(0.3)),
       borderRadius: BorderRadius.all(Radius.circular(22)),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: theme.colorScheme.primary, width: 2),
+      borderSide: BorderSide(color: color.withOpacity(0.5), width: 2),
       borderRadius: BorderRadius.all(Radius.circular(22)),
     ),
   );

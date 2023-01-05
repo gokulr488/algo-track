@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class UiState extends ChangeNotifier {
   bool _isAdmin = true;
   Brightness _themeMode = Brightness.dark;
-  Color _baseColor = Colors.lightBlue;
+  Color _baseColor = Colors.teal;
 
   //GETTERS
   bool get isAdmin => _isAdmin;

@@ -77,7 +77,7 @@ class AlgoTrackApp extends StatelessWidget {
               colorSchemeSeed: uiState.baseColor,
               brightness: uiState.themeMode,
               inputDecorationTheme:
-                  kTextFieldDecorationTheme(Theme.of(context)),
+                  kTextFieldDecorationTheme(uiState.baseColor),
               textTheme: GoogleFonts.openSansTextTheme(
                   ThemeData(brightness: uiState.themeMode).textTheme)),
           debugShowCheckedModeBanner: false,
