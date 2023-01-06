@@ -57,6 +57,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               StartWork(),
+              //To get live updates from DB and automatically rebuild the UI
               FirestoreBuilder<UserQuerySnapshot>(
                   ref: usersRef,
                   builder: (context, AsyncSnapshot<UserQuerySnapshot> snapshot,

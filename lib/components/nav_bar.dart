@@ -14,7 +14,7 @@ class NavBar extends StatelessWidget {
         rippleColor: Theme.of(context).colorScheme.onError,
         haptic: true,
         tabBorderRadius: 20,
-        duration: const Duration(milliseconds: 900),
+        duration: const Duration(milliseconds: 500),
         gap: 8,
         color: Theme.of(context).colorScheme.secondary.withOpacity(0.7),
         activeColor: Theme.of(context).colorScheme.primary,
