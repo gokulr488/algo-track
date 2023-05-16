@@ -16,6 +16,11 @@ const String FORGOT_PASSWORD_SCREEN = 'forgotPassword';
 const String EMAIL_SIGN_IN_SCREEN = 'emailSignIn';
 const String AUTH_PROFILE_SCREEN = 'authProfile';
 const String CREATE_COMPANY_SCREEN = 'createCompany';
+const String LEAVE_REQUEST = 'leaveRequest';
+const String ADD_LEAVE = 'addLeave';
+const String DATE_PICKER = 'datePicker';
+const String DATE_SUBMIT = 'datesubmit';
+const String STAT_VIEWER = 'statusviewer';
 
 final actionCodeSettings = ActionCodeSettings(
   url: 'https://algotrack.page.link',

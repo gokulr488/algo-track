@@ -4,7 +4,10 @@ import 'package:algo_track/components/loading_dots.dart';
 import 'package:algo_track/components/rounded_button.dart';
 import 'package:algo_track/screens/dashboard/dashboard_screen_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+
+import '../../common/constants.dart';
 
 class StartWork extends StatelessWidget {
   final DashBoardScreenController ctrl = DashBoardScreenController();
@@ -41,7 +44,13 @@ class StartWork extends StatelessWidget {
                       colour: Theme.of(context).colorScheme.errorContainer,
                       title: 'Stop Work',
                       onPressed: () => ctrl.onStopWorkPressed(context),
-                    ))
+                    )),
+          RoundedButton(
+              width: 200,
+              // colour: Theme.of(context).colorScheme.errorContainer,
+              colour: const Color.fromRGBO(44, 44, 188, 0.8),
+              title: 'Leave Request',
+              onPressed: () => context.goNamed(LEAVE_REQUEST)),
         ],
       );
     });

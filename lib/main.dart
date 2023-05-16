@@ -11,7 +11,11 @@ import 'package:algo_track/screens/authentication/sign_in_screen.dart';
 import 'package:algo_track/screens/authentication/sms_code_input_screen.dart';
 import 'package:algo_track/screens/authentication/verify_email_screen.dart';
 import 'package:algo_track/screens/create_company/create_company_screen.dart';
+import 'package:algo_track/screens/dashboard/add_leave.dart';
 import 'package:algo_track/screens/dashboard/dashboard_screen.dart';
+import 'package:algo_track/screens/dashboard/date_picker.dart';
+import 'package:algo_track/screens/dashboard/leaverequest.dart';
+import 'package:algo_track/screens/dashboard/status_viewer.dart';
 import 'package:algo_track/screens/nfc_test_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fba;
@@ -159,6 +163,39 @@ class AlgoTrackApp extends StatelessWidget {
               path: 'authProfile',
               builder: (BuildContext context, GoRouterState state) =>
                   AuthProfileScreen()),
+          GoRoute(
+              name: LEAVE_REQUEST,
+              path: 'leaveRequest',
+              builder: (BuildContext context, GoRouterState state) =>
+                  const Leave(),
+              routes: [
+                GoRoute(
+                    name: ADD_LEAVE,
+                    path: 'addLeave',
+                    builder: (BuildContext context, GoRouterState state) =>
+                        AddLeave(),
+                    routes: [
+                      GoRoute(
+                          name: DATE_PICKER,
+                          path: 'datePicker',
+                          builder:
+                              (BuildContext context, GoRouterState state) =>
+                                  DateTimePickerWidget(),
+                          routes: [
+                            GoRoute(
+                                name: DATE_SUBMIT,
+                                path: 'datesubmit',
+                                builder: (BuildContext context,
+                                        GoRouterState state) =>
+                                    AddLeave()),
+                          ]),
+                    ]),
+                GoRoute(
+                    name: STAT_VIEWER,
+                    path: 'statusviewer',
+                    builder: (BuildContext context, GoRouterState state) =>
+                        const StatusViewer())
+              ]),
         ],
       ),
     ],

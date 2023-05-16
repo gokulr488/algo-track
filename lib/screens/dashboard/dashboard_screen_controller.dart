@@ -134,6 +134,8 @@ class DashBoardScreenController {
     });
   }
 
+  onLeavePressed(BuildContext context) {}
+
   void onUserData(
       AsyncSnapshot<UserQuerySnapshot> snapshot, BuildContext context) {
     fba.User? authUser = fba.FirebaseAuth.instance.currentUser;
