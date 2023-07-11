@@ -45,7 +45,7 @@ class Leave extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => BannerNotification(
+                                  builder: (context) => const BannerNotification(
                                         message: 'banner',
                                       )));
                         },

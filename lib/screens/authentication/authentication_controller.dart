@@ -1,5 +1,4 @@
 import 'package:algo_track/common/constants.dart';
-import 'package:algo_track/components/alerts.dart';
 import 'package:algo_track/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fba;
 import 'package:flutter/material.dart';

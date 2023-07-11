@@ -173,7 +173,7 @@ class AlgoTrackApp extends StatelessWidget {
                     name: ADD_LEAVE,
                     path: 'addLeave',
                     builder: (BuildContext context, GoRouterState state) =>
-                        AddLeave(),
+                        const AddLeave(),
                     routes: [
                       GoRoute(
                           name: DATE_PICKER,
@@ -187,7 +187,7 @@ class AlgoTrackApp extends StatelessWidget {
                                 path: 'datesubmit',
                                 builder: (BuildContext context,
                                         GoRouterState state) =>
-                                    AddLeave()),
+                                    const AddLeave()),
                           ]),
                     ]),
                 GoRoute(

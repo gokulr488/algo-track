@@ -78,9 +78,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               //     title: 'Add user', onPressed: () => ctrl.createProjects())
             ],
           ),
-          desktop: Column()),
+          desktop: const Column()),
     );
   }
 
-  int _bottomNavIndex = 1;
+  final int _bottomNavIndex = 1;
 }

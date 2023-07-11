@@ -29,7 +29,7 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
                         size: 70,
                         color: Theme.of(context).colorScheme.primary)),
                 Text('Company details',
-                    style: Theme.of(context).textTheme.headline4)
+                    style: Theme.of(context).textTheme.headlineMedium)
               ]),
               FormFieldWidget(
                   fieldName: 'CompanyName',
@@ -45,7 +45,7 @@ class _CreateCompanyScreenState extends State<CreateCompanyScreen> {
                         size: 70,
                         color: Theme.of(context).colorScheme.primary)),
                 Text('Admin details',
-                    style: Theme.of(context).textTheme.headline4)
+                    style: Theme.of(context).textTheme.headlineMedium)
               ]),
               FormFieldWidget(
                   fieldName: 'User Name',

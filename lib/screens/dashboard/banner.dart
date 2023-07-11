@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class BannerNotification extends StatelessWidget {
   final String message;
 
-  BannerNotification({required this.message});
+  const BannerNotification({required this.message});
 
   @override
   Widget build(BuildContext context) {

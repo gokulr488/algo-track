@@ -37,4 +37,4 @@ const firestoreSerializable = JsonSerializable(
   createFieldMap: true,
 );
 
-Widget web = Column(children: const [Text('Web under development')]);
+Widget web = const Column(children: [Text('Web under development')]);
